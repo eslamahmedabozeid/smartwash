@@ -21,6 +21,7 @@ export default async function Home({ params }: PageProps) {
       {/* 2. Hero Section (First home page section) */}
       <HeroSection lang={lang} dict={dict} />
 
+
       {/* 3. Services Grid Section */}
       <ServicesSection lang={lang} dict={dict} />
 
