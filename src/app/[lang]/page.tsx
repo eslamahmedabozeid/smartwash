@@ -3,6 +3,7 @@ import { getDictionary } from "@/dictionaries";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import PromoSection from "@/components/PromoSection";
+import SavingsBagsSection from "@/components/SavingsBagsSection";
 import ServicesSection from "@/components/ServicesSection";
 import Footer from "@/components/Footer";
 
@@ -25,10 +26,13 @@ export default async function Home({ params }: PageProps) {
       {/* 3. Promo Section (Second home page section) */}
       <PromoSection lang={lang} dict={dict} />
 
-      {/* 4. Services Grid Section */}
+      {/* 4. Savings Bags Section (Third home page section) */}
+      <SavingsBagsSection lang={lang} dict={dict} />
+
+      {/* 5. Services Grid Section */}
       <ServicesSection lang={lang} dict={dict} />
 
-      {/* 5. Footer Section */}
+      {/* 6. Footer Section */}
       <Footer lang={lang} dict={dict} />
     </div>
   );
