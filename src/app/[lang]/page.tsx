@@ -2,6 +2,7 @@ import React from "react";
 import { getDictionary } from "@/dictionaries";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import PromoSection from "@/components/PromoSection";
 import ServicesSection from "@/components/ServicesSection";
 import Footer from "@/components/Footer";
 
@@ -21,10 +22,13 @@ export default async function Home({ params }: PageProps) {
       {/* 2. Hero Section (First home page section) */}
       <HeroSection lang={lang} dict={dict} />
 
-      {/* 3. Services Grid Section */}
+      {/* 3. Promo Section (Second home page section) */}
+      <PromoSection lang={lang} dict={dict} />
+
+      {/* 4. Services Grid Section */}
       <ServicesSection lang={lang} dict={dict} />
 
-      {/* 4. Footer Section */}
+      {/* 5. Footer Section */}
       <Footer lang={lang} dict={dict} />
     </div>
   );

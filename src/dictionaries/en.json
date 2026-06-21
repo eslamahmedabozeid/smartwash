@@ -26,5 +26,13 @@
     "desc1": "Premium dry cleaning and laundry service with free doorstep pickup.",
     "desc2": "Download the app and schedule in seconds.",
     "howItWorks": "How It Works"
+  },
+  "promo": {
+    "title": "First Pickup Is\nOn Us!",
+    "subtitle": "Download the app now and get free pickup, delivery, and 20% off your first order.",
+    "appStoreSub": "Available now",
+    "appStoreTitle": "App Store",
+    "playStoreSub": "Available now",
+    "playStoreTitle": "Play Store"
   }
 }
