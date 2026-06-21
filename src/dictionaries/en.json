@@ -1,0 +1,30 @@
+{
+  "navigation": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "service": "Service",
+    "about": "About",
+    "help": "Help"
+  },
+  "actions": {
+    "downloadApp": "Download App",
+    "languageSwitch": "Arabic"
+  },
+  "home": {
+    "title": "Smart Wash Premium Services",
+    "subtitle": "Get your clothes cleaned by professionals with top quality and care.",
+    "cta": "Get Started",
+    "servicesTitle": "Our Services",
+    "dryClean": "Dry Cleaning",
+    "washFold": "Wash & Fold",
+    "ironing": "Ironing & Pressing"
+  },
+  "hero": {
+    "title1": "Everything Your Clothes Need",
+    "title2": "Starting",
+    "title3": "From 3 • 6 • 9",
+    "desc1": "Premium dry cleaning and laundry service with free doorstep pickup.",
+    "desc2": "Download the app and schedule in seconds.",
+    "howItWorks": "How It Works"
+  }
+}
