@@ -176,6 +176,12 @@
   "aboutPage": {
     "title": "Revolutionizing Laundry Care",
     "desc": "Smart Wash simplifies laundry with a modern service focused on quality and customer experience.",
-    "downloadApp": "Download App"
+    "downloadApp": "Download App",
+    "featureStepsTitle": "Four Simple Steps To\nFresh & Clean.",
+    "featureStepsDesc": "Garments are cleaned based on fabric type for quality.",
+    "featureAirDryTitle": "Air Dry Technology",
+    "featureAirDryDesc": "Natural drying preserves fabric texture and color without heat damage.",
+    "featureSteamPressTitle": "Steam Press Finish",
+    "featureSteamPressDesc": "Steam pressing gives a polished look without damaging fabric."
   }
 }

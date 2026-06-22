@@ -7,6 +7,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import AboutHowItWorksSection from "@/components/about/AboutHowItWorksSection";
+import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
+import AboutPromoSection from "@/components/about/AboutPromoSection";
 
 interface AboutViewProps {
   lang: string;
@@ -90,8 +92,16 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
 
       </main>
 
+
+      {/* Features Section */}
+      <AboutFeaturesSection lang={lang} dict={dict} />
+
+      {/* About Promo Section */}
+      <AboutPromoSection lang={lang} dict={dict} />
+
       {/* How It Works Section with Stacking Scroll Animation */}
       <AboutHowItWorksSection lang={lang} dict={dict} />
+
 
       {/* Mobile App Section */}
       <MobileAppSection lang={lang} dict={dict} />
