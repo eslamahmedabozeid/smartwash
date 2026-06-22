@@ -11,6 +11,7 @@ import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
 import AboutPromoSection from "@/components/about/AboutPromoSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import ServicesSection from "@/components/home/ServicesSection";
+import FaqSection from "@/components/shared/FaqSection";
 
 interface AboutViewProps {
   lang: string;
@@ -113,6 +114,10 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
 
       {/* Mobile App Section */}
       <MobileAppSection lang={lang} dict={dict} />
+
+
+      {/* FAQ Section */}
+      <FaqSection lang={lang} dict={dict} />
 
       {/* Footer Section */}
       <Footer lang={lang} dict={dict} />
