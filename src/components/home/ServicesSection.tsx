@@ -16,9 +16,10 @@ interface ServicesSectionProps {
       card4Desc: string;
     };
   };
+  bgClass?: string;
 }
 
-export default function ServicesSection({ lang, dict }: ServicesSectionProps) {
+export default function ServicesSection({ lang, dict, bgClass = "bg-[#ECEFFB]" }: ServicesSectionProps) {
   const isAr = lang === "ar";
   const s = dict.servicesSection;
 
@@ -67,8 +68,8 @@ export default function ServicesSection({ lang, dict }: ServicesSectionProps) {
 
   return (
     <section id="why-smartwash" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
-      {/* Light Lavender Rounded Card Panel matching user screenshot */}
-      <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
+      {/* Light Lavender/Peach Rounded Card Panel matching user screenshot */}
+      <div className={`max-w-7xl mx-auto ${bgClass} rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300`}>
         
         {/* Section Header Block */}
         <div className="space-y-3 mb-12 sm:mb-16">
