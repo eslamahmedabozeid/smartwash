@@ -64,5 +64,17 @@
     "card6Title": "Daily Press Pack",
     "card6Desc": "Regular ironing bundle for shirts, trousers, and skirts",
     "card6Price": "49 AED"
+  },
+  "howItWorksSection": {
+    "label": "How It Works",
+    "title": "Four Simple Steps To\nFresh & Clean.",
+    "step1Title": "Schedule Pickup",
+    "step1Desc": "Choose a date and time that works for you through our app or website.",
+    "step2Title": "We Pick Up",
+    "step2Desc": "Our driver arrives at your door with laundry bags — no sorting needed.",
+    "step3Title": "We Clean",
+    "step3Desc": "We wash, clean, and press your garments according to their care labels.",
+    "step4Title": "Delivered Fresh",
+    "step4Desc": "Clean, fresh, and perfectly presented — right to your doorstep."
   }
 }
