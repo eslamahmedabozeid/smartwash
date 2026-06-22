@@ -6,6 +6,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileAppSection from "@/components/home/MobileAppSection";
+import AboutHowItWorksSection from "@/components/about/AboutHowItWorksSection";
 
 interface AboutViewProps {
   lang: string;
@@ -88,6 +89,9 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
         </div>
 
       </main>
+
+      {/* How It Works Section with Stacking Scroll Animation */}
+      <AboutHowItWorksSection lang={lang} dict={dict} />
 
       {/* Mobile App Section */}
       <MobileAppSection lang={lang} dict={dict} />
