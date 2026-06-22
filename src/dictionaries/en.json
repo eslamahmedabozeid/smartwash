@@ -76,5 +76,32 @@
     "step3Desc": "We wash, clean, and press your garments according to their care labels.",
     "step4Title": "Delivered Fresh",
     "step4Desc": "Clean, fresh, and perfectly presented — right to your doorstep."
+  },
+  "servicesSection": {
+    "label": "Why Smart Wash",
+    "title": "Built For People Who\nValue Their Time.",
+    "card1Title": "24h Turnaround",
+    "card1Desc": "From pickup to delivery within 24 hours, same-day express also available.",
+    "card2Title": "Fully Insured",
+    "card2Desc": "Every garment insured up to 500 AED, full responsibility for rare damage.",
+    "card3Title": "Real-Time Tracking",
+    "card3Desc": "Track your order from pickup to delivery with accurate real-time updates.",
+    "card4Title": "Eco-Friendly",
+    "card4Desc": "Biodegradable detergents used with energy-efficient machines for clean care."
+  },
+  "testimonials": {
+    "label": "Customer Testimonials",
+    "item1Quote": "I really appreciate how straightforward the laundry service is and how quickly their customer support responds. I can't see myself managing without it.",
+    "item1Name": "Aisha Al Mansouri",
+    "item1Role": "Founder & CEO, FreshFold Laundry",
+    "item2Quote": "Smart Wash has completely changed how I manage my laundry. Excellent service and pristine dry cleaning every single time.",
+    "item2Name": "John Doe",
+    "item2Role": "Busy Professional",
+    "item3Quote": "The 24-hour turnaround is a lifesaver. I scheduled a pickup at night and received my crisp, clean suits the next evening.",
+    "item3Name": "Sarah Smith",
+    "item3Role": "Operations Director",
+    "item4Quote": "Outstanding support and incredibly convenient app. The tracking feature is super precise and the laundry smells absolutely amazing.",
+    "item4Name": "Khaled Al Jaber",
+    "item4Role": "Tech Entrepreneur"
   }
 }

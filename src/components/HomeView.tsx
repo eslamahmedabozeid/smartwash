@@ -5,6 +5,7 @@ import PromoSection from "./PromoSection";
 import SavingsBagsSection from "./SavingsBagsSection";
 import HowItWorksSection from "./HowItWorksSection";
 import ServicesSection from "./ServicesSection";
+import TestimonialsSection from "./TestimonialsSection";
 import Footer from "./Footer";
 
 interface HomeViewProps {
@@ -32,6 +33,9 @@ export default function HomeView({ lang, dict }: HomeViewProps) {
 
       {/* 5. Services Grid Section */}
       <ServicesSection lang={lang} dict={dict} />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection lang={lang} dict={dict} />
 
       {/* 6. Footer Section */}
       <Footer lang={lang} dict={dict} />

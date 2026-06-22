@@ -3,70 +3,108 @@ import React from "react";
 interface ServicesSectionProps {
   lang: string;
   dict: {
-    home: {
-      servicesTitle: string;
-      dryClean: string;
-      washFold: string;
-      ironing: string;
+    servicesSection: {
+      label: string;
+      title: string;
+      card1Title: string;
+      card1Desc: string;
+      card2Title: string;
+      card2Desc: string;
+      card3Title: string;
+      card3Desc: string;
+      card4Title: string;
+      card4Desc: string;
     };
   };
 }
 
 export default function ServicesSection({ lang, dict }: ServicesSectionProps) {
   const isAr = lang === "ar";
+  const s = dict.servicesSection;
 
-  const services = [
+  const features = [
     {
-      emoji: "👔",
-      title: dict.home.dryClean,
-      desc: isAr
-        ? "العناية الخاصة بالملابس الفاخرة والبدلات والأقمشة الحساسة مثل الحرير والصوف"
-        : "Specialized chemical treatment for delicate garments and formal suits.",
+      title: s.card1Title,
+      desc: s.card1Desc,
+      icon: (
+        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      ),
     },
     {
-      emoji: "🧺",
-      title: dict.home.washFold,
-      desc: isAr
-        ? "غسيل يومي وتجفيف دقيق مع طي احترافي لتستلم ملابسك جاهزة مباشرة للخزانة"
-        : "Perfect laundry service for everyday clothes, sheets, and activewear.",
+      title: s.card2Title,
+      desc: s.card2Desc,
+      icon: (
+        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="M13 7l-4 5h4v5l4-5h-4z" />
+        </svg>
+      ),
     },
     {
-      emoji: "💨",
-      title: dict.home.ironing,
-      desc: isAr
-        ? "إزالة التجاعيد بأحدث مكواة بخار احترافية لتبدو ملابسك أنيقة ومنسقة دائماً"
-        : "Professional steam pressing to keep your clothes looking crisp and clean.",
+      title: s.card3Title,
+      desc: s.card3Desc,
+      icon: (
+        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+      ),
+    },
+    {
+      title: s.card4Title,
+      desc: s.card4Desc,
+      icon: (
+        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 22C2 10 10 2 22 2c0 12-8 20-20 20z" />
+          <path d="M2 22l14-14" />
+        </svg>
+      ),
     },
   ];
 
   return (
-    <section id="services" className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-100">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-xl mx-auto space-y-3 mb-16 animate-fade-in">
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-            {dict.home.servicesTitle}
+    <section id="why-smartwash" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+      {/* Light Lavender Rounded Card Panel matching user screenshot */}
+      <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
+        
+        {/* Section Header Block */}
+        <div className="space-y-3 mb-12 sm:mb-16">
+          <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block">
+            {s.label}
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] leading-tight tracking-tight max-w-3xl whitespace-pre-line">
+            {s.title}
           </h2>
-          <p className="text-slate-500 text-base">
-            {isAr
-              ? "نقدم خدمات غسيل متكاملة بأحدث الأجهزة والتقنيات لتناسب جميع احتياجاتكم اليومية"
-              : "Providing complete care for your daily wear using advanced technology."}
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, idx) => (
+        {/* Feature Cards Grid (4 columns on desktop, 2 on tablet, 1 on mobile) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+          {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-slate-50 rounded-2xl p-8 hover:bg-orange-50 hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-orange-100 group"
+              className="bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center border border-slate-100 hover:shadow-md transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-orange-100 text-[#FF5500] flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition-transform">
-                {service.emoji}
+              {/* Centered Pill Shape Box for Icon */}
+              <div className="w-full max-w-[180px] h-12 rounded-2xl bg-[#FFEFEA] flex items-center justify-center mb-6 shrink-0">
+                {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">{service.title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">{service.desc}</p>
+
+              {/* Title */}
+              <h3 className="text-lg font-black text-[#1E1E1E] mb-2 leading-snug">
+                {feature.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
+                {feature.desc}
+              </p>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
