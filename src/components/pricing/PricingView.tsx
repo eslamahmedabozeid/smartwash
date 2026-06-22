@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import MobileAppSection from "@/components/home/MobileAppSection";
 
 
 interface PricingViewProps {
@@ -81,7 +82,7 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
       <Header lang={lang} dict={dict} />
 
       {/* Main Content Area */}
-      <main className="w-full flex-1 py-6 px-4 sm:px-6 lg:px-8 space-y-12">
+      <main className="w-full flex-1 py-6 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
 
         {/* Transparent Pricing Orange Banner Block */}
         <div className="max-w-7xl mx-auto bg-[#FF5500] text-white rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
@@ -144,6 +145,9 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
         </div>
 
       </main>
+
+      {/* Mobile App Section */}
+      <MobileAppSection lang={lang} dict={dict} />
 
       {/* Footer Section */}
       <Footer lang={lang} dict={dict} />

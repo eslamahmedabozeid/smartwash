@@ -172,5 +172,10 @@
     "card6Desc": "Advanced deep-shampoo treatment to remove stains and refresh your rugs.",
     "card6Price": "10",
     "currency": "/AED"
+  },
+  "aboutPage": {
+    "title": "Revolutionizing Laundry Care",
+    "desc": "Smart Wash simplifies laundry with a modern service focused on quality and customer experience.",
+    "downloadApp": "Download App"
   }
 }
