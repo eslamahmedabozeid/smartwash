@@ -1,6 +1,6 @@
 import React from "react";
 import { getDictionary } from "@/dictionaries";
-import HomeView from "@/components/HomeView";
+import HomeView from "@/components/home/HomeView";
 
 interface PageProps {
   params: Promise<{ lang: string }>;

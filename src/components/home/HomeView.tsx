@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "./Header";
-import HeroSection from "./HeroSection";
-import PromoSection from "./PromoSection";
-import SavingsBagsSection from "./SavingsBagsSection";
-import HowItWorksSection from "./HowItWorksSection";
-import ServicesSection from "./ServicesSection";
-import TestimonialsSection from "./TestimonialsSection";
-import MobileAppSection from "./MobileAppSection";
-import FaqSection from "./FaqSection";
-import Footer from "./Footer";
+import Header from "@/components/layout/Header";
+import HeroSection from "@/components/home/HeroSection";
+import PromoSection from "@/components/home/PromoSection";
+import SavingsBagsSection from "@/components/home/SavingsBagsSection";
+import HowItWorksSection from "@/components/home/HowItWorksSection";
+import ServicesSection from "@/components/home/ServicesSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
+import MobileAppSection from "@/components/home/MobileAppSection";
+import FaqSection from "@/components/shared/FaqSection";
+import Footer from "@/components/layout/Footer";
 
 interface HomeViewProps {
   lang: string;
