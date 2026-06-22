@@ -104,12 +104,12 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
       {/* How It Works Section */}
       <HowItWorksSection lang={lang} dict={dict} />
 
-      {/* Services Section */}
-      <ServicesSection lang={lang} dict={dict} bgClass="bg-[#FFF3ED]" />
 
       {/* How It Works Section with Stacking Scroll Animation */}
       <AboutHowItWorksSection lang={lang} dict={dict} />
 
+      {/* Services Section */}
+      <ServicesSection lang={lang} dict={dict} bgClass="bg-[#FFF3ED]" />
 
       {/* Mobile App Section */}
       <MobileAppSection lang={lang} dict={dict} />
