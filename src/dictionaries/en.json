@@ -147,5 +147,30 @@
     "copyright": "© 2026 Smart Wash. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
+  },
+  "pricingPage": {
+    "headerLabel": "Transparent Pricing",
+    "headerTitle": "Simple, Upfront Pricing\nFor Every Service",
+    "sectionTitle": "Savings Bags",
+    "sectionDesc": "Pre-paid bags with a fixed capacity — perfect for your weekly laundry.\nEach bag holds up to 15 items.",
+    "card1Title": "Ironing Only",
+    "card1Desc": "Professional steam ironing to give your clothes a crisp, wrinkle-free finish.",
+    "card1Price": "3",
+    "card2Title": "Wash",
+    "card2Desc": "Everyday laundry washed, dried, and neatly folded, ready for your wardrobe.",
+    "card2Price": "6",
+    "card3Title": "Dry Clean",
+    "card3Desc": "Premium care for delicate fabrics using specialized eco-friendly cleaning.",
+    "card3Price": "9",
+    "card4Title": "Home",
+    "card4Desc": "Deep cleaning for bedding, curtains, and linens to keep your home fresh.",
+    "card4Price": "10",
+    "card5Title": "Shoe Cleaning",
+    "card5Desc": "Expert cleaning and polishing to restore your footwear to like-new condition.",
+    "card5Price": "30",
+    "card6Title": "Carpet Cleaning",
+    "card6Desc": "Advanced deep-shampoo treatment to remove stains and refresh your rugs.",
+    "card6Price": "10",
+    "currency": "/AED"
   }
 }
