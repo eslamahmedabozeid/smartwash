@@ -6,6 +6,8 @@ import SavingsBagsSection from "./SavingsBagsSection";
 import HowItWorksSection from "./HowItWorksSection";
 import ServicesSection from "./ServicesSection";
 import TestimonialsSection from "./TestimonialsSection";
+import MobileAppSection from "./MobileAppSection";
+import FaqSection from "./FaqSection";
 import Footer from "./Footer";
 
 interface HomeViewProps {
@@ -36,6 +38,12 @@ export default function HomeView({ lang, dict }: HomeViewProps) {
 
       {/* Testimonials Section */}
       <TestimonialsSection lang={lang} dict={dict} />
+
+      {/* Mobile App Section */}
+      <MobileAppSection lang={lang} dict={dict} />
+
+      {/* FAQ Section */}
+      <FaqSection lang={lang} dict={dict} />
 
       {/* 6. Footer Section */}
       <Footer lang={lang} dict={dict} />

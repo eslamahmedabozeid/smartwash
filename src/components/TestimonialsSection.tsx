@@ -153,7 +153,7 @@ export default function TestimonialsSection({ lang, dict }: TestimonialsSectionP
       >
 
         {/* Subtitle / Label */}
-        <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block mb-8 sm:mb-12 pointer-events-none">
+        <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block mb-18 sm:mb-18 pointer-events-none">
           {s.label}
         </span>
 

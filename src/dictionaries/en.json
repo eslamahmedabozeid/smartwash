@@ -103,5 +103,49 @@
     "item4Quote": "Outstanding support and incredibly convenient app. The tracking feature is super precise and the laundry smells absolutely amazing.",
     "item4Name": "Khaled Al Jaber",
     "item4Role": "Tech Entrepreneur"
+  },
+  "mobileAppSection": {
+    "label": "Mobile App",
+    "title": "Your Laundry,\nIn Your Pocket.",
+    "scanToDownload": "Scan to download",
+    "platforms": "iOS & Android",
+    "appStoreSub": "Available now",
+    "appStoreTitle": "App Store",
+    "playStoreSub": "Available now",
+    "playStoreTitle": "Play Store"
+  },
+  "faqSection": {
+    "label": "FAQ",
+    "title": "Got Questions?",
+    "showMore": "Show more",
+    "q1": "How does Smart Wash work?",
+    "a1": "Lorem ipsum dolor sit amet consectetur. Egestas enim sed senectus ornare pellentesque duis. Gravida purus netus lobortis ultricies sit sollicitudin. At nulla urna nisl quisque scelerisque dignissim eget nunc adipiscing. At nulla urna nisl quisque scelerisque dignissim eget nunc adipiscing.",
+    "q2": "What are your laundry processing times?",
+    "a2": "Our standard turnaround time is 24 to 48 hours. We also offer same-day express service for orders received before 10 AM.",
+    "q3": "How can I pay for my orders?",
+    "a3": "We accept online credit/debit card payments through our app, cash on delivery, or card payment on delivery via our driver's mobile POS terminal.",
+    "q4": "Is there a minimum order amount?",
+    "a4": "Yes, our minimum order value is 30 AED. Any orders below this amount will be charged the base minimum of 30 AED.",
+    "q5": "How do you handle delicate garments?",
+    "a5": "We inspect each garment according to its care labels. Delicate fabrics are treated with specialized gentle solvents and dry-cleaned separately.",
+    "q6": "What if my clothes get damaged?",
+    "a6": "Every order is fully insured up to 500 AED. In the rare event of damage, we assume full responsibility to replace or compensate according to our policy."
+  },
+  "footer": {
+    "desc": "Premium laundry & dry cleaning at your doorstep. Clean clothes, zero hassle.",
+    "quickLinks": "Quick Links",
+    "servicesLabel": "Services",
+    "contactLabel": "Contact",
+    "howItWorks": "How It Works",
+    "reviews": "Reviews",
+    "downloadApp": "Download App",
+    "washFold": "Wash & Fold",
+    "dryClean": "Dry Cleaning",
+    "ironing": "Ironing",
+    "expressService": "Express Service",
+    "address": "Dubai, UAE",
+    "copyright": "© 2026 Smart Wash. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   }
 }

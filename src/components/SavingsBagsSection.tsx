@@ -106,11 +106,52 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
     }
   };
 
+  // Drag-to-scroll logic
+  const isDown = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!sliderRef.current) return;
+    isDown.current = true;
+    // Disable snapping and smooth behavior during manual drag for pixel-perfect tracking
+    sliderRef.current.style.scrollSnapType = "none";
+    sliderRef.current.style.scrollBehavior = "auto";
+    startX.current = e.pageX - sliderRef.current.offsetLeft;
+    scrollLeftStart.current = sliderRef.current.scrollLeft;
+  };
+
+  const handleMouseLeave = () => {
+    if (isDown.current && sliderRef.current) {
+      // Re-enable snapping when drag is cancelled
+      sliderRef.current.style.scrollSnapType = "";
+      sliderRef.current.style.scrollBehavior = "";
+    }
+    isDown.current = false;
+  };
+
+  const handleMouseUp = () => {
+    if (isDown.current && sliderRef.current) {
+      // Re-enable snapping when drag finishes so cards lock into place
+      sliderRef.current.style.scrollSnapType = "";
+      sliderRef.current.style.scrollBehavior = "";
+    }
+    isDown.current = false;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDown.current || !sliderRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5; // Drag speed multiplier
+    sliderRef.current.scrollLeft = scrollLeftStart.current - walk;
+  };
+
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Light Lavender Rounded Card Panel */}
       <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col shadow-sm relative overflow-hidden transition-all duration-300">
-        
+
         {/* Top Header Block: Title & Description side-by-side with slider buttons */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8 pb-12 sm:pb-16 border-b border-[#3B52DF]/10">
           <div className="flex-1 space-y-3">
@@ -152,7 +193,12 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
         {/* Cards Carousel: Flex horizontal scrollable on both mobile and desktop */}
         <div
           ref={sliderRef}
-          className="mt-12 flex overflow-x-auto pb-6 gap-6 scrollbar-none snap-x snap-mandatory w-full cursor-grab active:cursor-grabbing"
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          onDragStart={(e) => e.preventDefault()}
+          className="mt-12 flex overflow-x-auto pb-6 gap-6 scrollbar-none snap-x snap-mandatory w-full cursor-grab active:cursor-grabbing select-none"
         >
           {cards.map((card, idx) => (
             <div
@@ -167,6 +213,7 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
                   fill
                   sizes="(max-width: 768px) 40vw, 15vw"
                   className="object-cover group-hover:scale-108 transition-transform duration-500"
+                  draggable={false}
                 />
               </div>
 
