@@ -196,5 +196,16 @@
     "phoneLabel": "Give us a call",
     "phoneValue": "+97148132999",
     "phoneSub": "Sun–Thu, 9am–6pm"
+  },
+  "servicePage": {
+    "heroTitle": "Laundry Made\nSimple",
+    "heroDesc": "Fill your bag, we handle the rest. Premium laundry service at a flat rate — no surprises, no hidden fees.",
+    "downloadApp": "Download App",
+    "instantPickup": "Instant Pickup",
+    "instantPickupDesc": "Book a slot today, and our white-glove team arrives in under 2 hours.",
+    "honestPricing": "Honest Pricing",
+    "honestPricingDesc": "Pay Per Item",
+    "fastTrack": "Fast Track",
+    "fastTrackDesc": "Delivery in 24 Hours"
   }
 }
