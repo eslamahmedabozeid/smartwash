@@ -3,6 +3,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HelpHeaderSection from "@/components/help/HelpHeaderSection";
 import HelpFaqSection from "@/components/help/HelpFaqSection";
+import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
+import MobileAppSection from "@/components/home/MobileAppSection";
 
 interface HelpViewProps {
   lang: string;
@@ -22,6 +24,13 @@ export default function HelpView({ lang, dict }: HelpViewProps) {
 
         {/* FAQ Tabs & Accordion Section */}
         <HelpFaqSection lang={lang} dict={dict} />
+
+        {/* Features Section */}
+        <AboutFeaturesSection lang={lang} dict={dict} />
+
+
+        {/* Mobile App Section */}
+        <MobileAppSection lang={lang} dict={dict} />
       </main>
 
       {/* Footer Section */}
