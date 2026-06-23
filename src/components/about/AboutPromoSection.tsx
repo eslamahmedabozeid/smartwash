@@ -24,12 +24,11 @@ export default function AboutPromoSection({ lang, dict }: AboutPromoSectionProps
     <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Orange Container */}
       <div className="max-w-7xl mx-auto bg-[#FF5500] rounded-[2.5rem] flex flex-col lg:flex-row items-center justify-between shadow-lg overflow-hidden transition-all duration-300">
-        
+
         {/* Text Content Block */}
         <div
-          className={`flex-1 text-white flex flex-col ${
-            isAr ? "text-right items-start lg:items-start lg:pr-16 lg:pl-8" : "text-left items-start lg:items-start lg:pl-16 lg:pr-8"
-          } p-8 sm:p-12 lg:py-16 w-full`}
+          className={`flex-1 text-white flex flex-col ${isAr ? "text-right items-start lg:items-start lg:pr-16 lg:pl-8" : "text-left items-start lg:items-start lg:pl-16 lg:pr-8"
+            } p-8 sm:p-12 lg:py-16 w-full`}
         >
           {/* Main Title */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight whitespace-pre-line">
@@ -80,8 +79,8 @@ export default function AboutPromoSection({ lang, dict }: AboutPromoSectionProps
         </div>
 
         {/* Hand holding iPhone Image Block */}
-        <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-end h-full self-end relative pt-6 lg:pt-16">
-          <div className="relative w-[280px] sm:w-[350px] lg:w-[440px] aspect-[4/3] lg:aspect-[4.5/4] self-end overflow-hidden flex items-end">
+        <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-end h-full self-end relative">
+          <div className="relative self-end overflow-hidden flex items-end">
             <img
               src="/images/about/Handiphone.png"
               alt="Hand holding iPhone"

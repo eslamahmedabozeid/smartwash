@@ -183,5 +183,18 @@
     "featureAirDryDesc": "التجفيف الطبيعي يحافظ على ملمس الأقمشة وألوانها دون تلف ناتج عن الحرارة.",
     "featureSteamPressTitle": "لمسة الكي بالبخار",
     "featureSteamPressDesc": "الكي بالبخار يمنح مظهراً مصقولاً وأنيقاً دون إتلاف الأقمشة."
+  },
+  "helpPage": {
+    "label": "مركز المساعدة",
+    "title": "كيف يمكننا مساعدتك اليوم؟",
+    "emailLabel": "راسلنا عبر البريد الإلكتروني",
+    "emailValue": "support@washmen.com",
+    "emailSub": "الرد خلال ساعتين",
+    "whatsappLabel": "تواصل معنا عبر الواتساب",
+    "whatsappValue": "+97148132999",
+    "whatsappSub": "متاح طوال أيام الأسبوع",
+    "phoneLabel": "اتصل بنا",
+    "phoneValue": "+97148132999",
+    "phoneSub": "الأحد–الخميس، 9 صباحاً–6 مساءً"
   }
 }

@@ -183,5 +183,18 @@
     "featureAirDryDesc": "Natural drying preserves fabric texture and color without heat damage.",
     "featureSteamPressTitle": "Steam Press Finish",
     "featureSteamPressDesc": "Steam pressing gives a polished look without damaging fabric."
+  },
+  "helpPage": {
+    "label": "Help Center",
+    "title": "How Can We Help\nYou Today?",
+    "emailLabel": "Drop us an email at",
+    "emailValue": "support@washmen.com",
+    "emailSub": "Reply within 2 hours",
+    "whatsappLabel": "WhatsApp us at",
+    "whatsappValue": "+97148132999",
+    "whatsappSub": "Available 7 days",
+    "phoneLabel": "Give us a call",
+    "phoneValue": "+97148132999",
+    "phoneSub": "Sun–Thu, 9am–6pm"
   }
 }
