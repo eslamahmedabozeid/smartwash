@@ -21,7 +21,7 @@ export default function ServiceHandleEverythingSection({ lang, dict }: ServiceHa
 
   return (
     <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-between shadow-sm relative overflow-hidden transition-all duration-300 w-full">
-      
+
       {/* Left Column: Title & Category Icons */}
       <div className="flex-1 flex flex-col items-start text-left rtl:text-right w-full">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#FF5500] leading-tight tracking-tight whitespace-pre-line max-w-lg">
@@ -33,16 +33,12 @@ export default function ServiceHandleEverythingSection({ lang, dict }: ServiceHa
           {items.map((item, idx) => (
             <div key={idx} className="flex flex-col items-center select-none group">
               {/* Outer White Card Container */}
-              <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white flex items-center justify-center rounded-2xl sm:rounded-3xl border border-[#FF5500]/5 shadow-sm group-hover:scale-105 group-hover:shadow-md transition-all duration-300">
-                {/* Inner Peach Container */}
-                <div className="w-10 h-10 sm:w-16 sm:h-16 bg-[#FFF3ED] flex items-center justify-center rounded-xl sm:rounded-2xl">
-                  <img
-                    src={item.img}
-                    alt={item.label}
-                    className="w-6 h-6 sm:w-10 sm:h-10 object-contain"
-                  />
-                </div>
-              </div>
+              <img
+                src={item.img}
+                alt={item.label}
+                className=" object-contain"
+              />
+
               {/* Category Name Label */}
               <span className="text-[10px] sm:text-xs md:text-sm font-bold text-slate-800 text-center mt-3 leading-tight block max-w-[70px] sm:max-w-[100px] min-h-[2rem] overflow-hidden line-clamp-2">
                 {item.label}

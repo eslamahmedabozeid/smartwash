@@ -216,5 +216,17 @@
     "catOuterwear": "Outerwear",
     "catTraditional": "Traditional Wear",
     "catSarees": "Sarees"
+  },
+  "serviceFeaturesSection": {
+    "label": "Why Choose Smart Wash?",
+    "title": "Luxurious And Cozy\nLaundry Experience.",
+    "card1Title": "Fast Delivery",
+    "card1Desc": "Get your clothes cleaned and delivered within 24 hours.",
+    "card2Title": "Free Pickup & Delivery",
+    "card2Desc": "We come to you. No need to leave your home.",
+    "card3Title": "Transparent Pricing",
+    "card3Desc": "Flat rates. No hidden fees. No surprises.",
+    "card4Title": "Flexible Scheduling",
+    "card4Desc": "Handled by professionals using high-quality detergents."
   }
 }

@@ -5,6 +5,7 @@ import MobileAppSection from "@/components/home/MobileAppSection";
 import FaqSection from "@/components/shared/FaqSection";
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceHandleEverythingSection from "@/components/services/ServiceHandleEverythingSection";
+import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 
 interface ServiceViewProps {
   lang: string;
@@ -20,12 +21,15 @@ export default function ServiceView({ lang, service, dict }: ServiceViewProps) {
 
       {/* Main Content Area */}
       <main className="w-full flex-1 py-12 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
-        
+
         {/* First Section: Service Hero */}
         <ServiceHeroSection lang={lang} dict={dict} />
 
         {/* Second Section: We Handle Everything You Wear & Use */}
         <ServiceHandleEverythingSection lang={lang} dict={dict} />
+
+        {/* Why Choose Smart Wash Section */}
+        <ServiceFeaturesSection lang={lang} dict={dict} />
 
         {/* Mobile App Section */}
         <MobileAppSection lang={lang} dict={dict} />
