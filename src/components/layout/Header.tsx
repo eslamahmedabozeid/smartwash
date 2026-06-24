@@ -180,11 +180,10 @@ export default function Header({ lang, dict }: HeaderProps) {
           >
             {/* Left Circle (ع in English mode, Icon in Arabic mode) */}
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                isAr
-                  ? "bg-[#FF5500] text-white shadow-md"
-                  : "bg-white text-[#FF5500] shadow-sm border border-slate-100"
-              }`}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isAr
+                ? "bg-[#FF5500] text-white shadow-md"
+                : "bg-white text-[#FF5500] shadow-sm border border-slate-100"
+                }`}
             >
               {isAr ? (
                 <svg
@@ -207,11 +206,10 @@ export default function Header({ lang, dict }: HeaderProps) {
 
             {/* Right Circle (Icon in English mode, EN in Arabic mode) */}
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                isAr
-                  ? "bg-white text-[#FF5500] shadow-sm border border-slate-100"
-                  : "bg-[#FF5500] text-white shadow-md"
-              }`}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isAr
+                ? "bg-white text-[#FF5500] shadow-sm border border-slate-100"
+                : "bg-[#FF5500] text-white shadow-md"
+                }`}
             >
               {isAr ? (
                 <span className="font-bold text-xs select-none">EN</span>
@@ -236,7 +234,7 @@ export default function Header({ lang, dict }: HeaderProps) {
           {/* Download App Outlined Button */}
           <Link
             href="#download"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-[#FF5500] active:scale-95 transition-all duration-300"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-[0.75rem] border-1 border-[#E0E0E0] text-white font-semibold hover:bg-white hover:text-[#FF5500] active:scale-95 transition-all duration-300"
           >
             {/* Download Icon */}
             <svg

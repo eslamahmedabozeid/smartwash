@@ -30,21 +30,21 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
             } p-8 sm:p-12 lg:py-16 w-full`}
         >
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight whitespace-pre-line">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-semibold leading-tight tracking-tight whitespace-pre-line">
             {dict.promo.title}
           </h2>
 
           {/* Subtitle */}
-          <p className="mt-4 text-sm sm:text-base lg:text-lg text-white/90 max-w-lg font-medium leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base lg:text-2xl text-[#E0E0E0] max-w-lg font-medium leading-relaxed">
             {dict.promo.subtitle}
           </p>
 
           {/* App Download Badges (Horizontal Row) */}
-          <div className="mt-8 flex flex-row items-center gap-8 flex-wrap">
+          <div className="mt-10 flex flex-row items-center gap-8 flex-wrap">
             {/* Apple App Store */}
             <Link
               href="#app-store"
-              className="flex items-center gap-3 text-white hover:text-white/80 group active:scale-95 transition-all duration-200"
+              className="flex items-center gap-3 py-[0.625rem] px-[1.5rem] text-white hover:text-white/80 group active:scale-95 transition-all duration-200"
             >
               {/* Apple Icon */}
               <img
@@ -61,7 +61,7 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
             {/* Google Play Store */}
             <Link
               href="#play-store"
-              className="flex items-center gap-3 text-white hover:text-white/80 group active:scale-95 transition-all duration-200"
+              className="flex items-center gap-3 py-[0.625rem] px-[1.5rem] text-white hover:text-white/80 group active:scale-95 transition-all duration-200"
             >
               {/* Google Play Icon */}
               <img

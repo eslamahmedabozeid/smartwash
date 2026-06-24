@@ -25,33 +25,33 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
   // List of images for the gallery
   const images = [
     {
-      src: "/images/hero_basket.png",
+      src: "/images/home/Rectangle5.png",
       alt: "Man with laundry basket",
-      heightClass: "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[420px]",
+      heightClass: "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
       widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
     },
     {
-      src: "/images/hero_ironing.png",
+      src: "/images/home/Rectangle4.png",
       alt: "Professional ironing",
-      heightClass: "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[320px]",
+      heightClass: "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
       widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
     },
     {
-      src: "/images/hero_hangers.png",
+      src: "/images/home/Rectangle3.png",
       alt: "Clothes on hangers",
-      heightClass: "h-[120px] sm:h-[160px] md:h-[200px] lg:h-[240px]",
+      heightClass: "h-[120px] sm:h-[160px] md:h-[200px] lg:h-[164px]",
       widthClass: "hidden sm:block sm:w-[30%] md:w-[18%]",
     },
     {
-      src: "/images/hero_laundry_bag.png",
+      src: "/images/home/Rectangle2.png",
       alt: "Laundry duffle bag",
-      heightClass: "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[320px]",
+      heightClass: "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
       widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
     },
     {
-      src: "/images/hero_delivery.png",
+      src: "/images/home/Rectangle1.png",
       alt: "Laundry doorstep delivery",
-      heightClass: "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[420px]",
+      heightClass: "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
       widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
     },
   ];
@@ -59,10 +59,10 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Peach/Cream rounded container matching user design */}
-      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
-        
+      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6  sm:p-10 md:px-10 md:pt-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
+
         {/* Title */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#1E1E1E] leading-tight max-w-4xl tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1E1E1E] leading-tight max-w-4xl tracking-tight">
           {dict.hero.title1}
           <span className="block mt-2 sm:mt-3">
             {dict.hero.title2}{" "}
@@ -71,7 +71,7 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
         </h1>
 
         {/* Subtitle / Description */}
-        <p className="mt-6 text-sm sm:text-base md:text-lg text-slate-500 max-w-2xl font-medium leading-relaxed">
+        <p className="mt-6 text-sm sm:text-base md:text-[1.5rem] text-slate-500 max-w-5xl  leading-relaxed">
           {dict.hero.desc1}
           <span className="block mt-1">{dict.hero.desc2}</span>
         </p>
@@ -109,7 +109,7 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
           {images.map((img, idx) => (
             <div
               key={idx}
-              className={`relative ${img.widthClass} ${img.heightClass} overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[2rem] shadow-md border-2 border-white hover:scale-103 transition-all duration-500 ease-out`}
+              className={`relative ${img.widthClass} ${img.heightClass} overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[2rem] shadow-md   hover:scale-103 transition-all duration-500 ease-out`}
             >
               <Image
                 src={img.src}

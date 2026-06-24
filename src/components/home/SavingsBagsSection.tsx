@@ -150,15 +150,15 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Light Lavender Rounded Card Panel */}
-      <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col shadow-sm relative overflow-hidden transition-all duration-300">
+      <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-10 sm:p-10 md:p-10 flex flex-col shadow-sm relative overflow-hidden transition-all duration-300">
 
         {/* Top Header Block: Title & Description side-by-side with slider buttons */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8 pb-12 sm:pb-16 border-b border-[#3B52DF]/10">
           <div className="flex-1 space-y-3">
-            <span className="text-xs sm:text-sm font-bold text-[#3B52DF] tracking-wider uppercase block">
+            <span className="text-xs sm:text-sm font-medium text-[#3B52DF] tracking-wider uppercase block">
               {s.label}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2E41CD] leading-tight tracking-tight whitespace-pre-line">
+            <h2 className="text-3xl sm:text-5xl md:text-5xl font-semibold text-[#2E41CD] leading-tight tracking-tight whitespace-pre-line">
               {s.title}
             </h2>
           </div>
@@ -167,7 +167,7 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
               {s.subtitle}
             </p>
             {/* Slider navigation controls */}
-            <div className="flex items-center gap-3 self-end sm:self-auto shrink-0">
+            {/* <div className="flex items-center gap-3 self-end sm:self-auto shrink-0">
               <button
                 onClick={() => scroll("left")}
                 aria-label="Previous card"
@@ -186,7 +186,7 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -203,7 +203,7 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
           {cards.map((card, idx) => (
             <div
               key={idx}
-              className="w-[290px] sm:w-[380px] lg:w-[415px] shrink-0 snap-start bg-white rounded-3xl overflow-hidden flex flex-row border border-[#3B52DF]/5 shadow-md hover:shadow-xl hover:scale-102 transition-all duration-300 group"
+              className="w-[32.5625rem] h-[20.9375rem] sm:w-[380px] lg:w-[32.5625rem] shrink-0 snap-start bg-white rounded-3xl overflow-hidden flex flex-row border border-[#3B52DF]/5 shadow-md hover:shadow-xl hover:scale-102 transition-all duration-300 group"
             >
               {/* Left Column (Image) */}
               <div className="relative w-[40%] sm:w-[45%] h-full min-h-[170px] sm:min-h-[210px] overflow-hidden">
@@ -218,31 +218,26 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
               </div>
 
               {/* Right Column (Contents) */}
-              <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between text-left rtl:text-right">
+              <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center text-left rtl:text-right">
                 <div className="space-y-1 sm:space-y-2">
                   {/* Badge */}
-                  <span className="inline-block px-2.5 py-0.5 text-[9px] sm:text-[10px] font-extrabold rounded-full bg-[#FFEFEA] text-[#FF5500] tracking-wide uppercase">
+                  <span className="inline-block mb-[0.5rem] px-[0.75rem] py-[0.25rem] text-[9px] sm:text-[0.75rem] font-normal rounded-full bg-[#FFEDE6] text-[#000] tracking-wide uppercase">
                     {card.tag}
                   </span>
                   {/* Title */}
-                  <h3 className="text-sm sm:text-base font-black text-slate-800 leading-tight">
+                  <h3 className="mb-[0.5rem] sm:text-base font-bold text-[1.25rem] text-slate-800 leading-tight">
                     {card.title}
                   </h3>
                   {/* Description */}
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium leading-relaxed line-clamp-3">
+                  <p className="text-[0.875rem] mb-[0.5rem] sm:text-xs text-[#181818] font-medium leading-relaxed line-clamp-3">
                     {card.desc}
                   </p>
-                </div>
-
-                <div className="pt-2 sm:pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  {/* Price */}
-                  <span className="text-xs sm:text-sm font-black text-slate-800">
+                  <span className="text-xs sm:text-[1rem] font-semibold text-[#181818]">
                     {card.price}
                   </span>
-                  {/* Action Link */}
                   <Link
                     href={`#service-detail-${idx}`}
-                    className="flex items-center gap-1 text-[11px] sm:text-xs font-black text-[#FF5500] hover:text-[#E64D00] transition-colors"
+                    className="flex mt-[2rem] items-center gap-1 text-[1.125rem] sm:text-[1.125rem] font-medium text-[#FC4F00] hover:text-[#E64D00] transition-colors"
                   >
                     <span>{s.knowMore}</span>
                     <svg
@@ -255,6 +250,10 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
                     </svg>
                   </Link>
                 </div>
+
+                {/* <div className="pt-2 sm:pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                
+                </div> */}
               </div>
             </div>
           ))}
