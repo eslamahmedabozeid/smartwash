@@ -80,7 +80,9 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
         {/* Hand holding iPhone 16 Pro Image Block */}
         <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-end h-full self-end relative">
           <div className="relative  self-end overflow-hidden flex items-end">
-            <Image
+            <img src={'/images/HandandiPhone16Pro.png'} />
+
+            {/* <Image
               src="/images/HandandiPhone16Pro.png"
               alt="Hand holding iPhone 16 Pro"
               width={440}
@@ -88,7 +90,7 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
               style={{ height: "auto" }}
               className="w-full object-contain object-bottom select-none pointer-events-none transform hover:scale-[1.02] transition-transform duration-500 ease-out"
               priority
-            />
+            /> */}
           </div>
         </div>
 
