@@ -66,7 +66,7 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
           {dict.hero.title1}
           <span className="block mt-2 sm:mt-3">
             {dict.hero.title2}{" "}
-            <span className="text-[#FF5500] font-black">{dict.hero.title3}</span>
+            <span className="text-[#FF5500] font-semibold">{dict.hero.title3}</span>
           </span>
         </h1>
 
