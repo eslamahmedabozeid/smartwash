@@ -46,15 +46,15 @@ export default function FaqSection({ lang, dict }: FaqSectionProps) {
   return (
     <section id="faq" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Warm peach rounded container matching Mockup */}
-      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col lg:flex-row items-start justify-between gap-12 shadow-sm transition-all duration-300">
-        
+      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-[2.5rem] flex flex-col lg:flex-row items-start justify-between gap-12 shadow-sm transition-all duration-300">
+
         {/* Left Column: FAQ title & Call to action */}
         <div className="w-full lg:w-[32%] lg:sticky lg:top-24 lg:self-start flex flex-col items-start text-left rtl:text-right space-y-6">
           <div className="space-y-3">
-            <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block">
+            <span className="text-xs sm:text-[1.125rem] font-medium text-[#181818] tracking-wider uppercase block">
               {s.label}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#1E1E1E] leading-tight tracking-tight">
               {s.title}
             </h2>
           </div>
@@ -89,17 +89,16 @@ export default function FaqSection({ lang, dict }: FaqSectionProps) {
               >
                 {/* Accordion Header Row */}
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-black text-[#1E1E1E] text-base sm:text-lg flex-1 leading-snug">
+                  <h3 className="font-medium text-[#181818] text-[1.125rem] sm:text-lg flex-1 leading-snug">
                     {faq.q}
                   </h3>
 
                   {/* Circle Button: X for open, + for closed */}
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
-                      isOpen
-                        ? "bg-[#FFEFEA] text-[#FF5500]"
-                        : "bg-[#FF5500] text-white hover:bg-[#E64D00]"
-                    }`}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
+                      ? "bg-[#FFEFEA] text-[#FF5500]"
+                      : "bg-[#FF5500] text-white hover:bg-[#E64D00]"
+                      }`}
                   >
                     {isOpen ? (
                       // Close (X) SVG
@@ -117,7 +116,7 @@ export default function FaqSection({ lang, dict }: FaqSectionProps) {
 
                 {/* Accordion Content Block (Visible when open) */}
                 {isOpen && (
-                  <p className="text-slate-400 text-xs sm:text-sm font-medium mt-4 leading-relaxed whitespace-pre-line animate-fade-in">
+                  <p className="text-[#8C8C8C] text-xs sm:text-[1rem] font-normal mt-4 leading-relaxed whitespace-pre-line animate-fade-in">
                     {faq.a}
                   </p>
                 )}

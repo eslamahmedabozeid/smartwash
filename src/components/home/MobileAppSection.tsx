@@ -122,7 +122,13 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
 
         {/* Right Column: iPhone 15 App Mockup */}
         {/* Desktop Absolute/Aligned-bottom placement */}
-        <div className="hidden lg:block absolute bottom-0 right-10 xl:right-0  z-10 pointer-events-none">
+        <div
+          className={`hidden lg:block absolute bottom-0 z-10 pointer-events-none ${lang === "ar"
+              ? "left-10 xl:left-0"
+              : "right-10 xl:right-0"
+            }`}
+        >
+
           <div className="relative w-full h-full">
             <img src={'/images/iPhone15.svg'} />
             {/* <Image

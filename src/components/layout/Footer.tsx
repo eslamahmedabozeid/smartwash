@@ -47,57 +47,55 @@ export default function Footer({ lang, dict }: FooterProps) {
               </div>
             </Link>
 
-            <p className="text-white/95 text-sm sm:text-base font-semibold leading-relaxed max-w-sm">
+
+          </div>
+          <div className="">
+            <p className="text-white/95 text-sm sm:text-base font-semibold leading-relaxed max-w-sm mb-8">
               {f.desc}
             </p>
-          </div>
+            <div className="flex items-center gap-1">
+              {/* Snapchat */}
+              <Link
+                href="#snapchat"
+                aria-label="Snapchat"
+                className=" "
+              >
+                <img src="/images/footer/Frame1820550884.svg" alt="" />
+              </Link>
 
+              {/* Facebook */}
+              <Link
+                href="#facebook"
+                aria-label="Facebook"
+                className=" "
+              >
+                <img src="/images/footer/Frame1820550885.svg" alt="" />
+
+              </Link>
+
+              {/* Twitter/X */}
+              <Link
+                href="#twitter"
+                aria-label="Twitter X"
+                className=" "
+              >
+                <img src="/images/footer/Frame1820550886.svg" alt="" />
+
+              </Link>
+
+              {/* LinkedIn */}
+              <Link
+                href="#linkedin"
+                aria-label="LinkedIn"
+                className=" "
+              >
+                <img src="/images/footer/Frame1820550887.svg" alt="" />
+
+              </Link>
+            </div>
+          </div>
           {/* Social Media Badges */}
-          <div className="flex items-center gap-3">
-            {/* Snapchat */}
-            <Link
-              href="#snapchat"
-              aria-label="Snapchat"
-              className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center text-white transition-colors cursor-pointer"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12.016 3a4.722 4.722 0 0 0-4.717 4.721c0 1.258.487 2.19 1.488 3.19-.34.67-.935 1.141-1.921 1.564-.475.204-.51.527-.087.72 1.01.464 2.128.536 3.178.214-.265.485-.295 1.05.111 1.458.558.558 1.636.7 2.378.368.513-.23.633.155.932.482.35.385.7.771 1.638.771 1.02 0 1.34-.386 1.69-.771.299-.327.42-.712.933-.482.742.332 1.82.19 2.378-.368.406-.408.376-.973.111-1.458 1.05.322 2.168.25 3.178-.214.423-.193.388-.516-.087-.72-.986-.423-1.58-.894-1.92-1.564 1.001-1 1.487-1.932 1.487-3.19A4.722 4.722 0 0 0 12.016 3z" />
-              </svg>
-            </Link>
 
-            {/* Facebook */}
-            <Link
-              href="#facebook"
-              aria-label="Facebook"
-              className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center text-white transition-colors cursor-pointer"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M9 8H7v3h2v9h3v-9h3.7l.5-3H12V6.5A1.5 1.5 0 0 1 13.5 5H16V2h-3A4.5 4.5 0 0 0 8.5 6.5V8H9z" />
-              </svg>
-            </Link>
-
-            {/* Twitter/X */}
-            <Link
-              href="#twitter"
-              aria-label="Twitter X"
-              className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center text-white transition-colors cursor-pointer"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </Link>
-
-            {/* LinkedIn */}
-            <Link
-              href="#linkedin"
-              aria-label="LinkedIn"
-              className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center text-white transition-colors cursor-pointer"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
-            </Link>
-          </div>
         </div>
 
         {/* Right Side: Links & Contact Card (Light Peach) */}
@@ -108,27 +106,27 @@ export default function Footer({ lang, dict }: FooterProps) {
 
             {/* Quick Links Column */}
             <div className="space-y-4">
-              <h4 className="text-base font-black text-slate-800 uppercase tracking-wide">
+              <h4 className="text-base font-bold text-[#181818] tracking-wide">
                 {f.quickLinks}
               </h4>
               <ul className="space-y-2.5">
                 <li>
-                  <Link href="#services" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.servicesLabel}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#how-it-works" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#how-it-works" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.howItWorks}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#testimonials" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#testimonials" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.reviews}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#download-app" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#download-app" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.downloadApp}
                   </Link>
                 </li>
@@ -137,27 +135,27 @@ export default function Footer({ lang, dict }: FooterProps) {
 
             {/* Services Column */}
             <div className="space-y-4">
-              <h4 className="text-base font-black text-slate-800 uppercase tracking-wide">
+              <h4 className="text-base font-bold text-[#181818] tracking-wide">
                 {f.servicesLabel}
               </h4>
               <ul className="space-y-2.5">
                 <li>
-                  <Link href="#services" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.washFold}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#services" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.dryClean}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#services" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.ironing}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#services" className="text-sm font-semibold text-slate-500 hover:text-[#FF5500] transition-colors">
+                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
                     {f.expressService}
                   </Link>
                 </li>
@@ -166,7 +164,7 @@ export default function Footer({ lang, dict }: FooterProps) {
 
             {/* Contact Column */}
             <div className="space-y-4">
-              <h4 className="text-base font-black text-slate-800 uppercase tracking-wide">
+              <h4 className="text-base font-bold text-[#181818] tracking-wide">
                 {f.contactLabel}
               </h4>
               <ul className="space-y-3.5">
@@ -201,15 +199,15 @@ export default function Footer({ lang, dict }: FooterProps) {
           {/* Bottom copyright & legal block */}
           <div className="pt-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Copyright */}
-            <p className="text-xs sm:text-sm font-semibold text-slate-400">
+            <p className="text-xs sm:text-sm font-normal text-[#8C8C8C]">
               {f.copyright}
             </p>
             {/* Links */}
             <div className="flex items-center gap-6">
-              <Link href="#privacy" className="text-xs sm:text-sm font-semibold text-slate-400 hover:text-[#FF5500] transition-colors">
+              <Link href="#privacy" className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors">
                 {f.privacy}
               </Link>
-              <Link href="#terms" className="text-xs sm:text-sm font-semibold text-slate-400 hover:text-[#FF5500] transition-colors">
+              <Link href="#terms" className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors">
                 {f.terms}
               </Link>
             </div>
