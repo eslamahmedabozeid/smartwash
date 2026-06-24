@@ -69,14 +69,14 @@ export default function ServicesSection({ lang, dict, bgClass = "bg-[#ECEFFB]" }
   return (
     <section id="why-smartwash" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Light Lavender/Peach Rounded Card Panel matching user screenshot */}
-      <div className={`max-w-7xl mx-auto ${bgClass} rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300`}>
-        
+      <div className={`max-w-7xl mx-auto ${bgClass} rounded-[2.5rem] p-6 sm:p-10 md:p-[2.5rem] flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300`}>
+
         {/* Section Header Block */}
         <div className="space-y-3 mb-12 sm:mb-16">
-          <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block">
+          <span className="text-xs sm:text-[1.125rem] font-medium text-[#181818] tracking-wider uppercase block">
             {s.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] leading-tight tracking-tight max-w-3xl whitespace-pre-line">
+          <h2 className="text-3xl sm:text-4xl md:text-[3.5rem] font-semibold text-[#1E1E1E] leading-tight tracking-tight max-w-3xl whitespace-pre-line">
             {s.title}
           </h2>
         </div>
@@ -86,20 +86,21 @@ export default function ServicesSection({ lang, dict, bgClass = "bg-[#ECEFFB]" }
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center border border-slate-100 hover:shadow-md transition-all duration-300"
+              className="bg-white rounded-[var(--spacing-700,2rem)] p-6 sm:p-6 flex flex-col items-center text-center border-2 border-[rgba(252,79,0,0.10)] hover:shadow-md transition-all duration-300"
+
             >
               {/* Centered Pill Shape Box for Icon */}
-              <div className="w-full max-w-[180px] h-12 rounded-2xl bg-[#FFEFEA] flex items-center justify-center mb-6 shrink-0">
+              <div className="w-full h-12 rounded-2xl bg-[#FFEFEA] flex items-center justify-center mb-6 shrink-0">
                 {feature.icon}
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-black text-[#1E1E1E] mb-2 leading-snug">
+              <h3 className="text-[1.25rem] font-bold text-[#181818] mb-2 leading-snug">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
+              <p className="text-xs sm:text-[1rem] text-[#8C8C8C] font-normal leading-relaxed">
                 {feature.desc}
               </p>
             </div>

@@ -74,20 +74,20 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
   return (
     <section id="how-it-works" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Container matching standard page styling with light peach container */}
-      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col lg:flex-row items-start gap-12 lg:gap-16 shadow-sm relative transition-all duration-300">
-        
+      <div className="max-w-7xl mx-auto bg-[#FFEDE6] rounded-[2.5rem] p-6 sm:p-10 md:p-10 flex flex-col lg:flex-row items-start gap-12 lg:gap-16 shadow-sm relative transition-all duration-300">
+
         {/* Left Column: Fixed/Sticky layout header & image on desktop */}
         <div className="w-full lg:w-[45%] lg:sticky lg:top-24 lg:self-start space-y-8 text-left rtl:text-right">
           <div className="space-y-3">
-            <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block">
+            <span className="text-xs sm:text-[1.125rem] font-medium text-[#000] tracking-wider uppercase block">
               {s.label}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] leading-tight tracking-tight whitespace-pre-line">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#1E1E1E] leading-tight tracking-tight whitespace-pre-line">
               {s.title}
             </h2>
           </div>
-          
-          <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-md border-2 border-white">
+
+          <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-md">
             <Image
               src="/images/Rectangle 11.png"
               alt="How Smart Wash Works"
@@ -101,7 +101,7 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
 
         {/* Right Column: Scrollable cards stack */}
         <div className="w-full lg:w-[50%] lg:ml-auto relative flex flex-col items-center">
-          
+
           {/* Vertical dashed line running behind cards on desktop */}
           <div className="absolute top-12 bottom-12 left-1/2 w-0.5 border-l-2 border-dashed border-[#FF5500]/20 -translate-x-1/2 z-0 hidden lg:block" />
 
@@ -109,20 +109,20 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
           <div className="w-full space-y-8 lg:space-y-[208px] z-10">
             {steps.map((step, idx) => (
               <div key={idx} className="relative w-full">
-                
+
                 {/* Step Card */}
                 <div className="w-full bg-white rounded-3xl p-6 sm:p-8 flex flex-col items-start gap-5 shadow-sm border border-slate-100/50 hover:shadow-md transition-all duration-300 text-left rtl:text-right">
                   {/* Icon Box */}
                   <div className="w-12 h-12 rounded-2xl bg-[#FFEFEA] flex items-center justify-center shrink-0">
                     {step.icon}
                   </div>
-                  
+
                   {/* Step Contents */}
                   <div className="space-y-2">
-                    <h3 className="text-lg sm:text-xl font-black text-[#1E1E1E] leading-tight">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#1E1E1E] leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-500 font-medium leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-500 font-normal leading-relaxed">
                       {step.desc}
                     </p>
                   </div>

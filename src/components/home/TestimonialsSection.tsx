@@ -153,7 +153,7 @@ export default function TestimonialsSection({ lang, dict }: TestimonialsSectionP
       >
 
         {/* Subtitle / Label */}
-        <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block mb-18 sm:mb-18 pointer-events-none">
+        <span className="text-xs sm:text-[1.125rem] font-medium text-[#181818] tracking-wider uppercase block mb-18 sm:mb-18 pointer-events-none">
           {s.label}
         </span>
 
@@ -168,7 +168,7 @@ export default function TestimonialsSection({ lang, dict }: TestimonialsSectionP
                 }`}
             >
               {/* Testimonial Quote */}
-              <blockquote className="text-xl sm:text-2xl md:text-3xl font-black text-[#1E1E1E] leading-tight max-w-4xl tracking-tight mb-8">
+              <blockquote className="text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight max-w-4xl tracking-tight mb-8">
                 "{item.quote}"
               </blockquote>
 

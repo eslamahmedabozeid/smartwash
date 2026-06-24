@@ -32,10 +32,10 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
 
           {/* Header Texts */}
           <div className="space-y-3">
-            <span className="text-xs sm:text-sm font-bold text-white/80 tracking-wider uppercase block">
+            <span className="text-xs sm:text-[1.125rem] font-medium text-[#FFFFFF] tracking-wider  block">
               {s.label}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight whitespace-pre-line">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-6xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line">
               {s.title}
             </h2>
           </div>
@@ -44,7 +44,7 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
           <div className="flex flex-col sm:flex-row items-stretch gap-6 w-full sm:w-auto">
 
             {/* Badges Card (App Store & Play Store) */}
-            <div className="bg-white/10 border border-white/10 rounded-[2rem] p-10 flex flex-col gap-4 w-full sm:w-[240px] justify-center">
+            <div className="bg-white/10 border border-white/10 rounded-[2rem] p-10 flex flex-col gap-4 w-full sm:w-[277px] justify-center">
 
               {/* App Store button */}
               <Link
@@ -60,10 +60,10 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
                   />
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-400 font-semibold block leading-none">
+                  <span className="text-[0.75rem] sm:text-[0.75rem] text-[#181818] font-light block leading-none">
                     {s.appStoreSub}
                   </span>
-                  <span className="text-xs sm:text-sm font-black text-slate-800 block leading-none mt-1">
+                  <span className="text-[1.125rem] sm:text-[1.125rem] font-normal text-[#181818] block leading-none mt-1">
                     {s.appStoreTitle}
                   </span>
                 </div>
@@ -83,10 +83,10 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
                   />
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-400 font-semibold block leading-none">
+                  <span className="text-[0.75rem] sm:text-[0.75rem] text-[#181818] font-light block leading-none">
                     {s.playStoreSub}
                   </span>
-                  <span className="text-xs sm:text-sm font-black text-slate-800 block leading-none mt-1">
+                  <span className="text-[1.125rem] sm:text-[1.125rem] font-normal text-[#181818] block leading-none mt-1">
                     {s.playStoreTitle}
                   </span>
                 </div>
@@ -122,28 +122,31 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
 
         {/* Right Column: iPhone 15 App Mockup */}
         {/* Desktop Absolute/Aligned-bottom placement */}
-        <div className="hidden lg:block absolute bottom-0 right-10 xl:right-16 w-[340px] xl:w-[518px] h-[430px] xl:h-[463px] z-10 pointer-events-none">
+        <div className="hidden lg:block absolute bottom-0 right-10 xl:right-0  z-10 pointer-events-none">
           <div className="relative w-full h-full">
-            <Image
+            <img src={'/images/iPhone15.svg'} />
+            {/* <Image
               src="/images/iPhone15.svg"
               alt="SmartWash iPhone App Screen"
               fill
               sizes="380px"
               className="object-contain object-bottom"
               priority
-            />
+            /> */}
           </div>
         </div>
 
         {/* Mobile/Tablet Centered-bottom placement */}
-        <div className="block lg:hidden w-[260px] sm:w-[300px] h-[320px] sm:h-[360px] relative mt-8 -mb-6 sm:-mb-10 md:-mb-16 pointer-events-none shrink-0">
-          <Image
+        <div className="block lg:hidden  relative mt-8 -mb-6 sm:-mb-10 md:-mb-16 pointer-events-none shrink-0">
+          <img src={'/images/iPhone15.svg'} />
+
+          {/* <Image
             src="/images/iPhone15.svg"
             alt="SmartWash iPhone App Screen"
             fill
             sizes="(max-width: 768px) 300px, 100vw"
             className="object-contain object-bottom"
-          />
+          /> */}
         </div>
 
       </div>

@@ -75,7 +75,7 @@ export default function ServiceFeaturesSection({ lang, dict }: ServiceFeaturesSe
             </h2>
           </div>
 
-          <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-md border-2 border-white/20">
+          <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-md">
             <Image
               src="/images/hero_laundry_bag.png"
               alt="Luxurious And Cozy Laundry Experience"
