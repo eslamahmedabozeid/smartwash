@@ -33,3 +33,9 @@ body {
 .animate-fade-in {
   animation: fadeIn 0.25s ease-out forwards;
 }
+
+/* Force IBM Plex Sans Arabic on all text when language is Arabic */
+html[lang="ar"],
+html[lang="ar"] body {
+  font-family: var(--font-ibm-plex-sans-arabic), system-ui, sans-serif;
+}

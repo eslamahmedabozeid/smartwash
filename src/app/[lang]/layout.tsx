@@ -34,7 +34,7 @@ export default async function RootLayout({
       dir={isAr ? "rtl" : "ltr"}
       className={`${inter.variable} ${ibmPlexSansArabic.variable} h-full antialiased`}
     >
-      <body className={`min-h-full flex flex-col font-sans ${isAr ? 'font-arabic' : 'font-sans'}`}>
+      <body className={`min-h-full flex flex-col ${isAr ? 'font-arabic' : 'font-sans'}`}>
         {children}
       </body>
     </html>
