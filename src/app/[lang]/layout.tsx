@@ -16,6 +16,9 @@ const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
 export const metadata: Metadata = {
   title: "Smart Wash",
   description: "Smart Wash - Premium Laundry and Wash Services",
+  icons: {
+    icon: "/images/Vector.svg",
+  },
 };
 
 export default async function RootLayout({
