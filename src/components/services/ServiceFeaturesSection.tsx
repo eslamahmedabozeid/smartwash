@@ -67,10 +67,10 @@ export default function ServiceFeaturesSection({ lang, dict }: ServiceFeaturesSe
         {/* Left Column: Sticky Title & Image */}
         <div className="w-full lg:w-[45%] lg:sticky lg:top-24 lg:self-start space-y-8 text-left rtl:text-right">
           <div className="space-y-3">
-            <span className="text-xs sm:text-sm font-bold text-white/80 tracking-wider uppercase block">
+            <span className="text-xs sm:text-sm font-medium text-white tracking-wider block">
               {s.label}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight whitespace-pre-line">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line">
               {s.title}
             </h2>
           </div>
@@ -110,10 +110,10 @@ export default function ServiceFeaturesSection({ lang, dict }: ServiceFeaturesSe
 
                   {/* Step Contents */}
                   <div className="space-y-1">
-                    <h3 className="text-lg sm:text-xl font-bold text-[#1E1E1E] leading-tight">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#181818] leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed w-[74%]">
+                    <p className="text-xs sm:text-sm text-[#8C8C8C] font-normal leading-relaxed w-[74%]">
                       {step.desc}
                     </p>
                   </div>
