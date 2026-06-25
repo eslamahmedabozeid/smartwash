@@ -50,7 +50,7 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
 
               <Link
                 href="#download-app"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[1rem] bg-[#FF5500] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 w-fit text-sm shadow-sm"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-[1rem] bg-[#FF5500] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 w-fit text-sm shadow-sm sm:mt-10 mt-5"
               >
                 {/* Download Icon */}
                 <svg
