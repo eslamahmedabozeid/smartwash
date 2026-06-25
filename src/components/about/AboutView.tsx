@@ -30,23 +30,27 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
       <main className="w-full flex-1 py-6 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
 
         {/* Peach Hero Banner Block */}
-        <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col gap-12 lg:gap-16 shadow-sm relative overflow-hidden transition-all duration-300">
+        <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-8 sm:p-12 md:p-10 flex flex-col gap-12 lg:gap-8 shadow-sm relative overflow-hidden transition-all duration-300">
 
           {/* Top Row: Info + Right Image */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
             {/* Left side text column */}
-            <div className="flex flex-col items-start text-left rtl:text-right space-y-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0E1B46] leading-tight tracking-tight max-w-lg">
-                {s.title}
-              </h1>
-              <p className="text-sm sm:text-base text-[#525F8C] font-semibold leading-relaxed max-w-md">
-                {s.desc}
-              </p>
+            <div className="flex flex-col items-start text-left rtl:text-right h-full justify-between">
+
+              <div className="space-y-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#181818] leading-tight tracking-tight max-w-lg">
+                  {s.title}
+                </h1>
+
+                <p className="text-sm sm:text-[1.5rem] text-[#8C8C8C] font-normal leading-relaxed ">
+                  {s.desc}
+                </p>
+              </div>
 
               <Link
                 href="#download-app"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[1.25rem] bg-[#FF5500] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 w-fit text-sm shadow-sm"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-[1rem] bg-[#FF5500] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 w-fit text-sm shadow-sm"
               >
                 {/* Download Icon */}
                 <svg
@@ -58,21 +62,16 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                 </svg>
-                <span>{s.downloadApp}</span>
+                <span className="text-[1.125rem]">{s.downloadApp}</span>
               </Link>
             </div>
 
             {/* Right side Image column */}
             <div className="relative w-full">
-              <img src={'/images/about/Rectangle1.png'}
-                alt="Hanging Clothes on Rack" />
-              {/* <Image
-                src="/images/about_hero_right.png"
-                alt="Folded Laundry Stack"
-                fill
-                className="object-cover"
-                priority
-              /> */}
+              <img
+                src="/images/about/Rectangle1.png"
+                alt="Hanging Clothes on Rack"
+              />
             </div>
 
           </div>

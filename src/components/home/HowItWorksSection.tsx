@@ -74,7 +74,7 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
   return (
     <section id="how-it-works" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
       {/* Container matching standard page styling with light peach container */}
-      <div className="max-w-7xl mx-auto bg-[#FFEDE6] rounded-[2.5rem] p-6 sm:p-10 md:p-10 flex flex-col lg:flex-row items-start gap-12 lg:gap-16 shadow-sm relative transition-all duration-300">
+      <div className="max-w-7xl mx-auto bg-[#FFEDE6] rounded-[2.5rem] p-6 sm:p-10 md:p-14 flex flex-col lg:flex-row items-start gap-12 lg:gap-16 shadow-sm relative transition-all duration-300">
 
         {/* Left Column: Fixed/Sticky layout header & image on desktop */}
         <div className="w-full lg:w-[45%] lg:sticky lg:top-24 lg:self-start space-y-8 text-left rtl:text-right">
@@ -119,10 +119,10 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
 
                   {/* Step Contents */}
                   <div className="space-y-2">
-                    <h3 className="text-lg sm:text-xl font-bold text-[#1E1E1E] leading-tight">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#181818] leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-500 font-normal leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed">
                       {step.desc}
                     </p>
                   </div>

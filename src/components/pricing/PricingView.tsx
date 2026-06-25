@@ -86,10 +86,10 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
 
         {/* Transparent Pricing Orange Banner Block */}
         <div className="max-w-7xl mx-auto bg-[#FF5500] text-white rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
-          <span className="text-xs sm:text-sm font-bold text-white/80 tracking-wider uppercase block mb-3">
+          <span className="text-xs sm:text-[1.125rem] font-medium text-[#BFD1FA] tracking-wider  block mb-3">
             {s.headerLabel}
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight whitespace-pre-line max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line max-w-3xl">
             {s.headerTitle}
           </h1>
         </div>
@@ -99,10 +99,10 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
 
           {/* Header block for section */}
           <div className="text-left rtl:text-right mb-10 max-w-3xl space-y-3">
-            <h2 className="text-[#2E41CD] font-black text-3xl sm:text-4xl tracking-tight leading-none">
+            <h2 className="text-[#3748C8] font-semibold text-5xl sm:text-5xl tracking-tight leading-none">
               {s.sectionTitle}
             </h2>
-            <p className="text-[#4F5FB0] font-semibold text-sm sm:text-base leading-relaxed whitespace-pre-line">
+            <p className="text-[#3748C8] font-normal text-sm sm:text-base leading-relaxed whitespace-pre-line">
               {s.sectionDesc}
             </p>
           </div>
@@ -120,21 +120,21 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-black text-[#1E1E1E] mb-2 leading-snug">
+                <h3 className="text-lg font-bold text-[#181818] mb-2 leading-snug">
                   {card.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed max-w-xs mb-4">
+                <p className="text-xs sm:text-sm text-[#8C8C8C] font-normal leading-relaxed max-w-xs mb-4">
                   {card.desc}
                 </p>
 
                 {/* Price block */}
                 <div className="flex items-baseline justify-center gap-1 mt-auto">
-                  <span className="text-3xl font-black text-slate-800 leading-none">
+                  <span className="text-3xl font-bold text-[#1A1D2E] leading-none">
                     {card.price}
                   </span>
-                  <span className="text-xs font-black text-slate-400 leading-none">
+                  <span className="text-xs font-normal text-[#6B7194] leading-none">
                     {s.currency}
                   </span>
                 </div>

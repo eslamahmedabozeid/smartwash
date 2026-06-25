@@ -76,10 +76,10 @@ export default function AboutHowItWorksSection({ lang, dict }: AboutHowItWorksSe
 
         {/* Section Header (Centered & Sticky) */}
         <div className="sticky top-0 text-center space-y-3 w-full pt-10 pb-6 z-30 bg-[#FFF3ED] rounded-t-[2.5rem] px-4 sm:px-6 lg:px-8">
-          <span className="text-xs sm:text-sm font-bold text-slate-500 tracking-wider uppercase block">
+          <span className="text-xs sm:text-[1.125rem] font-medium text-[#FC4F00] tracking-wider uppercase block">
             {s.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#FF5500] leading-tight tracking-tight whitespace-pre-line">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FC4F00] leading-tight tracking-tight whitespace-pre-line">
             {s.title}
           </h2>
         </div>
@@ -118,10 +118,10 @@ export default function AboutHowItWorksSection({ lang, dict }: AboutHowItWorksSe
 
                     {/* Step text info */}
                     <div className="space-y-2">
-                      <h3 className="text-xl sm:text-2xl font-black text-[#1E1E1E] leading-tight">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#181818] leading-tight">
                         {step.title}
                       </h3>
-                      <p className="text-sm sm:text-base text-slate-500 font-semibold leading-relaxed">
+                      <p className="text-sm sm:text-[14px] text-[#8C8C8C] font-normal leading-relaxed">
                         {step.desc}
                       </p>
                     </div>
