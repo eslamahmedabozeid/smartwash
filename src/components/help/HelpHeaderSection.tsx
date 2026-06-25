@@ -14,10 +14,10 @@ export default function HelpHeaderSection({ lang, dict }: HelpHeaderSectionProps
 
       {/* Top Banner (Question Box) */}
       <div className="w-full bg-[#FF5500] rounded-[2.5rem] py-16 px-6 sm:px-12 md:px-16 text-center flex flex-col items-center justify-center gap-3 shadow-md relative overflow-hidden">
-        <span className="text-xs sm:text-sm font-bold text-white/80 tracking-wider uppercase block">
+        <span className="text-xs sm:text-[1.125rem] font-medium text-[#BFD1FA] tracking-wider  block mb-3">
           {s.label}
         </span>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight whitespace-pre-line max-w-3xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line max-w-3xl">
           {s.title}
         </h1>
       </div>
@@ -36,13 +36,13 @@ export default function HelpHeaderSection({ lang, dict }: HelpHeaderSectionProps
               </svg>
             </div>
             <div className="space-y-1">
-              <p className="text-white/80 text-sm font-semibold">
+              <p className="text-[#FFF] text-sm font-normal">
                 {s.emailLabel}
               </p>
-              <p className="text-white text-base sm:text-lg md:text-xl font-black tracking-wide break-all">
+              <p className="text-white text-base sm:text-lg md:text-xl font-bold tracking-wide break-all">
                 {s.emailValue}
               </p>
-              <p className="text-white/60 text-xs font-semibold pt-1">
+              <p className="text-[#fff] text-xs font-normal pt-1">
                 {s.emailSub}
               </p>
             </div>
@@ -57,7 +57,7 @@ export default function HelpHeaderSection({ lang, dict }: HelpHeaderSectionProps
               </svg>
             </div>
             <div className="space-y-1">
-              <p className="text-white/80 text-sm font-semibold">
+              <p className="text-[#FFF] text-sm font-normal">
                 {s.whatsappLabel}
               </p>
               <p className="text-white text-base sm:text-lg md:text-xl font-black tracking-wide">
@@ -79,7 +79,7 @@ export default function HelpHeaderSection({ lang, dict }: HelpHeaderSectionProps
               </svg>
             </div>
             <div className="space-y-1">
-              <p className="text-white/80 text-sm font-semibold">
+              <p className="text-[#FFF] text-sm font-normal">
                 {s.phoneLabel}
               </p>
               <p className="text-white text-base sm:text-lg md:text-xl font-black tracking-wide">

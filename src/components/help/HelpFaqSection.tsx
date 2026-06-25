@@ -232,9 +232,9 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
               <button
                 key={cat.id}
                 onClick={() => handleTabChange(cat.id)}
-                className={`px-6 py-3 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 select-none cursor-pointer ${isActive
-                    ? "bg-[#FF5500] text-white shadow-sm border border-[#FF5500]"
-                    : "bg-white text-slate-800 border border-[#FF5500]/20 hover:border-[#FF5500]/50"
+                className={`px-6 py-3 rounded-[16px] text-sm font-medium whitespace-nowrap transition-all duration-300 select-none cursor-pointer ${isActive
+                  ? "bg-[#FC4F00] text-white shadow-sm border border-[#FC4F00]"
+                  : "bg-[#FFEDE6] text-[#181818] border border-[#FD7233] hover:border-[#FF5500]/50"
                   }`}
               >
                 {label}
@@ -275,15 +275,15 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
                 className="flex justify-between items-center w-full cursor-pointer gap-4 text-left rtl:text-right focus:outline-none"
               >
-                <h3 className="text-base sm:text-lg font-black text-slate-800 leading-tight">
+                <h3 className="text-base sm:text-lg font-normal text-[#181818] leading-tight">
                   {question}
                 </h3>
 
                 {/* Toggle Button */}
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
-                      ? "bg-[#FFF3ED] text-[#FF5500] rotate-90"
-                      : "bg-[#FF5500] text-white"
+                    ? "bg-[#FFF3ED] text-[#FF5500] rotate-90"
+                    : "bg-[#FF5500] text-white"
                     }`}
                 >
                   {isOpen ? (
@@ -308,7 +308,7 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
                   }`}
               >
                 <div className="overflow-hidden">
-                  <p className="text-sm sm:text-base text-slate-500 font-semibold leading-relaxed">
+                  <p className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed">
                     {answer}
                   </p>
                 </div>
