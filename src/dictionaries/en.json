@@ -228,5 +228,31 @@
     "card3Desc": "Flat rates. No hidden fees. No surprises.",
     "card4Title": "Flexible Scheduling",
     "card4Desc": "Handled by professionals using high-quality detergents."
+  },
+  "megaMenu": {
+    "valuePackages": {
+      "title": "Value Packages",
+      "subtitle": "Save more with bundled services",
+      "desc": "Weekly & monthly subscriptions • Best value",
+      "items": {
+        "laundryFold": "Laundry & Fold",
+        "laundryIron": "Laundry & Iron",
+        "ironOnly": "Iron Only",
+        "homeLinens": "Home Linens"
+      }
+    },
+    "perItem": {
+      "title": "Per Item",
+      "subtitle": "Pay exactly for what you need",
+      "desc": "Flexible • No commitment",
+      "items": {
+        "dryCleaning": "Dry Cleaning",
+        "washIron": "Wash & Iron",
+        "ironOnly": "Iron Only",
+        "blankets": "Blankets",
+        "carpets": "Carpets",
+        "homeLinens": "Home Linens"
+      }
+    }
   }
 }
