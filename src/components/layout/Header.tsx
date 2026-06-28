@@ -201,100 +201,102 @@ export default function Header({ lang, dict }: HeaderProps) {
               {/* Dropdown Menu */}
               {serviceDropdownOpen && (
                 <div
-                  className="absolute top-[calc(100%-16px)] left-4 right-4 md:left-8 md:right-8 lg:left-12 lg:right-12 xl:left-auto xl:right-auto xl:w-[960px] xl:left-1/2 xl:-translate-x-1/2 pt-4 pb-4 z-50 origin-top animate-fade-in"
+                  className="absolute top-[calc(100%-16px)] left-0 right-0 w-full pt-4 pb-4 z-50 origin-top animate-fade-in"
                 >
-                  <div className="bg-white text-gray-800 rounded-[2.5rem] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] p-8 grid grid-cols-1 md:grid-cols-2 gap-6 border border-slate-100/80">
-                    {/* Left Column: Value Packages */}
-                    <div className="bg-[#F5F7FA] rounded-[2rem] p-8 flex flex-col  text-left rtl:text-right">
-                      {/* Column Header */}
-                      <div className="mb-6">
-                        <span className="text-[11px] font-black text-[#FF5500] tracking-wider uppercase block">
-                          {m?.valuePackages.title || "VALUE PACKAGES"}
-                        </span>
-                        <h4 className="text-2xl font-bold text-[#1E1E1E] mt-2">
-                          {m?.valuePackages.subtitle || "Save more with bundled services"}
-                        </h4>
-                        <p className="text-xs text-[#8C8C8C] font-normal mt-1">
-                          {m?.valuePackages.desc || "Weekly & monthly subscriptions • Best value"}
-                        </p>
-                      </div>
+                  <div className="max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white text-gray-800 rounded-[2.5rem] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] p-8 grid grid-cols-1 md:grid-cols-2 gap-6 border border-slate-100/80">
+                      {/* Left Column: Value Packages */}
+                      <div className="bg-[#F5F7FA] rounded-[2rem] p-8 flex flex-col  text-left rtl:text-right">
+                        {/* Column Header */}
+                        <div className="mb-6">
+                          <span className="text-[11px] font-black text-[#FF5500] tracking-wider uppercase block">
+                            {m?.valuePackages.title || "VALUE PACKAGES"}
+                          </span>
+                          <h4 className="text-2xl font-bold text-[#1E1E1E] mt-2">
+                            {m?.valuePackages.subtitle || "Save more with bundled services"}
+                          </h4>
+                          <p className="text-xs text-[#8C8C8C] font-normal mt-1">
+                            {m?.valuePackages.desc || "Weekly & monthly subscriptions • Best value"}
+                          </p>
+                        </div>
 
-                      {/* Column Items Stack */}
-                      <div className="space-y-3 mt-0">
-                        {valuePackages.map((item, idx) => (
-                          <Link
-                            key={idx}
-                            href={item.href}
-                            onClick={() => setServiceDropdownOpen(false)}
-                            className="flex items-center justify-between p-4 px-6 bg-white rounded-[1.25rem] border border-slate-100 hover:border-[#FF5500]/30 hover:shadow-sm transition-all duration-200 group"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-[#FFF5F0] flex items-center justify-center shrink-0">
-                                <img src={item.icon} alt={item.name} className="w-5 h-5 object-contain" />
-                              </div>
-                              <span className="font-bold text-[#1E1E1E] text-sm group-hover:text-[#FF5500] transition-colors">
-                                {item.name}
-                              </span>
-                            </div>
-                            <svg
-                              className={`w-4 h-4 text-slate-400 group-hover:text-[#FF5500] transition-colors duration-200 ${isAr ? "rotate-180" : ""
-                                }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth={2.5}
+                        {/* Column Items Stack */}
+                        <div className="space-y-3 mt-0">
+                          {valuePackages.map((item, idx) => (
+                            <Link
+                              key={idx}
+                              href={item.href}
+                              onClick={() => setServiceDropdownOpen(false)}
+                              className="flex items-center justify-between p-4 px-6 bg-white rounded-[1.25rem] border border-slate-100 hover:border-[#FF5500]/30 hover:shadow-sm transition-all duration-200 group"
                             >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Right Column: Per Item */}
-                    <div className="bg-[#F5F7FA] rounded-[2rem]  p-8 flex flex-col justify-between text-left rtl:text-right">
-                      {/* Column Header */}
-                      <div className="mb-6">
-                        <span className="text-[11px] font-black text-[#FF5500] tracking-wider uppercase block">
-                          {m?.perItem.title || "PER ITEM"}
-                        </span>
-                        <h4 className="text-2xl font-bold text-[#1E1E1E] mt-2">
-                          {m?.perItem.subtitle || "Pay exactly for what you need"}
-                        </h4>
-                        <p className="text-xs text-[#8C8C8C] font-normal mt-1">
-                          {m?.perItem.desc || "Flexible • No commitment"}
-                        </p>
-                      </div>
-
-                      {/* Column Items Stack */}
-                      <div className="space-y-3">
-                        {perItem.map((item, idx) => (
-                          <Link
-                            key={idx}
-                            href={item.href}
-                            onClick={() => setServiceDropdownOpen(false)}
-                            className="flex items-center justify-between p-4 px-6 bg-white rounded-[1.25rem] border border-slate-100 hover:border-[#FF5500]/30 hover:shadow-sm transition-all duration-200 group"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-[#FFF5F0] flex items-center justify-center shrink-0">
-                                <img src={item.icon} alt={item.name} className="w-5 h-5 object-contain" />
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-[#FFF5F0] flex items-center justify-center shrink-0">
+                                  <img src={item.icon} alt={item.name} className="w-5 h-5 object-contain" />
+                                </div>
+                                <span className="font-bold text-[#1E1E1E] text-sm group-hover:text-[#FF5500] transition-colors">
+                                  {item.name}
+                                </span>
                               </div>
-                              <span className="font-bold text-[#1E1E1E] text-sm group-hover:text-[#FF5500] transition-colors">
-                                {item.name}
-                              </span>
-                            </div>
-                            <svg
-                              className={`w-4 h-4 text-slate-400 group-hover:text-[#FF5500] transition-colors duration-200 ${isAr ? "rotate-180" : ""
-                                }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth={2.5}
+                              <svg
+                                className={`w-4 h-4 text-slate-400 group-hover:text-[#FF5500] transition-colors duration-200 ${isAr ? "rotate-180" : ""
+                                  }`}
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2.5}
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right Column: Per Item */}
+                      <div className="bg-[#F5F7FA] rounded-[2rem]  p-8 flex flex-col justify-between text-left rtl:text-right">
+                        {/* Column Header */}
+                        <div className="mb-6">
+                          <span className="text-[11px] font-black text-[#FF5500] tracking-wider uppercase block">
+                            {m?.perItem.title || "PER ITEM"}
+                          </span>
+                          <h4 className="text-2xl font-bold text-[#1E1E1E] mt-2">
+                            {m?.perItem.subtitle || "Pay exactly for what you need"}
+                          </h4>
+                          <p className="text-xs text-[#8C8C8C] font-normal mt-1">
+                            {m?.perItem.desc || "Flexible • No commitment"}
+                          </p>
+                        </div>
+
+                        {/* Column Items Stack */}
+                        <div className="space-y-3">
+                          {perItem.map((item, idx) => (
+                            <Link
+                              key={idx}
+                              href={item.href}
+                              onClick={() => setServiceDropdownOpen(false)}
+                              className="flex items-center justify-between p-4 px-6 bg-white rounded-[1.25rem] border border-slate-100 hover:border-[#FF5500]/30 hover:shadow-sm transition-all duration-200 group"
                             >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                        ))}
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-[#FFF5F0] flex items-center justify-center shrink-0">
+                                  <img src={item.icon} alt={item.name} className="w-5 h-5 object-contain" />
+                                </div>
+                                <span className="font-bold text-[#1E1E1E] text-sm group-hover:text-[#FF5500] transition-colors">
+                                  {item.name}
+                                </span>
+                              </div>
+                              <svg
+                                className={`w-4 h-4 text-slate-400 group-hover:text-[#FF5500] transition-colors duration-200 ${isAr ? "rotate-180" : ""
+                                  }`}
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2.5}
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
