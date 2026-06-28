@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileAppSection from "@/components/home/MobileAppSection";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 
 interface PricingViewProps {
@@ -85,69 +86,75 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
       <main className="w-full flex-1 py-6 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
 
         {/* Transparent Pricing Orange Banner Block */}
-        <div className="max-w-7xl mx-auto bg-[#FF5500] text-white rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
-          <span className="text-xs sm:text-[1.125rem] font-medium text-[#BFD1FA] tracking-wider  block mb-3">
-            {s.headerLabel}
-          </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line max-w-3xl">
-            {s.headerTitle}
-          </h1>
-        </div>
+        <ScrollReveal variant="fade-in" delay={100} duration={800}>
+          <div className="max-w-7xl mx-auto bg-[#FF5500] text-white rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
+            <span className="text-xs sm:text-[1.125rem] font-medium text-[#BFD1FA] tracking-wider  block mb-3">
+              {s.headerLabel}
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line max-w-3xl">
+              {s.headerTitle}
+            </h1>
+          </div>
+        </ScrollReveal>
 
         {/* Savings Bags Section Panel (Lavender Background) */}
-        <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col shadow-sm transition-all duration-300">
+        <ScrollReveal variant="fade-up">
+          <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col shadow-sm transition-all duration-300">
 
-          {/* Header block for section */}
-          <div className="text-left rtl:text-right mb-10 max-w-3xl space-y-3">
-            <h2 className="text-[#3748C8] font-semibold text-5xl sm:text-5xl tracking-tight leading-none">
-              {s.sectionTitle}
-            </h2>
-            <p className="text-[#3748C8] font-normal text-sm sm:text-base leading-relaxed whitespace-pre-line">
-              {s.sectionDesc}
-            </p>
-          </div>
+            {/* Header block for section */}
+            <div className="text-left rtl:text-right mb-10 max-w-3xl space-y-3">
+              <h2 className="text-[#3748C8] font-semibold text-5xl sm:text-5xl tracking-tight leading-none">
+                {s.sectionTitle}
+              </h2>
+              <p className="text-[#3748C8] font-normal text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                {s.sectionDesc}
+              </p>
+            </div>
 
-          {/* Pricing cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-            {cards.map((card, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-[2.5rem] p-6 sm:p-8 flex flex-col border border-slate-100/50 hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center items-center justify-between min-h-[340px]"
-              >
-                {/* Horizontal peach pill shape top container for the icon */}
-                <div className="w-full h-28 rounded-[2rem] bg-[#FFF3ED] flex items-center justify-center mb-6 shrink-0 relative overflow-hidden">
-                  {renderCardImage(card.image, card.title)}
+            {/* Pricing cards grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+              {cards.map((card, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-[2.5rem] p-6 sm:p-8 flex flex-col border border-slate-100/50 hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center items-center justify-between min-h-[340px]"
+                >
+                  {/* Horizontal peach pill shape top container for the icon */}
+                  <div className="w-full h-28 rounded-[2rem] bg-[#FFF3ED] flex items-center justify-center mb-6 shrink-0 relative overflow-hidden">
+                    {renderCardImage(card.image, card.title)}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-[#181818] mb-2 leading-snug">
+                    {card.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-[#8C8C8C] font-normal leading-relaxed max-w-xs mb-4">
+                    {card.desc}
+                  </p>
+
+                  {/* Price block */}
+                  <div className="flex items-baseline justify-center gap-1 mt-auto">
+                    <span className="text-3xl font-bold text-[#1A1D2E] leading-none">
+                      {card.price}
+                    </span>
+                    <span className="text-xs font-normal text-[#6B7194] leading-none">
+                      {s.currency}
+                    </span>
+                  </div>
                 </div>
+              ))}
+            </div>
 
-                {/* Title */}
-                <h3 className="text-lg font-bold text-[#181818] mb-2 leading-snug">
-                  {card.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-[#8C8C8C] font-normal leading-relaxed max-w-xs mb-4">
-                  {card.desc}
-                </p>
-
-                {/* Price block */}
-                <div className="flex items-baseline justify-center gap-1 mt-auto">
-                  <span className="text-3xl font-bold text-[#1A1D2E] leading-none">
-                    {card.price}
-                  </span>
-                  <span className="text-xs font-normal text-[#6B7194] leading-none">
-                    {s.currency}
-                  </span>
-                </div>
-              </div>
-            ))}
           </div>
-
-        </div>
+        </ScrollReveal>
 
       </main>
 
       {/* Mobile App Section */}
-      <MobileAppSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <MobileAppSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* Footer Section */}
       <Footer lang={lang} dict={dict} />

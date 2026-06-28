@@ -9,6 +9,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import FaqSection from "@/components/shared/FaqSection";
 import Footer from "@/components/layout/Footer";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 interface HomeViewProps {
   lang: string;
@@ -22,28 +23,44 @@ export default function HomeView({ lang, dict }: HomeViewProps) {
       <Header lang={lang} dict={dict} />
 
       {/* 2. Hero Section (First home page section) */}
-      <HeroSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-in" delay={100} duration={800}>
+        <HeroSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* 3. Promo Section (Second home page section) */}
-      <PromoSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <PromoSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* 4. Savings Bags Section (Third home page section) */}
-      <SavingsBagsSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <SavingsBagsSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* How It Works Section */}
-      <HowItWorksSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <HowItWorksSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* 5. Services Grid Section */}
-      <ServicesSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <ServicesSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* Testimonials Section */}
-      <TestimonialsSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <TestimonialsSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* Mobile App Section */}
-      <MobileAppSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <MobileAppSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* FAQ Section */}
-      <FaqSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <FaqSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* 6. Footer Section */}
       <Footer lang={lang} dict={dict} />

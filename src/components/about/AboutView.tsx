@@ -11,6 +11,7 @@ import AboutPromoSection from "@/components/about/AboutPromoSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import FaqSection from "@/components/shared/FaqSection";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 interface AboutViewProps {
   lang: string;
@@ -30,92 +31,108 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
       <main className="w-full flex-1 py-6 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
 
         {/* Peach Hero Banner Block */}
-        <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-8 sm:p-12 md:p-10 flex flex-col gap-12 lg:gap-8 shadow-sm relative overflow-hidden transition-all duration-300">
+        <ScrollReveal variant="fade-in" delay={100} duration={800}>
+          <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-8 sm:p-12 md:p-10 flex flex-col gap-12 lg:gap-8 shadow-sm relative overflow-hidden transition-all duration-300">
 
-          {/* Top Row: Info + Right Image */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* Top Row: Info + Right Image */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-            {/* Left side text column */}
-            <div className="flex flex-col items-start text-left rtl:text-right h-full justify-between">
+              {/* Left side text column */}
+              <div className="flex flex-col items-start text-left rtl:text-right h-full justify-between">
 
-              <div className="space-y-6">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#181818] leading-tight tracking-tight max-w-lg">
-                  {s.title}
-                </h1>
+                <div className="space-y-6">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#181818] leading-tight tracking-tight max-w-lg">
+                    {s.title}
+                  </h1>
 
-                <p className="text-sm sm:text-[1.5rem] text-[#8C8C8C] font-normal leading-relaxed ">
-                  {s.desc}
-                </p>
+                  <p className="text-sm sm:text-[1.5rem] text-[#8C8C8C] font-normal leading-relaxed ">
+                    {s.desc}
+                  </p>
+                </div>
+
+                <Link
+                  href="#download-app"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-[1rem] bg-[#FF5500] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 w-fit text-sm shadow-sm sm:mt-10 mt-5"
+                >
+                  {/* Download Icon */}
+                  <svg
+                    className="w-5 h-5 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2.5"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                  </svg>
+                  <span className="text-[1.125rem]">{s.downloadApp}</span>
+                </Link>
               </div>
 
-              <Link
-                href="#download-app"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[1rem] bg-[#FF5500] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 w-fit text-sm shadow-sm sm:mt-10 mt-5"
-              >
-                {/* Download Icon */}
-                <svg
-                  className="w-5 h-5 stroke-current"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2.5"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                </svg>
-                <span className="text-[1.125rem]">{s.downloadApp}</span>
-              </Link>
+              {/* Right side Image column */}
+              <div className="relative w-full">
+                <img
+                  src="/images/about/Rectangle1.png"
+                  alt="Hanging Clothes on Rack"
+                />
+              </div>
+
             </div>
 
-            {/* Right side Image column */}
-            <div className="relative w-full">
-              <img
-                src="/images/about/Rectangle1.png"
+            {/* Bottom Row: Wide Image Banner */}
+            <div className="relative w-full  ">
+              <img src={'/images/about/Rectangle21.png'}
+                alt="Hanging Clothes on Rack" />
+              {/* <Image
+                src="/images/about/Rectangle21.png"
                 alt="Hanging Clothes on Rack"
-              />
+                fill
+                className="object-cover"
+                priority
+              /> */}
             </div>
 
           </div>
-
-          {/* Bottom Row: Wide Image Banner */}
-          <div className="relative w-full  ">
-            <img src={'/images/about/Rectangle21.png'}
-              alt="Hanging Clothes on Rack" />
-            {/* <Image
-              src="/images/about/Rectangle21.png"
-              alt="Hanging Clothes on Rack"
-              fill
-              className="object-cover"
-              priority
-            /> */}
-          </div>
-
-        </div>
+        </ScrollReveal>
 
       </main>
 
 
       {/* Features Section */}
-      <AboutFeaturesSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <AboutFeaturesSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* About Promo Section */}
-      <AboutPromoSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <AboutPromoSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* How It Works Section */}
-      <HowItWorksSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <HowItWorksSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
 
       {/* How It Works Section with Stacking Scroll Animation */}
-      <AboutHowItWorksSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <AboutHowItWorksSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* Services Section */}
-      <ServicesSection lang={lang} dict={dict} bgClass="bg-[#FFF3ED]" />
+      <ScrollReveal variant="fade-up">
+        <ServicesSection lang={lang} dict={dict} bgClass="bg-[#FFF3ED]" />
+      </ScrollReveal>
 
       {/* Mobile App Section */}
-      <MobileAppSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <MobileAppSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
 
       {/* FAQ Section */}
-      <FaqSection lang={lang} dict={dict} />
+      <ScrollReveal variant="fade-up">
+        <FaqSection lang={lang} dict={dict} />
+      </ScrollReveal>
 
       {/* Footer Section */}
       <Footer lang={lang} dict={dict} />

@@ -34,6 +34,10 @@ body {
   animation: fadeIn 0.25s ease-out forwards;
 }
 
+.direction-ltr {
+  direction: ltr;
+}
+
 /* Force IBM Plex Sans Arabic on all text when language is Arabic */
 html[lang="ar"],
 html[lang="ar"] body {

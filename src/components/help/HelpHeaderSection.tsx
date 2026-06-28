@@ -60,7 +60,7 @@ export default function HelpHeaderSection({ lang, dict }: HelpHeaderSectionProps
               <p className="text-[#FFF] text-sm font-normal">
                 {s.whatsappLabel}
               </p>
-              <p className="text-white text-base sm:text-lg md:text-xl font-black tracking-wide">
+              <p className="text-white text-base sm:text-lg md:text-xl font-black tracking-wide direction-ltr">
                 {s.whatsappValue}
               </p>
               <p className="text-white/60 text-xs font-semibold pt-1">
@@ -82,7 +82,7 @@ export default function HelpHeaderSection({ lang, dict }: HelpHeaderSectionProps
               <p className="text-[#FFF] text-sm font-normal">
                 {s.phoneLabel}
               </p>
-              <p className="text-white text-base sm:text-lg md:text-xl font-black tracking-wide">
+              <p className="text-white text-base sm:text-lg md:text-xl font-black tracking-wide direction-ltr">
                 {s.phoneValue}
               </p>
               <p className="text-white/60 text-xs font-semibold pt-1">

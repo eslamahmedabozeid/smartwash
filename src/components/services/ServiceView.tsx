@@ -7,6 +7,7 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceHandleEverythingSection from "@/components/services/ServiceHandleEverythingSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceHowItWorksSection from "@/components/services/ServiceHowItWorksSection";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 interface ServiceViewProps {
   lang: string;
@@ -24,21 +25,33 @@ export default function ServiceView({ lang, service, dict }: ServiceViewProps) {
       <main className="w-full flex-1 py-12 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
 
         {/* First Section: Service Hero */}
-        <ServiceHeroSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-in" delay={100} duration={800}>
+          <ServiceHeroSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
         {/* Second Section: We Handle Everything You Wear & Use */}
-        <ServiceHandleEverythingSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-up">
+          <ServiceHandleEverythingSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
         {/* Why Choose Smart Wash Section */}
-        <ServiceFeaturesSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-up">
+          <ServiceFeaturesSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
-        <ServiceHowItWorksSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-up">
+          <ServiceHowItWorksSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
         {/* Mobile App Section */}
-        <MobileAppSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-up">
+          <MobileAppSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
         {/* FAQ Section */}
-        <FaqSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-up">
+          <FaqSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
       </main>
 

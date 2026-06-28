@@ -5,6 +5,7 @@ import HelpHeaderSection from "@/components/help/HelpHeaderSection";
 import HelpFaqSection from "@/components/help/HelpFaqSection";
 import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
 import MobileAppSection from "@/components/home/MobileAppSection";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 interface HelpViewProps {
   lang: string;
@@ -20,17 +21,24 @@ export default function HelpView({ lang, dict }: HelpViewProps) {
       {/* Main Content Area */}
       <main className="w-full flex-1 py-12 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
         {/* Help Banner & Contact Section */}
-        <HelpHeaderSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-in" delay={100} duration={800}>
+          <HelpHeaderSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
         {/* FAQ Tabs & Accordion Section */}
-        <HelpFaqSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-up">
+          <HelpFaqSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
         {/* Features Section */}
-        <AboutFeaturesSection lang={lang} dict={dict} />
-
+        <ScrollReveal variant="fade-up">
+          <AboutFeaturesSection lang={lang} dict={dict} />
+        </ScrollReveal>
 
         {/* Mobile App Section */}
-        <MobileAppSection lang={lang} dict={dict} />
+        <ScrollReveal variant="fade-up">
+          <MobileAppSection lang={lang} dict={dict} />
+        </ScrollReveal>
       </main>
 
       {/* Footer Section */}
