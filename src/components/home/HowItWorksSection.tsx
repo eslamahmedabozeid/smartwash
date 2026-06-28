@@ -103,12 +103,18 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
         <div className="w-full lg:w-[50%] lg:ml-auto relative flex flex-col items-center">
 
           {/* Vertical dashed line running behind cards on desktop */}
-          <div className="absolute top-12 bottom-12 left-1/2 w-0.5 border-l-2 border-dashed border-[#FF5500]/20 -translate-x-1/2 z-0 hidden lg:block" />
+          <div className="absolute top-12 bottom-[30vh] left-1/2 w-0.5 border-l-2 border-dashed border-[#FF5500]/20 -translate-x-1/2 z-0 hidden lg:block" />
 
           {/* Cards container */}
-          <div className="w-full space-y-8 lg:space-y-[208px] z-10">
+          <div className="w-full flex flex-col items-center z-10 relative space-y-8 lg:space-y-0">
             {steps.map((step, idx) => (
-              <div key={idx} className="relative w-full">
+              <div
+                key={idx}
+                className={`sticky top-[120px] sm:top-[160px] lg:top-[284px] w-full transition-all duration-300 ${
+                  idx < steps.length - 1 ? "mb-[20vh]" : "mb-0 lg:mb-[20vh]"
+                }`}
+                style={{ zIndex: 10 + idx }}
+              >
 
                 {/* Step Card */}
                 <div className="w-full bg-white rounded-3xl p-6 sm:p-8 flex flex-col items-start gap-5 shadow-sm border border-slate-100/50 hover:shadow-md transition-all duration-300 text-left rtl:text-right">
