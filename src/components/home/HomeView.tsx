@@ -23,7 +23,7 @@ export default function HomeView({ lang, dict }: HomeViewProps) {
       <Header lang={lang} dict={dict} />
 
       {/* 2. Hero Section (First home page section) */}
-      <ScrollReveal variant="fade-in" delay={100} duration={800}>
+      <ScrollReveal variant="fade-up" delay={100} duration={800}>
         <HeroSection lang={lang} dict={dict} />
       </ScrollReveal>
 

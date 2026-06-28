@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import HeroTitle from "./HeroTitle";
 
 interface HeroSectionProps {
   lang: string;
@@ -20,8 +21,6 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ lang, dict }: HeroSectionProps) {
-  const isAr = lang === "ar";
-
   // List of images for the gallery
   const images = [
     {
@@ -62,13 +61,12 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
       <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6  sm:p-10 md:px-10 md:pt-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
 
         {/* Title */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1E1E1E] leading-tight max-w-4xl tracking-tight">
-          {dict.hero.title1}
-          <span className="block mt-2 sm:mt-3">
-            {dict.hero.title2}{" "}
-            <span className="text-[#FF5500] font-semibold">{dict.hero.title3}</span>
-          </span>
-        </h1>
+        <HeroTitle
+          lang={lang}
+          title1={dict.hero.title1}
+          title2={dict.hero.title2}
+          title3={dict.hero.title3}
+        />
 
         {/* Subtitle / Description */}
         <p className="mt-6 text-sm sm:text-base md:text-[1.5rem] text-slate-500 max-w-5xl  leading-relaxed">
