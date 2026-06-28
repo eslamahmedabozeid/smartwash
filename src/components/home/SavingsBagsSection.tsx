@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -106,45 +106,131 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
     }
   };
 
-  // Drag-to-scroll logic
+  // Auto-scroll logic
+  const autoScrollInterval = useRef<NodeJS.Timeout | null>(null);
+  const isHovered = useRef(false);
+
+  const startAutoScroll = () => {
+    stopAutoScroll();
+    autoScrollInterval.current = setInterval(() => {
+      if (isDown.current || isHovered.current || !sliderRef.current) return;
+      
+      const slider = sliderRef.current;
+      const cardWidth = 440; // Card width + gap
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
+      
+      // Reset to beginning if at the end, otherwise scroll forward
+      if (slider.scrollLeft >= maxScroll - 10) {
+        slider.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        slider.scrollBy({ left: cardWidth, behavior: "smooth" });
+      }
+    }, 3500);
+  };
+
+  const stopAutoScroll = () => {
+    if (autoScrollInterval.current) {
+      clearInterval(autoScrollInterval.current);
+      autoScrollInterval.current = null;
+    }
+  };
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => stopAutoScroll();
+  }, []);
+
+  // Smooth Drag-to-scroll logic with inertia (momentum)
   const isDown = useRef(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
 
+  // Momentum velocity state tracking
+  const lastEventTime = useRef(0);
+  const lastEventX = useRef(0);
+  const velocity = useRef(0);
+  const momentumRafId = useRef<number | null>(null);
+
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!sliderRef.current) return;
+    
+    // Pause auto-scroll & cancel ongoing momentum slide
+    stopAutoScroll();
+    if (momentumRafId.current !== null) {
+      cancelAnimationFrame(momentumRafId.current);
+      momentumRafId.current = null;
+    }
+
     isDown.current = true;
     // Disable snapping and smooth behavior during manual drag for pixel-perfect tracking
     sliderRef.current.style.scrollSnapType = "none";
     sliderRef.current.style.scrollBehavior = "auto";
+    
     startX.current = e.pageX - sliderRef.current.offsetLeft;
     scrollLeftStart.current = sliderRef.current.scrollLeft;
-  };
-
-  const handleMouseLeave = () => {
-    if (isDown.current && sliderRef.current) {
-      // Re-enable snapping when drag is cancelled
-      sliderRef.current.style.scrollSnapType = "";
-      sliderRef.current.style.scrollBehavior = "";
-    }
-    isDown.current = false;
-  };
-
-  const handleMouseUp = () => {
-    if (isDown.current && sliderRef.current) {
-      // Re-enable snapping when drag finishes so cards lock into place
-      sliderRef.current.style.scrollSnapType = "";
-      sliderRef.current.style.scrollBehavior = "";
-    }
-    isDown.current = false;
+    
+    lastEventTime.current = Date.now();
+    lastEventX.current = e.pageX;
+    velocity.current = 0;
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDown.current || !sliderRef.current) return;
     e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
+    
+    const slider = sliderRef.current;
+    const x = e.pageX - slider.offsetLeft;
     const walk = (x - startX.current) * 1.5; // Drag speed multiplier
-    sliderRef.current.scrollLeft = scrollLeftStart.current - walk;
+    slider.scrollLeft = scrollLeftStart.current - walk;
+
+    // Track cursor velocity
+    const now = Date.now();
+    const elapsed = now - lastEventTime.current;
+    if (elapsed > 0) {
+      const deltaX = e.pageX - lastEventX.current;
+      velocity.current = -deltaX / elapsed;
+      lastEventTime.current = now;
+      lastEventX.current = e.pageX;
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isDown.current || !sliderRef.current) return;
+    isDown.current = false;
+    applyMomentum();
+    startAutoScroll();
+  };
+
+  const handleMouseLeave = () => {
+    if (!isDown.current || !sliderRef.current) return;
+    isDown.current = false;
+    applyMomentum();
+    startAutoScroll();
+  };
+
+  const applyMomentum = () => {
+    if (!sliderRef.current) return;
+
+    const slider = sliderRef.current;
+    let v = velocity.current * 16; // velocity per frame (~16ms)
+    const decay = 0.95; // friction factor
+
+    const step = () => {
+      if (Math.abs(v) < 0.2 || isDown.current) {
+        if (sliderRef.current) {
+          sliderRef.current.style.scrollSnapType = "";
+          sliderRef.current.style.scrollBehavior = "";
+        }
+        momentumRafId.current = null;
+        return;
+      }
+
+      slider.scrollLeft += v;
+      v *= decay;
+      momentumRafId.current = requestAnimationFrame(step);
+    };
+
+    momentumRafId.current = requestAnimationFrame(step);
   };
 
   return (
@@ -194,7 +280,14 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
         <div
           ref={sliderRef}
           onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => {
+            isHovered.current = true;
+            stopAutoScroll();
+          }}
+          onMouseLeave={() => {
+            isHovered.current = false;
+            handleMouseLeave();
+          }}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
           onDragStart={(e) => e.preventDefault()}
