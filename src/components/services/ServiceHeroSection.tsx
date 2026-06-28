@@ -9,7 +9,7 @@ export default function ServiceHeroSection({ lang, dict }: ServiceHeroSectionPro
   const s = dict.servicePage;
 
   return (
-    <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-[2.5rem] sm:p-12 md:p-[2.5rem] flex flex-col gap-10 shadow-sm relative overflow-hidden transition-all duration-300">
+    <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-[1.5rem] sm:p-12 md:p-[2.5rem] flex flex-col gap-10 shadow-sm relative overflow-hidden transition-all duration-300">
 
       {/* Top Grid: Info and Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">

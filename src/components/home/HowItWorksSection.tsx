@@ -77,7 +77,7 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
       <div className="max-w-7xl mx-auto bg-[#FFEDE6] rounded-[2.5rem] p-6 sm:p-10 md:p-14 flex flex-col lg:flex-row items-start gap-12 lg:gap-16 shadow-sm relative transition-all duration-300">
 
         {/* Left Column: Fixed/Sticky layout header & image on desktop */}
-        <div className="w-full lg:w-[45%] lg:sticky lg:top-24 lg:self-start space-y-8 text-left rtl:text-right">
+        <div className="w-full lg:w-[45%] sticky top-[15px] sm:top-20 lg:top-28 lg:self-start space-y-8 text-left rtl:text-right z-[99999] bg-[#FFEDE6]">
           <div className="space-y-3">
             <span className="text-xs sm:text-[1.125rem] font-medium text-[#000] tracking-wider uppercase block">
               {s.label}
@@ -106,12 +106,12 @@ export default function HowItWorksSection({ lang, dict }: HowItWorksSectionProps
           <div className="absolute top-12 bottom-[30vh] left-1/2 w-0.5 border-l-2 border-dashed border-[#FF5500]/20 -translate-x-1/2 z-0 hidden lg:block" />
 
           {/* Cards container */}
-          <div className="w-full flex flex-col items-center z-10 relative space-y-8 lg:space-y-0">
+          <div className="w-full flex flex-col items-center z-10 relative space-y-0">
             {steps.map((step, idx) => (
               <div
                 key={idx}
-                className={`sticky top-[120px] sm:top-[160px] lg:top-[284px] w-full transition-all duration-300 ${
-                  idx < steps.length - 1 ? "mb-[20vh]" : "mb-0 lg:mb-[20vh]"
+                className={`sticky top-[440px] sm:top-[640px] lg:top-[284px] w-full transition-all duration-300 ${
+                  idx < steps.length - 1 ? "mb-[25vh] lg:mb-[20vh]" : "mb-[15vh] lg:mb-[20vh]"
                 }`}
                 style={{ zIndex: 10 + idx }}
               >

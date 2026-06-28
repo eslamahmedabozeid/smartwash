@@ -28,7 +28,7 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
       <Header lang={lang} dict={dict} />
 
       {/* Main Content Area */}
-      <main className="w-full flex-1 py-6 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
+      <main className="w-full flex-1 py-6 px-[10px] sm:px-6 lg:px-8 space-y-12 bg-white">
 
         {/* Peach Hero Banner Block */}
         <ScrollReveal variant="fade-in" delay={100} duration={800}>
