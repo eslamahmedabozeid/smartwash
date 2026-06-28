@@ -29,7 +29,7 @@ export default function ServiceHandleEverythingSection({ lang, dict }: ServiceHa
         </h2>
 
         {/* 4x2 Categories Grid */}
-        <div className="grid grid-cols-4 gap-x-2 gap-y-6 sm:gap-x-4 sm:gap-y-8 md:gap-x-6 md:gap-y-10 mt-14 w-full justify-items-center">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-x-2 gap-y-6 sm:gap-x-4 sm:gap-y-8 md:gap-x-6 md:gap-y-10 mt-14 w-full justify-items-center">
           {items.map((item, idx) => (
             <div key={idx} className="flex flex-col items-center select-none group">
               {/* Outer White Card Container */}

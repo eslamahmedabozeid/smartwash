@@ -28,40 +28,30 @@ export default function ServicesSection({ lang, dict, bgClass = "bg-[#ECEFFB]" }
       title: s.card1Title,
       desc: s.card1Desc,
       icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <polyline points="12 6 12 12 16 14" />
-        </svg>
+        <img src="/images/icons/clock-01.svg" alt="" />
       ),
     },
     {
       title: s.card2Title,
       desc: s.card2Desc,
       icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          <path d="M13 7l-4 5h4v5l4-5h-4z" />
-        </svg>
+        <img src="/images/icons/shield-energy.svg" alt="" />
+
       ),
     },
     {
       title: s.card3Title,
       desc: s.card3Desc,
       icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-          <circle cx="12" cy="10" r="3" />
-        </svg>
+        <img src="/images/icons/locations-06.svg" alt="" />
       ),
     },
     {
       title: s.card4Title,
       desc: s.card4Desc,
       icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M2 22C2 10 10 2 22 2c0 12-8 20-20 20z" />
-          <path d="M2 22l14-14" />
-        </svg>
+        <img src="/images/icons/leaf-01.svg" alt="" />
+
       ),
     },
   ];
