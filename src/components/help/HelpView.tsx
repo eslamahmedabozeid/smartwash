@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import FooterContainer from "@/components/layout/FooterContainer";
 import HelpHeaderSection from "@/components/help/HelpHeaderSection";
 import HelpFaqSection from "@/components/help/HelpFaqSection";
 import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
@@ -56,7 +56,7 @@ export default function HelpView({ lang, dict, helpPage }: HelpViewProps) {
       </main>
 
       {/* Footer Section */}
-      <Footer lang={lang} dict={dict} />
+      <FooterContainer lang={lang} dict={dict} />
     </div>
   );
 }

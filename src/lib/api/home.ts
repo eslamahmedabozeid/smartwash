@@ -1,7 +1,7 @@
 import "server-only";
 
 import { apiFetch } from "./client";
-import type { ApiResponse, SitePage, SiteSection } from "@/types/api";
+import type { ApiResponse, SiteFooter, SitePage, SiteSection } from "@/types/api";
 
 export async function getHomePage(lang: string): Promise<SitePage> {
   const response = await apiFetch<ApiResponse<SitePage>>(
@@ -33,6 +33,15 @@ export async function getAboutPage(lang: string): Promise<SitePage> {
 export async function getHelpPage(lang: string): Promise<SitePage> {
   const response = await apiFetch<ApiResponse<SitePage>>(
     "/dashboard/pages/help",
+    { lang }
+  );
+
+  return response.data;
+}
+
+export async function getFooter(lang: string): Promise<SiteFooter> {
+  const response = await apiFetch<ApiResponse<SiteFooter>>(
+    "/dashboard/footer",
     { lang }
   );
 

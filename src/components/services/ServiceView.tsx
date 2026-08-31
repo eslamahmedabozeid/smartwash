@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import FooterContainer from "@/components/layout/FooterContainer";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import FaqSection from "@/components/shared/FaqSection";
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
@@ -56,7 +56,7 @@ export default function ServiceView({ lang, service, dict }: ServiceViewProps) {
       </main>
 
       {/* Footer Section */}
-      <Footer lang={lang} dict={dict} />
+      <FooterContainer lang={lang} dict={dict} />
     </div>
   );
 }

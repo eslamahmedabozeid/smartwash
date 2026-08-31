@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import FooterContainer from "@/components/layout/FooterContainer";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import AboutHowItWorksSection from "@/components/about/AboutHowItWorksSection";
 import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
@@ -147,7 +147,7 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
       </ScrollReveal>
 
       {/* Footer Section */}
-      <Footer lang={lang} dict={dict} />
+      <FooterContainer lang={lang} dict={dict} />
     </div>
   );
 }

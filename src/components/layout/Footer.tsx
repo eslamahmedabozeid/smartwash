@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { resolveFooterHref } from "@/lib/api/utils";
+import type { SiteFooter } from "@/types/api";
 
 interface FooterProps {
   lang: string;
@@ -22,11 +24,101 @@ interface FooterProps {
       terms: string;
     };
   };
+  footerData?: SiteFooter | null;
 }
 
-export default function Footer({ lang, dict }: FooterProps) {
-  const isAr = lang === "ar";
+const socialIconMap: Record<string, { src: string; label: string }> = {
+  snapchat: { src: "/images/footer/Frame1820550884.svg", label: "Snapchat" },
+  facebook: { src: "/images/footer/Frame1820550885.svg", label: "Facebook" },
+  twitter: { src: "/images/footer/Frame1820550886.svg", label: "Twitter X" },
+};
+
+const contactIconMap: Record<string, string> = {
+  location: "/images/icons/location-06.svg",
+  phone: "/images/icons/call-02.svg",
+  email: "/images/icons/mail-0.svg",
+};
+
+const fallbackSocial = [
+  { icon: "snapchat", url: "#snapchat" },
+  { icon: "facebook", url: "#facebook" },
+  { icon: "twitter", url: "#twitter" },
+];
+
+export default function Footer({ lang, dict, footerData }: FooterProps) {
   const f = dict.footer;
+
+  const quickLinksGroup = footerData?.linkGroups?.find(
+    (group) => group.title.toLowerCase() === "quick links"
+  );
+
+  const servicesGroup = footerData?.linkGroups?.find(
+    (group) => group.title.toLowerCase() === "services"
+  );
+
+  const quickLinkItems = quickLinksGroup?.links?.length
+    ? quickLinksGroup.links
+    : [
+        { label: f.servicesLabel, url: "#services" },
+        { label: f.howItWorks, url: "#how-it-works" },
+        { label: f.reviews, url: "#testimonials" },
+        { label: f.downloadApp, url: "#app-download" },
+      ];
+
+  const serviceItems = servicesGroup?.links?.length
+    ? servicesGroup.links
+    : [
+        { label: f.washFold, url: "#services" },
+        { label: f.dryClean, url: "#services" },
+        { label: f.ironing, url: "#services" },
+        { label: f.expressService, url: "#services" },
+      ];
+
+  const contactItems = footerData?.contact?.length
+    ? footerData.contact
+    : [
+        { icon: "location", text: f.address },
+        { icon: "phone", text: "+971 4 123 4567" },
+        { icon: "email", text: "hello@smartwash.com" },
+      ];
+
+  const socialItems = footerData?.social?.length ? footerData.social : fallbackSocial;
+
+  const renderContactItem = (
+    item: { icon: string; text: string; url?: string },
+    idx: number
+  ) => {
+    const iconSrc = contactIconMap[item.icon] ?? contactIconMap.location;
+
+    const href =
+      item.url ??
+      (item.icon === "phone" ? `tel:${item.text.replace(/\s/g, "")}` : undefined) ??
+      (item.icon === "email" ? `mailto:${item.text}` : undefined);
+
+    if (href) {
+      const linkHref = item.url ? resolveFooterHref(href, lang) : href;
+
+      return (
+        <li key={idx} className="flex items-center gap-2.5 text-sm font-semibold text-slate-600">
+          <img src={iconSrc} alt="" />
+          <Link
+            href={linkHref}
+            className={`hover:text-[#FF5500] transition-colors${item.icon === "phone" ? " direction-ltr" : ""}`}
+            {...(item.url?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {item.text}
+          </Link>
+        </li>
+      );
+    }
+
+    return (
+      <li key={idx} className="flex items-center gap-2.5 text-sm font-semibold text-slate-600">
+        <img src={iconSrc} alt="" />
+        <span>{item.text}</span>
+      </li>
+    );
+  };
 
   return (
     <footer className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white border-t border-slate-100">
@@ -39,62 +131,34 @@ export default function Footer({ lang, dict }: FooterProps) {
           {/* Logo & Description */}
           <div className="space-y-6">
             <Link href={`/${lang}`} className="inline-block group">
-              {/* SVG Logo matched from header */}
               <div className="">
                 <img src={"/images/Group.svg"} alt="SmartWash Logo" />
-
-
               </div>
             </Link>
-
-
           </div>
           <div className="">
             <p className="text-white/95 text-sm sm:text-base font-semibold leading-relaxed max-w-sm mb-8">
               {f.desc}
             </p>
             <div className="flex items-center gap-1">
-              {/* Snapchat */}
-              <Link
-                href="#snapchat"
-                aria-label="Snapchat"
-                className=" "
-              >
-                <img src="/images/footer/Frame1820550884.svg" alt="" />
-              </Link>
+              {socialItems.map((item, idx) => {
+                const social = socialIconMap[item.icon];
+                if (!social) return null;
 
-              {/* Facebook */}
-              <Link
-                href="#facebook"
-                aria-label="Facebook"
-                className=" "
-              >
-                <img src="/images/footer/Frame1820550885.svg" alt="" />
-
-              </Link>
-
-              {/* Twitter/X */}
-              <Link
-                href="#twitter"
-                aria-label="Twitter X"
-                className=" "
-              >
-                <img src="/images/footer/Frame1820550886.svg" alt="" />
-
-              </Link>
-
-              {/* LinkedIn */}
-              <Link
-                href="#linkedin"
-                aria-label="LinkedIn"
-                className=" "
-              >
-                <img src="/images/footer/Frame1820550887.svg" alt="" />
-
-              </Link>
+                return (
+                  <Link
+                    key={idx}
+                    href={item.url}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={social.src} alt="" />
+                  </Link>
+                );
+              })}
             </div>
           </div>
-          {/* Social Media Badges */}
 
         </div>
 
@@ -107,58 +171,38 @@ export default function Footer({ lang, dict }: FooterProps) {
             {/* Quick Links Column */}
             <div className="space-y-4">
               <h4 className="text-base font-bold text-[#181818] tracking-wide">
-                {f.quickLinks}
+                {quickLinksGroup?.title ?? f.quickLinks}
               </h4>
               <ul className="space-y-2.5">
-                <li>
-                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.servicesLabel}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#how-it-works" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.howItWorks}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#testimonials" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.reviews}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#download-app" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.downloadApp}
-                  </Link>
-                </li>
+                {quickLinkItems.map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      href={resolveFooterHref(item.url, lang)}
+                      className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Services Column */}
             <div className="space-y-4">
               <h4 className="text-base font-bold text-[#181818] tracking-wide">
-                {f.servicesLabel}
+                {servicesGroup?.title ?? f.servicesLabel}
               </h4>
               <ul className="space-y-2.5">
-                <li>
-                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.washFold}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.dryClean}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.ironing}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#services" className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors">
-                    {f.expressService}
-                  </Link>
-                </li>
+                {serviceItems.map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      href={resolveFooterHref(item.url, lang)}
+                      className="text-sm font-normal text-[#181818] hover:text-[#FF5500] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -168,21 +212,7 @@ export default function Footer({ lang, dict }: FooterProps) {
                 {f.contactLabel}
               </h4>
               <ul className="space-y-3.5">
-                {/* Location */}
-                <li className="flex items-center gap-2.5 text-sm font-semibold text-slate-600">
-                  <img src="/images/icons/location-06.svg" alt="" />
-                  <span>{f.address}</span>
-                </li>
-                {/* Phone */}
-                <li className="flex items-center gap-2.5 text-sm font-semibold text-slate-600">
-                  <img src="/images/icons/call-02.svg" alt="" />
-                  <Link href="tel:+97141234567" className="hover:text-[#FF5500] transition-colors direction-ltr">+971 4 123 4567</Link>
-                </li>
-                {/* Email */}
-                <li className="flex items-center gap-2.5 text-sm font-semibold text-slate-600">
-                  <img src="/images/icons/mail-0.svg" alt="" />
-                  <Link href="mailto:hello@smartwash.com" className="hover:text-[#FF5500] transition-colors">hello@smartwash.com</Link>
-                </li>
+                {contactItems.map(renderContactItem)}
               </ul>
             </div>
 
@@ -190,11 +220,9 @@ export default function Footer({ lang, dict }: FooterProps) {
 
           {/* Bottom copyright & legal block */}
           <div className="pt-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
             <p className="text-xs sm:text-sm font-normal text-[#8C8C8C]">
-              {f.copyright}
+              {footerData?.copyrightText ?? f.copyright}
             </p>
-            {/* Links */}
             <div className="flex items-center gap-6">
               <Link href="#privacy" className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors">
                 {f.privacy}

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import FooterContainer from "@/components/layout/FooterContainer";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { getSectionByType } from "@/lib/api/home";
@@ -176,7 +176,7 @@ export default function PricingView({ lang, dict, pricingPage }: PricingViewProp
       </ScrollReveal>
 
       {/* Footer Section */}
-      <Footer lang={lang} dict={dict} />
+      <FooterContainer lang={lang} dict={dict} />
     </div>
   );
 }

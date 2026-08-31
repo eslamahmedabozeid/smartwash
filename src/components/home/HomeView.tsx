@@ -8,7 +8,7 @@ import ServicesSection from "@/components/home/ServicesSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import FaqSection from "@/components/shared/FaqSection";
-import Footer from "@/components/layout/Footer";
+import FooterContainer from "@/components/layout/FooterContainer";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { getSectionByType } from "@/lib/api/home";
 import type { SitePage } from "@/types/api";
@@ -75,7 +75,7 @@ export default function HomeView({ lang, dict, homePage }: HomeViewProps) {
       </ScrollReveal>
 
       {/* 6. Footer Section */}
-      <Footer lang={lang} dict={dict} />
+      <FooterContainer lang={lang} dict={dict} />
     </div>
   );
 }

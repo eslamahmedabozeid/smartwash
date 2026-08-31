@@ -47,3 +47,35 @@ export interface SitePage {
   updatedAt: string;
   sections: SiteSection[];
 }
+
+export interface FooterContact {
+  icon: string;
+  text: string;
+  url?: string;
+}
+
+export interface FooterSocial {
+  icon: string;
+  url: string;
+}
+
+export interface FooterLink {
+  label: string;
+  url: string;
+}
+
+export interface FooterLinkGroup {
+  title: string;
+  links: FooterLink[];
+}
+
+export interface SiteFooter {
+  visible: boolean;
+  logoUrl?: string;
+  tagline?: string;
+  linkGroups: FooterLinkGroup[];
+  contact: FooterContact[];
+  social: FooterSocial[];
+  copyrightText: string;
+  legalLinks?: FooterLink[];
+}

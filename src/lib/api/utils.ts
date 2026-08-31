@@ -61,3 +61,36 @@ export function parseContactContent(html: string) {
     subtitle,
   };
 }
+
+export function resolveFooterHref(url: string, lang: string): string {
+  if (
+    url.startsWith("http://") ||
+    url.startsWith("https://") ||
+    url.startsWith("mailto:") ||
+    url.startsWith("tel:")
+  ) {
+    return url;
+  }
+
+  if (url.startsWith("/#")) {
+    return `/${lang}${url.slice(1)}`;
+  }
+
+  if (url.startsWith("#")) {
+    return `/${lang}${url}`;
+  }
+
+  if (url.startsWith(`/${lang}/`) || url === `/${lang}`) {
+    return url;
+  }
+
+  if (url.startsWith("/en/") || url.startsWith("/ar/") || url === "/en" || url === "/ar") {
+    return url;
+  }
+
+  if (url.startsWith("/")) {
+    return `/${lang}${url}`;
+  }
+
+  return `/${lang}/${url}`;
+}
