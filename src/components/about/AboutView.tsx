@@ -1,6 +1,5 @@
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -12,15 +11,31 @@ import HowItWorksSection from "@/components/home/HowItWorksSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import FaqSection from "@/components/shared/FaqSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
+import { getSectionByType } from "@/lib/api/home";
+import type { SitePage } from "@/types/api";
 
 interface AboutViewProps {
   lang: string;
   dict: any;
+  aboutPage: SitePage | null;
 }
 
-export default function AboutView({ lang, dict }: AboutViewProps) {
-  const isAr = lang === "ar";
+export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
   const s = dict.aboutPage;
+  const sections = aboutPage?.sections ?? [];
+  const heroSection = getSectionByType(sections, "hero");
+  const featuresSection = getSectionByType(sections, "features");
+  const appPromoSection = getSectionByType(sections, "app_promo");
+  const howItWorksSection = getSectionByType(sections, "how_it_works");
+  const whyChooseUsSection = getSectionByType(sections, "why_choose_us");
+  const appDownloadSection = getSectionByType(sections, "app_download");
+  const faqSection = getSectionByType(sections, "faq");
+
+  const downloadLink = heroSection?.links?.find((link) =>
+    link.label.toLowerCase().includes("download")
+  );
+  const heroImageTop = heroSection?.images?.[0]?.url ?? "/images/about/Rectangle1.png";
+  const heroImageBottom = heroSection?.images?.[1]?.url ?? "/images/about/Rectangle21.png";
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-800 selection:bg-[#FF5500] selection:text-white overflow-x-clip">
@@ -42,16 +57,16 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
 
                 <div className="space-y-6">
                   <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#181818] leading-tight tracking-tight max-w-lg">
-                    {s.title}
+                    {heroSection?.title ?? s.title}
                   </h1>
 
                   <p className="text-sm sm:text-[1.5rem] text-[#8C8C8C] font-normal leading-relaxed ">
-                    {s.desc}
+                    {heroSection?.content ?? s.desc}
                   </p>
                 </div>
 
                 <Link
-                  href="#download-app"
+                  href={downloadLink?.url ?? "#download-app"}
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-[1rem] bg-[#FF5500] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 w-fit text-sm shadow-sm sm:mt-10 mt-5"
                 >
                   {/* Download Icon */}
@@ -64,15 +79,16 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                   </svg>
-                  <span className="text-[1.125rem]">{s.downloadApp}</span>
+                  <span className="text-[1.125rem]">{downloadLink?.label ?? s.downloadApp}</span>
                 </Link>
               </div>
 
               {/* Right side Image column */}
               <div className="relative w-full">
                 <img
-                  src="/images/about/Rectangle1.png"
-                  alt="Hanging Clothes on Rack"
+                  src={heroImageTop}
+                  alt={heroSection?.images?.[0]?.alt ?? "Hanging Clothes on Rack"}
+                  className="w-full h-auto"
                 />
               </div>
 
@@ -80,15 +96,11 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
 
             {/* Bottom Row: Wide Image Banner */}
             <div className="relative w-full  ">
-              <img src={'/images/about/Rectangle21.png'}
-                alt="Hanging Clothes on Rack" />
-              {/* <Image
-                src="/images/about/Rectangle21.png"
-                alt="Hanging Clothes on Rack"
-                fill
-                className="object-cover"
-                priority
-              /> */}
+              <img
+                src={heroImageBottom}
+                alt={heroSection?.images?.[1]?.alt ?? "Hanging Clothes on Rack"}
+                className="w-full h-auto"
+              />
             </div>
 
           </div>
@@ -99,39 +111,39 @@ export default function AboutView({ lang, dict }: AboutViewProps) {
 
       {/* Features Section */}
       <ScrollReveal variant="fade-up">
-        <AboutFeaturesSection lang={lang} dict={dict} />
+        <AboutFeaturesSection lang={lang} dict={dict} section={featuresSection} />
       </ScrollReveal>
 
       {/* About Promo Section */}
       <ScrollReveal variant="fade-up">
-        <AboutPromoSection lang={lang} dict={dict} />
+        <AboutPromoSection lang={lang} dict={dict} section={appPromoSection} />
       </ScrollReveal>
 
       {/* How It Works Section */}
       <ScrollReveal variant="fade-up">
-        <HowItWorksSection lang={lang} dict={dict} />
+        <HowItWorksSection lang={lang} dict={dict} section={howItWorksSection} />
       </ScrollReveal>
 
 
       {/* How It Works Section with Stacking Scroll Animation */}
       <ScrollReveal variant="fade-up">
-        <AboutHowItWorksSection lang={lang} dict={dict} />
+        <AboutHowItWorksSection lang={lang} dict={dict} section={howItWorksSection} />
       </ScrollReveal>
 
       {/* Services Section */}
       <ScrollReveal variant="fade-up">
-        <ServicesSection lang={lang} dict={dict} bgClass="bg-[#FFF3ED]" />
+        <ServicesSection lang={lang} dict={dict} section={whyChooseUsSection} bgClass="bg-[#FFF3ED]" />
       </ScrollReveal>
 
       {/* Mobile App Section */}
       <ScrollReveal variant="fade-up">
-        <MobileAppSection lang={lang} dict={dict} />
+        <MobileAppSection lang={lang} dict={dict} section={appDownloadSection} />
       </ScrollReveal>
 
 
       {/* FAQ Section */}
       <ScrollReveal variant="fade-up">
-        <FaqSection lang={lang} dict={dict} />
+        <FaqSection lang={lang} dict={dict} section={faqSection} />
       </ScrollReveal>
 
       {/* Footer Section */}

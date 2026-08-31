@@ -1,4 +1,6 @@
 import React from "react";
+import { sortByOrder } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface AboutHowItWorksSectionProps {
   lang: string;
@@ -16,59 +18,66 @@ interface AboutHowItWorksSectionProps {
       step4Desc: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function AboutHowItWorksSection({ lang, dict }: AboutHowItWorksSectionProps) {
-  const isAr = lang === "ar";
+const fallbackIcons = [
+  (
+    <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  ),
+  (
+    <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="3" width="15" height="13" />
+      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+      <circle cx="5.5" cy="18.5" r="2.5" />
+      <circle cx="18.5" cy="18.5" r="2.5" />
+    </svg>
+  ),
+  (
+    <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 7a3 3 0 1 0-3-3" />
+      <path d="M2 17h20L12 7z" />
+    </svg>
+  ),
+  (
+    <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+      <path d="M2 17l10 5 10-5" />
+      <path d="M2 12l10 5 10-5" />
+    </svg>
+  ),
+];
+
+export default function AboutHowItWorksSection({ lang, dict, section }: AboutHowItWorksSectionProps) {
   const s = dict.howItWorksSection;
 
-  const steps = [
-    {
-      title: s.step1Title,
-      desc: s.step1Desc,
-      icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-          <line x1="16" y1="2" x2="16" y2="6" />
-          <line x1="8" y1="2" x2="8" y2="6" />
-          <line x1="3" y1="10" x2="21" y2="10" />
-        </svg>
-      ),
-    },
-    {
-      title: s.step2Title,
-      desc: s.step2Desc,
-      icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="1" y="3" width="15" height="13" />
-          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-          <circle cx="5.5" cy="18.5" r="2.5" />
-          <circle cx="18.5" cy="18.5" r="2.5" />
-        </svg>
-      ),
-    },
-    {
-      title: s.step3Title,
-      desc: s.step3Desc,
-      icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 7a3 3 0 1 0-3-3" />
-          <path d="M2 17h20L12 7z" />
-        </svg>
-      ),
-    },
-    {
-      title: s.step4Title,
-      desc: s.step4Desc,
-      icon: (
-        <svg className="w-6 h-6 stroke-[#FF5500]" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5z" />
-          <path d="M2 17l10 5 10-5" />
-          <path d="M2 12l10 5 10-5" />
-        </svg>
-      ),
-    },
+  const fallbackSteps = [
+    { title: s.step1Title, desc: s.step1Desc, icon: fallbackIcons[0] },
+    { title: s.step2Title, desc: s.step2Desc, icon: fallbackIcons[1] },
+    { title: s.step3Title, desc: s.step3Desc, icon: fallbackIcons[2] },
+    { title: s.step4Title, desc: s.step4Desc, icon: fallbackIcons[3] },
   ];
+
+  const steps = section?.subsections?.length
+    ? sortByOrder(section.subsections).map((item, idx) => {
+        const iconUrl = item.images?.[0]?.url;
+
+        return {
+          title: item.title,
+          desc: item.content,
+          icon: iconUrl ? (
+            <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
+          ) : (
+            fallbackIcons[idx] ?? fallbackIcons[0]
+          ),
+        };
+      })
+    : fallbackSteps;
 
   return (
     <section id="about-how-it-works" className="w-full py-16 md:py-24 bg-white">
@@ -77,10 +86,10 @@ export default function AboutHowItWorksSection({ lang, dict }: AboutHowItWorksSe
         {/* Section Header (Centered & Sticky) */}
         <div className="sticky top-0 text-center space-y-3 w-full pt-10 pb-6 z-30 bg-[#FFF3ED] rounded-t-[2.5rem] px-4 sm:px-6 lg:px-8">
           <span className="text-xs sm:text-[1.125rem] font-medium text-[#FC4F00] tracking-wider uppercase block">
-            {s.label}
+            {section?.title ?? s.label}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FC4F00] leading-tight tracking-tight whitespace-pre-line">
-            {s.title}
+            {section?.content ?? s.title}
           </h2>
         </div>
 

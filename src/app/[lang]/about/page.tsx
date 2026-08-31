@@ -1,5 +1,6 @@
 import React from "react";
 import { getDictionary } from "@/dictionaries";
+import { getAboutPage } from "@/lib/api/home";
 import AboutView from "@/components/about/AboutView";
 
 interface PageProps {
@@ -10,5 +11,12 @@ export default async function About({ params }: PageProps) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
-  return <AboutView lang={lang} dict={dict} />;
+  let aboutPage = null;
+  try {
+    aboutPage = await getAboutPage(lang);
+  } catch (error) {
+    console.error("Failed to fetch about page data:", error);
+  }
+
+  return <AboutView lang={lang} dict={dict} aboutPage={aboutPage} />;
 }
