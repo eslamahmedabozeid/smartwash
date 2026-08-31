@@ -192,7 +192,7 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
       const scrollAmount = 200;
       const offset = direction === "left" ? -scrollAmount : scrollAmount;
       scrollContainer.scrollBy({ left: offset, behavior: "smooth" });
-      setTimeout(updateScrollButtons, 300); // Check boundaries after smooth scroll finishes
+      setTimeout(updateScrollButtons, 300);
     }
   };
 
@@ -287,13 +287,11 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
                     }`}
                 >
                   {isOpen ? (
-                    /* X icon */
                     <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="18" y1="6" x2="6" y2="18" />
                       <line x1="6" y1="6" x2="18" y2="18" />
                     </svg>
                   ) : (
-                    /* + icon */
                     <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="12" y1="5" x2="12" y2="19" />
                       <line x1="5" y1="12" x2="19" y2="12" />

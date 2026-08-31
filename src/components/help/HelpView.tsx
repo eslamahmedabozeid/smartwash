@@ -6,13 +6,22 @@ import HelpFaqSection from "@/components/help/HelpFaqSection";
 import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
+import { getSectionByType } from "@/lib/api/home";
+import type { SitePage } from "@/types/api";
 
 interface HelpViewProps {
   lang: string;
   dict: any;
+  helpPage: SitePage | null;
 }
 
-export default function HelpView({ lang, dict }: HelpViewProps) {
+export default function HelpView({ lang, dict, helpPage }: HelpViewProps) {
+  const sections = helpPage?.sections ?? [];
+  const heroSection = getSectionByType(sections, "hero");
+  const contactSection = getSectionByType(sections, "contact_channels");
+  const featuresSection = getSectionByType(sections, "features");
+  const appDownloadSection = getSectionByType(sections, "app_download");
+
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-800 selection:bg-[#FF5500] selection:text-white overflow-x-clip">
       {/* Navigation Header */}
@@ -22,7 +31,12 @@ export default function HelpView({ lang, dict }: HelpViewProps) {
       <main className="w-full flex-1 py-12 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
         {/* Help Banner & Contact Section */}
         <ScrollReveal variant="fade-in" delay={100} duration={800}>
-          <HelpHeaderSection lang={lang} dict={dict} />
+          <HelpHeaderSection
+            lang={lang}
+            dict={dict}
+            heroSection={heroSection}
+            contactSection={contactSection}
+          />
         </ScrollReveal>
 
         {/* FAQ Tabs & Accordion Section */}
@@ -32,12 +46,12 @@ export default function HelpView({ lang, dict }: HelpViewProps) {
 
         {/* Features Section */}
         <ScrollReveal variant="fade-up">
-          <AboutFeaturesSection lang={lang} dict={dict} />
+          <AboutFeaturesSection lang={lang} dict={dict} section={featuresSection} />
         </ScrollReveal>
 
         {/* Mobile App Section */}
         <ScrollReveal variant="fade-up">
-          <MobileAppSection lang={lang} dict={dict} />
+          <MobileAppSection lang={lang} dict={dict} section={appDownloadSection} />
         </ScrollReveal>
       </main>
 

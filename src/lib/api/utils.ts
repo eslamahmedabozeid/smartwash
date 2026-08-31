@@ -46,3 +46,18 @@ export function getImageByRole(
 export function sortByOrder<T extends { order: number }>(items: T[] | undefined) {
   return [...(items ?? [])].sort((a, b) => a.order - b.order);
 }
+
+export function parseContactContent(html: string) {
+  const normalized = html.replace(/&nbsp;/g, " ");
+  const paragraphs = [...normalized.matchAll(/<p>([\s\S]*?)<\/p>/gi)].map((match) =>
+    match[1].replace(/<\/?em>/gi, "").trim()
+  );
+
+  const emMatch = normalized.match(/<em>([\s\S]*?)<\/em>/i);
+  const subtitle = emMatch?.[1]?.trim() ?? paragraphs[1] ?? "";
+
+  return {
+    value: paragraphs[0] ?? stripHtml(html),
+    subtitle,
+  };
+}

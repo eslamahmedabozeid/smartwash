@@ -30,6 +30,15 @@ export async function getAboutPage(lang: string): Promise<SitePage> {
   return response.data;
 }
 
+export async function getHelpPage(lang: string): Promise<SitePage> {
+  const response = await apiFetch<ApiResponse<SitePage>>(
+    "/dashboard/pages/help",
+    { lang }
+  );
+
+  return response.data;
+}
+
 export function getSectionByType(
   sections: SiteSection[],
   type: string
