@@ -4,66 +4,85 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
-
+import { getSectionByType } from "@/lib/api/home";
+import { sortByOrder } from "@/lib/api/utils";
+import type { SitePage } from "@/types/api";
 
 interface PricingViewProps {
   lang: string;
   dict: any;
+  pricingPage: SitePage | null;
 }
 
-export default function PricingView({ lang, dict }: PricingViewProps) {
-  const isAr = lang === "ar";
-  const s = dict.pricingPage;
+const fallbackImages = [
+  "/images/price/Rectangle3.png",
+  "/images/price/Rectangle4.png",
+  "/images/price/Rectangle5.png",
+  "/images/price/Rectangle6.png",
+  "/images/price/Rectangle1.png",
+  "/images/price/Rectangle2.png",
+];
 
-  const cards = [
+export default function PricingView({ lang, dict, pricingPage }: PricingViewProps) {
+  const s = dict.pricingPage;
+  const sections = pricingPage?.sections ?? [];
+  const heroSection = getSectionByType(sections, "hero");
+  const servicesGridSection = getSectionByType(sections, "services_grid");
+  const appDownloadSection = getSectionByType(sections, "app_download");
+
+  const fallbackCards = [
     {
       title: s.card1Title,
       desc: s.card1Desc,
       price: s.card1Price,
-      image: "/images/price/Rectangle3.png", // Iron
+      image: fallbackImages[0],
     },
     {
       title: s.card2Title,
       desc: s.card2Desc,
       price: s.card2Price,
-      image: "/images/price/Rectangle4.png", // Washing Machine
+      image: fallbackImages[1],
     },
     {
       title: s.card3Title,
       desc: s.card3Desc,
       price: s.card3Price,
-      image: "/images/price/Rectangle5.png", // Folded Clothes
+      image: fallbackImages[2],
     },
     {
       title: s.card4Title,
       desc: s.card4Desc,
       price: s.card4Price,
-      image: "/images/price/Rectangle6.png", // Hanger & Shirt (Missing)
+      image: fallbackImages[3],
     },
     {
       title: s.card5Title,
       desc: s.card5Desc,
       price: s.card5Price,
-      image: "/images/price/Rectangle1.png", // Shoe
+      image: fallbackImages[4],
     },
     {
       title: s.card6Title,
       desc: s.card6Desc,
       price: s.card6Price,
-      image: "/images/price/Rectangle2.png", // Carpet
+      image: fallbackImages[5],
     },
   ];
 
-  // Helper to render card image or custom SVG fallback
+  const pricedSubsections = sortByOrder(servicesGridSection?.subsections).filter(
+    (item) => item.price != null
+  );
+
+  const cards = pricedSubsections.length
+    ? pricedSubsections.map((item, idx) => ({
+        title: item.title,
+        desc: item.content,
+        price: String(item.price),
+        image: item.images?.[0]?.url ?? fallbackImages[idx] ?? fallbackImages[0],
+      }))
+    : fallbackCards;
+
   const renderCardImage = (image: string, title: string) => {
-    if (image === "custom-hanger") {
-      return (
-        <div className="relative w-20 h-20 flex items-center justify-center select-none" pointer-events-none="true">
-
-        </div>
-      );
-    }
-
     return (
       <div className="relative w-20 h-20 select-none">
         <Image
@@ -89,10 +108,10 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
         <ScrollReveal variant="fade-in" delay={100} duration={800}>
           <div className="max-w-7xl mx-auto bg-[#FF5500] text-white rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
             <span className="text-xs sm:text-[1.125rem] font-medium text-[#BFD1FA] tracking-wider  block mb-3">
-              {s.headerLabel}
+              {heroSection?.title ?? s.headerLabel}
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line max-w-3xl">
-              {s.headerTitle}
+              {heroSection?.content ?? s.headerTitle}
             </h1>
           </div>
         </ScrollReveal>
@@ -104,10 +123,10 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
             {/* Header block for section */}
             <div className="text-left rtl:text-right mb-10 max-w-3xl space-y-3">
               <h2 className="text-[#3748C8] font-semibold text-5xl sm:text-5xl tracking-tight leading-none">
-                {s.sectionTitle}
+                {servicesGridSection?.title ?? s.sectionTitle}
               </h2>
               <p className="text-[#3748C8] font-normal text-sm sm:text-base leading-relaxed whitespace-pre-line">
-                {s.sectionDesc}
+                {servicesGridSection?.content ?? s.sectionDesc}
               </p>
             </div>
 
@@ -153,7 +172,7 @@ export default function PricingView({ lang, dict }: PricingViewProps) {
 
       {/* Mobile App Section */}
       <ScrollReveal variant="fade-up">
-        <MobileAppSection lang={lang} dict={dict} />
+        <MobileAppSection lang={lang} dict={dict} section={appDownloadSection} />
       </ScrollReveal>
 
       {/* Footer Section */}

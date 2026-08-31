@@ -12,6 +12,15 @@ export async function getHomePage(lang: string): Promise<SitePage> {
   return response.data;
 }
 
+export async function getPricingPage(lang: string): Promise<SitePage> {
+  const response = await apiFetch<ApiResponse<SitePage>>(
+    "/dashboard/pages/prices",
+    { lang }
+  );
+
+  return response.data;
+}
+
 export function getSectionByType(
   sections: SiteSection[],
   type: string
