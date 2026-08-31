@@ -25,7 +25,7 @@ export async function apiFetch<T>(
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...fetchOptions,
     headers,
-    next: { revalidate: 60 },
+    cache: "no-store",
   });
 
   if (!response.ok) {
