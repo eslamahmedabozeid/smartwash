@@ -1,4 +1,6 @@
 import React from "react";
+import { sortByOrder } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface ServicesSectionProps {
   lang: string;
@@ -16,45 +18,42 @@ interface ServicesSectionProps {
       card4Desc: string;
     };
   };
+  section?: SiteSection;
   bgClass?: string;
 }
 
-export default function ServicesSection({ lang, dict, bgClass = "bg-[#ECEFFB]" }: ServicesSectionProps) {
-  const isAr = lang === "ar";
+const fallbackIcons = [
+  <img key="clock" src="/images/icons/clock-01.svg" alt="" />,
+  <img key="shield" src="/images/icons/shield-energy.svg" alt="" />,
+  <img key="location" src="/images/icons/locations-06.svg" alt="" />,
+  <img key="leaf" src="/images/icons/leaf-01.svg" alt="" />,
+];
+
+export default function ServicesSection({ lang, dict, section, bgClass = "bg-[#ECEFFB]" }: ServicesSectionProps) {
   const s = dict.servicesSection;
 
-  const features = [
-    {
-      title: s.card1Title,
-      desc: s.card1Desc,
-      icon: (
-        <img src="/images/icons/clock-01.svg" alt="" />
-      ),
-    },
-    {
-      title: s.card2Title,
-      desc: s.card2Desc,
-      icon: (
-        <img src="/images/icons/shield-energy.svg" alt="" />
-
-      ),
-    },
-    {
-      title: s.card3Title,
-      desc: s.card3Desc,
-      icon: (
-        <img src="/images/icons/locations-06.svg" alt="" />
-      ),
-    },
-    {
-      title: s.card4Title,
-      desc: s.card4Desc,
-      icon: (
-        <img src="/images/icons/leaf-01.svg" alt="" />
-
-      ),
-    },
+  const fallbackFeatures = [
+    { title: s.card1Title, desc: s.card1Desc, icon: fallbackIcons[0] },
+    { title: s.card2Title, desc: s.card2Desc, icon: fallbackIcons[1] },
+    { title: s.card3Title, desc: s.card3Desc, icon: fallbackIcons[2] },
+    { title: s.card4Title, desc: s.card4Desc, icon: fallbackIcons[3] },
   ];
+
+  const features = section?.subsections?.length
+    ? sortByOrder(section.subsections).map((item, idx) => {
+        const iconUrl = item.images?.[0]?.url;
+
+        return {
+          title: item.title,
+          desc: item.content,
+          icon: iconUrl ? (
+            <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} />
+          ) : (
+            fallbackIcons[idx] ?? fallbackIcons[0]
+          ),
+        };
+      })
+    : fallbackFeatures;
 
   return (
     <section id="why-smartwash" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
@@ -64,10 +63,10 @@ export default function ServicesSection({ lang, dict, bgClass = "bg-[#ECEFFB]" }
         {/* Section Header Block */}
         <div className="space-y-3 mb-12 sm:mb-16">
           <span className="text-xs sm:text-[1.125rem] font-medium text-[#181818] tracking-wider uppercase block">
-            {s.label}
+            {section?.title ?? s.label}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-[3.5rem] font-semibold text-[#1E1E1E] leading-tight tracking-tight max-w-3xl whitespace-pre-line">
-            {s.title}
+            {section?.content ?? s.title}
           </h2>
         </div>
 

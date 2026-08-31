@@ -3,6 +3,8 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { sortByOrder } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface SavingsBagsSectionProps {
   lang: string;
@@ -38,21 +40,23 @@ interface SavingsBagsSectionProps {
       card6Price: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionProps) {
+export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsSectionProps) {
   const isAr = lang === "ar";
   const s = dict.servicesSectionCustom;
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Render cards details
-  const cards = [
+  const fallbackCards = [
     {
       tag: s.card1Tag,
       title: s.card1Title,
       desc: s.card1Desc,
       price: s.card1Price,
       image: "/images/card_savings_bag.png",
+      href: `#service-detail-0`,
+      knowMore: s.knowMore,
     },
     {
       tag: s.card2Tag,
@@ -60,6 +64,8 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
       desc: s.card2Desc,
       price: s.card2Price,
       image: "/images/card_dry_clean_bag.png",
+      href: `#service-detail-1`,
+      knowMore: s.knowMore,
     },
     {
       tag: s.card3Tag,
@@ -67,6 +73,8 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
       desc: s.card3Desc,
       price: s.card3Price,
       image: "/images/card_ironing_bag.png",
+      href: `#service-detail-2`,
+      knowMore: s.knowMore,
     },
     {
       tag: s.card4Tag,
@@ -74,6 +82,8 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
       desc: s.card4Desc,
       price: s.card4Price,
       image: "/images/card_savings_bag.png",
+      href: `#service-detail-3`,
+      knowMore: s.knowMore,
     },
     {
       tag: s.card5Tag,
@@ -81,6 +91,8 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
       desc: s.card5Desc,
       price: s.card5Price,
       image: "/images/card_dry_clean_bag.png",
+      href: `#service-detail-4`,
+      knowMore: s.knowMore,
     },
     {
       tag: s.card6Tag,
@@ -88,8 +100,22 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
       desc: s.card6Desc,
       price: s.card6Price,
       image: "/images/card_ironing_bag.png",
+      href: `#service-detail-5`,
+      knowMore: s.knowMore,
     },
   ];
+
+  const cards = section?.subsections?.length
+    ? sortByOrder(section.subsections).map((item, idx) => ({
+        tag: item.title,
+        title: item.title,
+        desc: item.content,
+        price: item.price != null ? `${item.price} AED` : "",
+        image: item.images?.[0]?.url ?? fallbackCards[idx]?.image ?? "/images/card_savings_bag.png",
+        href: item.link?.url ?? `#service-detail-${idx}`,
+        knowMore: item.link?.label ?? s.knowMore,
+      }))
+    : fallbackCards;
 
   // Scroll function for slider
   const scroll = (direction: "left" | "right") => {
@@ -242,15 +268,15 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8 pb-12 sm:pb-16 border-b border-[#3B52DF]/10">
           <div className="flex-1 space-y-3">
             <span className="text-xs sm:text-sm font-medium text-[#3B52DF] tracking-wider uppercase block">
-              {s.label}
+              {section?.title ?? s.label}
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-5xl font-semibold text-[#2E41CD] leading-tight tracking-tight whitespace-pre-line">
-              {s.title}
+              {section?.content ?? s.title}
             </h2>
           </div>
           <div className="flex-1 flex flex-col sm:flex-row sm:items-end justify-between gap-6 lg:pb-2">
             <p className="text-sm sm:text-base text-[#4F5FB0] font-medium leading-relaxed max-w-md">
-              {s.subtitle}
+              {section?.subtitle ?? s.subtitle}
             </p>
             {/* Slider navigation controls */}
             {/* <div className="flex items-center gap-3 self-end sm:self-auto shrink-0">
@@ -329,10 +355,10 @@ export default function SavingsBagsSection({ lang, dict }: SavingsBagsSectionPro
                     {card.price}
                   </span>
                   <Link
-                    href={`#service-detail-${idx}`}
+                    href={card.href}
                     className="flex mt-[2rem] items-center gap-1 text-[1.125rem] sm:text-[1.125rem] font-medium text-[#FC4F00] hover:text-[#E64D00] transition-colors"
                   >
-                    <span>{s.knowMore}</span>
+                    <span>{card.knowMore}</span>
                     <svg
                       className="w-3.5 h-3.5 rtl:rotate-180 stroke-current transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
                       fill="none"

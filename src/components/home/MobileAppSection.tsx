@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getImageByRole } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface MobileAppSectionProps {
   lang: string;
@@ -16,11 +18,18 @@ interface MobileAppSectionProps {
       playStoreTitle: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) {
-  const isAr = lang === "ar";
+export default function MobileAppSection({ lang, dict, section }: MobileAppSectionProps) {
   const s = dict.mobileAppSection;
+  const appStoreLink = section?.links?.find((link) =>
+    link.label.toLowerCase().includes("app store")
+  );
+  const playStoreLink = section?.links?.find((link) =>
+    link.label.toLowerCase().includes("play store")
+  );
+  const qrImage = getImageByRole(section?.images, "qr")?.url ?? "/images/imageqr.png";
 
   return (
     <section id="download-app" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
@@ -33,10 +42,10 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
           {/* Header Texts */}
           <div className="space-y-3">
             <span className="text-xs sm:text-[1.125rem] font-medium text-[#FFFFFF] tracking-wider  block">
-              {s.label}
+              {section?.title ?? s.label}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-6xl font-semibold text-white leading-tight tracking-tight whitespace-pre-line">
-              {s.title}
+              {section?.content ?? s.title}
             </h2>
           </div>
 
@@ -48,7 +57,7 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
 
               {/* App Store button */}
               <Link
-                href="#download-ios"
+                href={appStoreLink?.url ?? "#download-ios"}
                 className="flex items-center gap-3 bg-white hover:bg-white/95 rounded-2xl px-5 py-3 shadow-sm text-left rtl:text-right w-full transition-colors cursor-pointer"
               >
                 <div className="relative w-6 h-6 shrink-0 flex items-center justify-center">
@@ -64,14 +73,14 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
                     {s.appStoreSub}
                   </span>
                   <span className="text-[1.125rem] sm:text-[1.125rem] font-normal text-[#181818] block leading-none mt-1">
-                    {s.appStoreTitle}
+                    {appStoreLink?.label ?? s.appStoreTitle}
                   </span>
                 </div>
               </Link>
 
               {/* Play Store button */}
               <Link
-                href="#download-android"
+                href={playStoreLink?.url ?? "#download-android"}
                 className="flex items-center gap-3 bg-white hover:bg-white/95 rounded-2xl px-5 py-3 shadow-sm text-left rtl:text-right w-full transition-colors cursor-pointer"
               >
                 <div className="relative w-6 h-6 shrink-0 flex items-center justify-center">
@@ -87,7 +96,7 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
                     {s.playStoreSub}
                   </span>
                   <span className="text-[1.125rem] sm:text-[1.125rem] font-normal text-[#181818] block leading-none mt-1">
-                    {s.playStoreTitle}
+                    {playStoreLink?.label ?? s.playStoreTitle}
                   </span>
                 </div>
               </Link>
@@ -99,8 +108,8 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
               {/* White Box for QR Code */}
               <div className="w-[112px] h-[112px]  rounded-xl p-1.5 flex items-center justify-center shrink-0  relative">
                 <Image
-                  src="/images/imageqr.png"
-                  alt="Download QR Code"
+                  src={qrImage}
+                  alt={getImageByRole(section?.images, "qr")?.alt ?? "Download QR Code"}
                   fill
                   className="p-1 object-contain"
                 />
@@ -130,29 +139,13 @@ export default function MobileAppSection({ lang, dict }: MobileAppSectionProps) 
         >
 
           <div className="relative w-full h-full">
-            <img src={'/images/iPhone15.svg'} />
-            {/* <Image
-              src="/images/iPhone15.svg"
-              alt="SmartWash iPhone App Screen"
-              fill
-              sizes="380px"
-              className="object-contain object-bottom"
-              priority
-            /> */}
+            <img src="/images/iPhone15.svg" alt="SmartWash iPhone App Screen" />
           </div>
         </div>
 
         {/* Mobile/Tablet Centered-bottom placement */}
         <div className="block lg:hidden  relative mt-8 -mb-6 sm:-mb-10 md:-mb-16 pointer-events-none shrink-0">
-          <img src={'/images/iPhone15.svg'} />
-
-          {/* <Image
-            src="/images/iPhone15.svg"
-            alt="SmartWash iPhone App Screen"
-            fill
-            sizes="(max-width: 768px) 300px, 100vw"
-            className="object-contain object-bottom"
-          /> */}
+          <img src="/images/iPhone15.svg" alt="SmartWash iPhone App Screen" />
         </div>
 
       </div>

@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { sortByOrder } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface FaqSectionProps {
   lang: string;
@@ -24,13 +26,15 @@ interface FaqSectionProps {
       a6: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function FaqSection({ lang, dict }: FaqSectionProps) {
+export default function FaqSection({ lang, dict, section }: FaqSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const s = dict.faqSection;
+  const showMoreLink = section?.links?.[0];
 
-  const faqs = [
+  const fallbackFaqs = [
     { q: s.q1, a: s.a1 },
     { q: s.q2, a: s.a2 },
     { q: s.q3, a: s.a3 },
@@ -38,6 +42,13 @@ export default function FaqSection({ lang, dict }: FaqSectionProps) {
     { q: s.q5, a: s.a5 },
     { q: s.q6, a: s.a6 },
   ];
+
+  const faqs = section?.subsections?.length
+    ? sortByOrder(section.subsections).map((item) => ({
+        q: item.title,
+        a: item.content,
+      }))
+    : fallbackFaqs;
 
   const toggleAccordion = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -52,19 +63,19 @@ export default function FaqSection({ lang, dict }: FaqSectionProps) {
         <div className="w-full lg:w-[32%] lg:sticky lg:top-24 lg:self-start flex flex-col items-start text-left rtl:text-right space-y-6">
           <div className="space-y-3">
             <span className="text-xs sm:text-[1.125rem] font-medium text-[#181818] tracking-wider uppercase block">
-              {s.label}
+              {section?.title ?? s.label}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#1E1E1E] leading-tight tracking-tight">
-              {s.title}
+              {section?.content ?? s.title}
             </h2>
           </div>
 
           {/* Outlined Action Button */}
           <Link
-            href="#more-faq"
+            href={showMoreLink?.url ?? `/${lang}/help`}
             className="flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-[#FF5500]/30 hover:border-[#FF5500] text-[#FF5500] font-bold rounded-2xl hover:bg-orange-50/50 transition-all text-sm sm:text-base cursor-pointer select-none active:scale-95 shadow-sm"
           >
-            <span>{s.showMore}</span>
+            <span>{showMoreLink?.label ?? s.showMore}</span>
             <svg
               className="w-4 h-4 rtl:rotate-180 stroke-current"
               fill="none"

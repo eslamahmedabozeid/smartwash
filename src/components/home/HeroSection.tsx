@@ -2,6 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeroTitle from "./HeroTitle";
+import {
+  parseHeroTitle,
+  splitHeroDescription,
+} from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface HeroSectionProps {
   lang: string;
@@ -18,42 +23,79 @@ interface HeroSectionProps {
       howItWorks: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function HeroSection({ lang, dict }: HeroSectionProps) {
-  // List of images for the gallery
-  const images = [
-    {
-      src: "/images/home/Rectangle5.png",
-      alt: "Man with laundry basket",
-      heightClass: "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
-      widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
-    },
-    {
-      src: "/images/home/Rectangle4.png",
-      alt: "Professional ironing",
-      heightClass: "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
-      widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
-    },
-    {
-      src: "/images/home/Rectangle3.png",
-      alt: "Clothes on hangers",
-      heightClass: "h-[120px] sm:h-[160px] md:h-[200px] lg:h-[164px]",
-      widthClass: "hidden sm:block sm:w-[30%] md:w-[18%]",
-    },
-    {
-      src: "/images/home/Rectangle2.png",
-      alt: "Laundry duffle bag",
-      heightClass: "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
-      widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
-    },
-    {
-      src: "/images/home/Rectangle1.png",
-      alt: "Laundry doorstep delivery",
-      heightClass: "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
-      widthClass: "w-[45%] sm:w-[30%] md:w-[18%]",
-    },
-  ];
+const imageHeightClasses = [
+  "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
+  "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
+  "h-[120px] sm:h-[160px] md:h-[200px] lg:h-[164px]",
+  "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
+  "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
+];
+
+const imageWidthClasses = [
+  "w-[45%] sm:w-[30%] md:w-[18%]",
+  "w-[45%] sm:w-[30%] md:w-[18%]",
+  "hidden sm:block sm:w-[30%] md:w-[18%]",
+  "w-[45%] sm:w-[30%] md:w-[18%]",
+  "w-[45%] sm:w-[30%] md:w-[18%]",
+];
+
+const fallbackImages = [
+  {
+    src: "/images/home/Rectangle5.png",
+    alt: "Man with laundry basket",
+  },
+  {
+    src: "/images/home/Rectangle4.png",
+    alt: "Professional ironing",
+  },
+  {
+    src: "/images/home/Rectangle3.png",
+    alt: "Clothes on hangers",
+  },
+  {
+    src: "/images/home/Rectangle2.png",
+    alt: "Laundry duffle bag",
+  },
+  {
+    src: "/images/home/Rectangle1.png",
+    alt: "Laundry doorstep delivery",
+  },
+];
+
+export default function HeroSection({ lang, dict, section }: HeroSectionProps) {
+  const heroTitle = section?.title
+    ? parseHeroTitle(section.title)
+    : {
+        title1: dict.hero.title1,
+        title2: dict.hero.title2,
+        title3: dict.hero.title3,
+      };
+
+  const heroDescription = section?.content
+    ? splitHeroDescription(section.content)
+    : { desc1: dict.hero.desc1, desc2: dict.hero.desc2 };
+
+  const downloadLink = section?.links?.find((link) =>
+    link.label.toLowerCase().includes("download")
+  );
+  const howItWorksLink = section?.links?.find((link) =>
+    link.label.toLowerCase().includes("how")
+  );
+
+  const apiImages = section?.images ?? [];
+  const images = fallbackImages.map((fallback, idx) => {
+    const apiImage = apiImages[idx];
+
+    return {
+      src: apiImage?.url ?? fallback.src,
+      alt: apiImage?.alt ?? fallback.alt,
+      heightClass: imageHeightClasses[idx],
+      widthClass: imageWidthClasses[idx],
+    };
+  });
 
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
@@ -63,22 +105,24 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
         {/* Title */}
         <HeroTitle
           lang={lang}
-          title1={dict.hero.title1}
-          title2={dict.hero.title2}
-          title3={dict.hero.title3}
+          title1={heroTitle.title1}
+          title2={heroTitle.title2}
+          title3={heroTitle.title3}
         />
 
         {/* Subtitle / Description */}
         <p className="mt-6 text-sm sm:text-base md:text-[1.5rem] text-slate-500 max-w-5xl  leading-relaxed">
-          {dict.hero.desc1}
-          <span className="block mt-1">{dict.hero.desc2}</span>
+          {heroDescription.desc1}
+          {heroDescription.desc2 ? (
+            <span className="block mt-1">{heroDescription.desc2}</span>
+          ) : null}
         </p>
 
         {/* Buttons */}
         <div className="mt-8 flex flex-row items-center justify-center gap-4 w-full sm:w-auto">
           {/* Download App Solid Orange Button */}
           <Link
-            href="#download"
+            href={downloadLink?.url ?? "#download"}
             className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 bg-[#FF5500] hover:bg-[#E64D00] text-white font-bold rounded-2xl shadow-lg shadow-orange-500/10 active:scale-95 transition-all text-sm sm:text-base"
           >
             <svg
@@ -90,15 +134,15 @@ export default function HeroSection({ lang, dict }: HeroSectionProps) {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
-            <span>{dict.actions.downloadApp}</span>
+            <span>{downloadLink?.label ?? dict.actions.downloadApp}</span>
           </Link>
 
           {/* How It Works Button */}
           <Link
-            href="#how-it-works"
+            href={howItWorksLink?.url ?? "#how-it-works"}
             className="px-6 sm:px-8 py-3.5 bg-transparent border-2 border-[#FF5500]/30 hover:border-[#FF5500] text-[#FF5500] font-bold rounded-2xl hover:bg-orange-50/50 transition-all text-sm sm:text-base"
           >
-            {dict.hero.howItWorks}
+            {howItWorksLink?.label ?? dict.hero.howItWorks}
           </Link>
         </div>
 

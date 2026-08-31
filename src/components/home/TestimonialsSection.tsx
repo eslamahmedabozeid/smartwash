@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { sortByOrder, stripHtml } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface TestimonialsSectionProps {
   lang: string;
@@ -22,9 +24,10 @@ interface TestimonialsSectionProps {
       item4Role: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function TestimonialsSection({ lang, dict }: TestimonialsSectionProps) {
+export default function TestimonialsSection({ lang, dict, section }: TestimonialsSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
@@ -33,28 +36,49 @@ export default function TestimonialsSection({ lang, dict }: TestimonialsSectionP
   const isAr = lang === "ar";
   const s = dict.testimonials;
 
-  const testimonials = [
+  const fallbackTestimonials = [
     {
       quote: s.item1Quote,
       name: s.item1Name,
       role: s.item1Role,
+      avatar: "/images/Avatar.svg",
+      rating: 5,
     },
     {
       quote: s.item2Quote,
       name: s.item2Name,
       role: s.item2Role,
+      avatar: "/images/Avatar.svg",
+      rating: 5,
     },
     {
       quote: s.item3Quote,
       name: s.item3Name,
       role: s.item3Role,
+      avatar: "/images/Avatar.svg",
+      rating: 5,
     },
     {
       quote: s.item4Quote,
       name: s.item4Name,
       role: s.item4Role,
+      avatar: "/images/Avatar.svg",
+      rating: 5,
     },
   ];
+
+  const testimonials = section?.subsections?.length
+    ? sortByOrder(section.subsections).map((item) => ({
+        quote: stripHtml(item.content),
+        name: item.title,
+        role: item.subtitle ?? "",
+        avatar:
+          item.images?.find((image) => image.role === "author_photo")?.url ??
+          item.images?.[0]?.url ??
+          "/images/Avatar.svg",
+        rating: item.rating ?? 5,
+      }))
+    : fallbackTestimonials;
 
   // Auto-play the slider every 5 seconds, paused when hovered or dragging
   useEffect(() => {
@@ -154,7 +178,7 @@ export default function TestimonialsSection({ lang, dict }: TestimonialsSectionP
 
         {/* Subtitle / Label */}
         <span className="text-xs sm:text-[1.125rem] font-medium text-[#181818] tracking-wider uppercase block mb-18 sm:mb-18 pointer-events-none">
-          {s.label}
+          {section?.title ?? s.label}
         </span>
 
         {/* Dynamic quote and profile details container with min height to avoid layout shift */}
@@ -175,7 +199,7 @@ export default function TestimonialsSection({ lang, dict }: TestimonialsSectionP
               {/* User profile image */}
               <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-white shadow-sm shrink-0">
                 <Image
-                  src="/images/Avatar.svg"
+                  src={item.avatar}
                   alt={item.name}
                   fill
                   sizes="64px"
@@ -187,13 +211,15 @@ export default function TestimonialsSection({ lang, dict }: TestimonialsSectionP
               <h4 className="text-base font-black text-[#1E1E1E] leading-tight">
                 {item.name}
               </h4>
-              <p className="text-xs sm:text-sm text-slate-400 font-semibold mt-1">
-                {item.role}
-              </p>
+              {item.role ? (
+                <p className="text-xs sm:text-sm text-slate-400 font-semibold mt-1">
+                  {item.role}
+                </p>
+              ) : null}
 
-              {/* 5 Rating Stars */}
+              {/* Rating Stars */}
               <div className="flex items-center gap-1 mt-4 text-[#FF5500]">
-                {Array.from({ length: 5 }).map((_, starIdx) => (
+                {Array.from({ length: item.rating }).map((_, starIdx) => (
                   <svg key={starIdx} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                   </svg>

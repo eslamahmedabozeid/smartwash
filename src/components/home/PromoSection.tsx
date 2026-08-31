@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import type { SiteSection } from "@/types/api";
 
 interface PromoSectionProps {
   lang: string;
@@ -14,10 +14,18 @@ interface PromoSectionProps {
       playStoreTitle: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function PromoSection({ lang, dict }: PromoSectionProps) {
+export default function PromoSection({ lang, dict, section }: PromoSectionProps) {
   const isAr = lang === "ar";
+  const appStoreLink = section?.links?.find((link) =>
+    link.label.toLowerCase().includes("app store")
+  );
+  const playStoreLink = section?.links?.find((link) =>
+    link.label.toLowerCase().includes("play store")
+  );
+  const promoImage = section?.images?.[0]?.url ?? "/images/HandandiPhone16Pro.png";
 
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
@@ -31,19 +39,19 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
         >
           {/* Main Title */}
           <h2 className="text-3xl sm:text-4xl lg:text-6xl font-semibold leading-tight tracking-tight whitespace-pre-line">
-            {dict.promo.title}
+            {section?.title ?? dict.promo.title}
           </h2>
 
           {/* Subtitle */}
           <p className="mt-4 text-sm sm:text-base lg:text-2xl text-[#E0E0E0] max-w-lg font-medium leading-relaxed">
-            {dict.promo.subtitle}
+            {section?.content ?? dict.promo.subtitle}
           </p>
 
           {/* App Download Badges (Horizontal Row) */}
           <div className="mt-10 flex flex-row items-center gap-8 flex-wrap">
             {/* Apple App Store */}
             <Link
-              href="#app-store"
+              href={appStoreLink?.url ?? "#app-store"}
               className="flex items-center gap-3 py-[0.625rem] px-[1.5rem] text-white hover:text-white/80 group active:scale-95 transition-all duration-200"
             >
               {/* Apple Icon */}
@@ -54,13 +62,13 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
               />
               <div className="flex flex-col leading-tight">
                 <span className="text-[10px] sm:text-xs text-white/70 font-semibold">{dict.promo.appStoreSub}</span>
-                <span className="text-sm sm:text-base font-bold tracking-wide">{dict.promo.appStoreTitle}</span>
+                <span className="text-sm sm:text-base font-bold tracking-wide">{appStoreLink?.label ?? dict.promo.appStoreTitle}</span>
               </div>
             </Link>
 
             {/* Google Play Store */}
             <Link
-              href="#play-store"
+              href={playStoreLink?.url ?? "#play-store"}
               className="flex items-center gap-3 py-[0.625rem] px-[1.5rem] text-white hover:text-white/80 group active:scale-95 transition-all duration-200"
             >
               {/* Google Play Icon */}
@@ -71,7 +79,7 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
               />
               <div className="flex flex-col leading-tight">
                 <span className="text-[10px] sm:text-xs text-white/70 font-semibold">{dict.promo.playStoreSub}</span>
-                <span className="text-sm sm:text-base font-bold tracking-wide">{dict.promo.playStoreTitle}</span>
+                <span className="text-sm sm:text-base font-bold tracking-wide">{playStoreLink?.label ?? dict.promo.playStoreTitle}</span>
               </div>
             </Link>
           </div>
@@ -80,17 +88,7 @@ export default function PromoSection({ lang, dict }: PromoSectionProps) {
         {/* Hand holding iPhone 16 Pro Image Block */}
         <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-end h-full self-end relative">
           <div className="relative  self-end overflow-hidden flex items-end">
-            <img src={'/images/HandandiPhone16Pro.png'} />
-
-            {/* <Image
-              src="/images/HandandiPhone16Pro.png"
-              alt="Hand holding iPhone 16 Pro"
-              width={440}
-              height={440}
-              style={{ height: "auto" }}
-              className="w-full object-contain object-bottom select-none pointer-events-none transform hover:scale-[1.02] transition-transform duration-500 ease-out"
-              priority
-            /> */}
+            <img src={promoImage} alt={section?.images?.[0]?.alt ?? "Hand holding iPhone 16 Pro"} />
           </div>
         </div>
 
