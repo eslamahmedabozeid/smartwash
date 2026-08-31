@@ -39,6 +39,24 @@ export async function getHelpPage(lang: string): Promise<SitePage> {
   return response.data;
 }
 
+export async function getTermsPage(lang: string): Promise<SitePage> {
+  const response = await apiFetch<ApiResponse<SitePage>>(
+    "/dashboard/pages/terms",
+    { lang }
+  );
+
+  return response.data;
+}
+
+export async function getPrivacyPage(lang: string): Promise<SitePage> {
+  const response = await apiFetch<ApiResponse<SitePage>>(
+    "/dashboard/pages/privacy",
+    { lang }
+  );
+
+  return response.data;
+}
+
 export async function getFooter(lang: string): Promise<SiteFooter> {
   const response = await apiFetch<ApiResponse<SiteFooter>>(
     "/dashboard/footer",
@@ -54,3 +72,4 @@ export function getSectionByType(
 ): SiteSection | undefined {
   return sections.find((section) => section.type === type);
 }
+

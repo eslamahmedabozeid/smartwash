@@ -224,12 +224,32 @@ export default function Footer({ lang, dict, footerData }: FooterProps) {
               {footerData?.copyrightText ?? f.copyright}
             </p>
             <div className="flex items-center gap-6">
-              <Link href="#privacy" className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors">
-                {f.privacy}
-              </Link>
-              <Link href="#terms" className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors">
-                {f.terms}
-              </Link>
+              {footerData?.legalLinks?.length ? (
+                footerData.legalLinks.map((link, idx) => (
+                  <Link
+                    key={idx}
+                    href={resolveFooterHref(link.url, lang)}
+                    className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))
+              ) : (
+                <>
+                  <Link
+                    href={`/${lang}/privacy`}
+                    className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors"
+                  >
+                    {f.privacy}
+                  </Link>
+                  <Link
+                    href={`/${lang}/terms`}
+                    className="text-xs sm:text-sm font-semibold text-[#181818] hover:text-[#FF5500] transition-colors"
+                  >
+                    {f.terms}
+                  </Link>
+                </>
+              )}
             </div>
           </div>
 

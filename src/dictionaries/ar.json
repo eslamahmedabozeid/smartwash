@@ -254,5 +254,20 @@
         "homeLinens": "المفروشات المنزلية"
       }
     }
+  },
+  "legal": {
+    "termsTitle": "الشروط والأحكام",
+    "privacyTitle": "سياسة الخصوصية",
+    "termsLabel": "البنود القانونية",
+    "privacyLabel": "البيانات والخصوصية",
+    "lastUpdated": "آخر تحديث",
+    "tableOfContents": "جدول المحتويات",
+    "quickNavigation": "تنقل سريع",
+    "needHelpTitle": "هل لديك أي استفسار؟",
+    "needHelpDesc": "فريقنا مستعد دائماً لمساعدتك والإجابة على أي أسئلة تخص الشروط والخصوصية.",
+    "contactSupport": "تواصل مع الدعم",
+    "termsTab": "الشروط والأحكام",
+    "privacyTab": "سياسة الخصوصية",
+    "backToHome": "العودة للرئيسية"
   }
 }

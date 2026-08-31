@@ -254,5 +254,20 @@
         "homeLinens": "Home Linens"
       }
     }
+  },
+  "legal": {
+    "termsTitle": "Terms & Conditions",
+    "privacyTitle": "Privacy Policy",
+    "termsLabel": "Legal Terms",
+    "privacyLabel": "Data & Privacy",
+    "lastUpdated": "Last updated",
+    "tableOfContents": "Table of Contents",
+    "quickNavigation": "Quick Navigation",
+    "needHelpTitle": "Have questions?",
+    "needHelpDesc": "Our team is here to help you understand our terms and privacy practices.",
+    "contactSupport": "Contact Support",
+    "termsTab": "Terms & Conditions",
+    "privacyTab": "Privacy Policy",
+    "backToHome": "Back to Home"
   }
 }

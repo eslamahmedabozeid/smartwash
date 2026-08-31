@@ -43,3 +43,37 @@ html[lang="ar"],
 html[lang="ar"] body {
   font-family: var(--font-ibm-plex-sans-arabic), system-ui, sans-serif;
 }
+
+/* Legal Page Content Styling */
+.legal-content-body ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.legal-content-body li {
+  position: relative;
+  padding-inline-start: 1.75rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.legal-content-body li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0.25rem;
+  top: 0.65rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #ff5500;
+}
+
+.legal-content-body p {
+  line-height: 1.75;
+  color: #4b5563;
+}
