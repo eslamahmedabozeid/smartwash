@@ -1,17 +1,18 @@
-
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import type { FaqCategory } from "@/types/api";
 
 interface HelpFaqSectionProps {
   lang: string;
   dict: any;
+  faqCategories?: FaqCategory[] | null;
 }
 
-export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
+export default function HelpFaqSection({ lang, faqCategories }: HelpFaqSectionProps) {
   const isAr = lang === "ar";
 
-  const categories = [
+  const staticCategories = [
     { id: "getting-started", labelEn: "Getting started", labelAr: "البدء" },
     { id: "cleaning", labelEn: "Cleaning", labelAr: "التنظيف" },
     { id: "clean-press", labelEn: "Clean & Press", labelAr: "التنظيف والكي" },
@@ -143,7 +144,37 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
     ]
   };
 
-  const [activeTab, setActiveTab] = useState("getting-started");
+  const categories = useMemo(() => {
+    const apiCategories = faqCategories
+      ?.filter((category) => category.faqs?.length)
+      .map((category) => ({
+        id: category.id,
+        label: category.name,
+        faqs: category.faqs.map((faq) => ({
+          id: faq.id,
+          question: faq.question,
+          answer: faq.answer,
+          isHtml: true,
+        })),
+      }));
+
+    if (apiCategories?.length) {
+      return apiCategories;
+    }
+
+    return staticCategories.map((cat) => ({
+      id: cat.id,
+      label: isAr ? cat.labelAr : cat.labelEn,
+      faqs: faqData[cat.id].map((faq, idx) => ({
+        id: `${cat.id}-${idx}`,
+        question: isAr ? faq.qAr : faq.qEn,
+        answer: isAr ? faq.aAr : faq.aEn,
+        isHtml: false,
+      })),
+    }));
+  }, [faqCategories, isAr]);
+
+  const [activeTab, setActiveTab] = useState(categories[0]?.id ?? "");
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [showLeftBtn, setShowLeftBtn] = useState(false);
   const [showRightBtn, setShowRightBtn] = useState(false);
@@ -179,12 +210,19 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
   };
 
   useEffect(() => {
+    if (categories[0]?.id) {
+      setActiveTab(categories[0].id);
+      setOpenIndex(0);
+    }
+  }, [categories]);
+
+  useEffect(() => {
     updateScrollButtons();
     window.addEventListener("resize", updateScrollButtons);
     return () => {
       window.removeEventListener("resize", updateScrollButtons);
     };
-  }, [isAr]);
+  }, [isAr, categories]);
 
   const handleScrollClick = (direction: "left" | "right") => {
     const scrollContainer = scrollRef.current;
@@ -227,7 +265,6 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
         >
           {categories.map((cat) => {
             const isActive = activeTab === cat.id;
-            const label = isAr ? cat.labelAr : cat.labelEn;
             return (
               <button
                 key={cat.id}
@@ -237,7 +274,7 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
                   : "bg-[#FFEDE6] text-[#181818] border border-[#FD7233] hover:border-[#FF5500]/50"
                   }`}
               >
-                {label}
+                {cat.label}
               </button>
             );
           })}
@@ -260,14 +297,14 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
 
       {/* Accordion list */}
       <div className="space-y-4 w-full">
-        {faqData[activeTab]?.map((faq, idx) => {
+        {categories
+          .find((category) => category.id === activeTab)
+          ?.faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
-          const question = isAr ? faq.qAr : faq.qEn;
-          const answer = isAr ? faq.aAr : faq.aEn;
 
           return (
             <div
-              key={idx}
+              key={faq.id}
               className="bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col shadow-sm border border-slate-100/40 w-full transition-all duration-300 text-left rtl:text-right"
             >
               {/* Accordion Trigger Header */}
@@ -276,7 +313,7 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
                 className="flex justify-between items-center w-full cursor-pointer gap-4 text-left rtl:text-right focus:outline-none"
               >
                 <h3 className="text-base sm:text-lg font-normal text-[#181818] leading-tight">
-                  {question}
+                  {faq.question}
                 </h3>
 
                 {/* Toggle Button */}
@@ -306,9 +343,16 @@ export default function HelpFaqSection({ lang, dict }: HelpFaqSectionProps) {
                   }`}
               >
                 <div className="overflow-hidden">
-                  <p className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed">
-                    {answer}
-                  </p>
+                  {faq.isHtml ? (
+                    <div
+                      className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed [&_p]:mb-0 [&_strong]:font-semibold [&_strong]:text-[#181818]"
+                      dangerouslySetInnerHTML={{ __html: faq.answer }}
+                    />
+                  ) : (
+                    <p className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

@@ -7,15 +7,16 @@ import AboutFeaturesSection from "@/components/about/AboutFeaturesSection";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { getSectionByType } from "@/lib/api/home";
-import type { SitePage } from "@/types/api";
+import type { FaqCategory, SitePage } from "@/types/api";
 
 interface HelpViewProps {
   lang: string;
   dict: any;
   helpPage: SitePage | null;
+  faqCategories?: FaqCategory[] | null;
 }
 
-export default function HelpView({ lang, dict, helpPage }: HelpViewProps) {
+export default function HelpView({ lang, dict, helpPage, faqCategories }: HelpViewProps) {
   const sections = helpPage?.sections ?? [];
   const heroSection = getSectionByType(sections, "hero");
   const contactSection = getSectionByType(sections, "contact_channels");
@@ -41,7 +42,7 @@ export default function HelpView({ lang, dict, helpPage }: HelpViewProps) {
 
         {/* FAQ Tabs & Accordion Section */}
         <ScrollReveal variant="fade-up">
-          <HelpFaqSection lang={lang} dict={dict} />
+          <HelpFaqSection lang={lang} dict={dict} faqCategories={faqCategories} />
         </ScrollReveal>
 
         {/* Features Section */}

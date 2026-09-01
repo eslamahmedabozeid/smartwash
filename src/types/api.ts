@@ -79,3 +79,15 @@ export interface SiteFooter {
   copyrightText: string;
   legalLinks?: FooterLink[];
 }
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+export interface FaqCategory {
+  id: string;
+  name: string;
+  faqs: FaqItem[];
+}
