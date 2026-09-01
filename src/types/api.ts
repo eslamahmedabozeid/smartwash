@@ -91,3 +91,21 @@ export interface FaqCategory {
   name: string;
   faqs: FaqItem[];
 }
+
+export interface WebsiteServiceItem {
+  id: string;
+  title: string;
+  iconUrl: string | null;
+  pageSlug: string;
+}
+
+export interface WebsiteServiceGroup {
+  title: string;
+  description: string | null;
+  services: WebsiteServiceItem[];
+}
+
+export interface WebsiteServices {
+  valuePackages: WebsiteServiceGroup;
+  perItem: WebsiteServiceGroup;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "@/components/layout/Header";
+import HeaderContainer from "@/components/layout/HeaderContainer";
 import HeroSection from "@/components/home/HeroSection";
 import PromoSection from "@/components/home/PromoSection";
 import SavingsBagsSection from "@/components/home/SavingsBagsSection";
@@ -32,7 +32,7 @@ export default function HomeView({ lang, dict, homePage }: HomeViewProps) {
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-800 selection:bg-[#FF5500] selection:text-white overflow-x-clip">
       {/* 1. Navigation Header Section */}
-      <Header lang={lang} dict={dict} />
+      <HeaderContainer lang={lang} dict={dict} />
 
       {/* 2. Hero Section (First home page section) */}
       <ScrollReveal variant="fade-up" delay={100} duration={800}>

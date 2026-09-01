@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "@/components/layout/Header";
+import HeaderContainer from "@/components/layout/HeaderContainer";
 import FooterContainer from "@/components/layout/FooterContainer";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import TermsContentSection from "@/components/terms/TermsContentSection";
@@ -150,7 +150,7 @@ export default function TermsView({ lang, dict, termsPage }: TermsViewProps) {
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-800 selection:bg-[#FF5500] selection:text-white overflow-x-clip">
       {/* Navigation Header */}
-      <Header lang={lang} dict={dict} />
+      <HeaderContainer lang={lang} dict={dict} />
 
       {/* Main Content Area */}
       <main className="w-full flex-1 py-6 px-[10px] sm:px-6 lg:px-8 space-y-8 bg-white">

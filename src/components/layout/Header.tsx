@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import type { SiteLink, WebsiteServices } from "@/types/api";
+
+const DEFAULT_SERVICE_ICON = "/images/icons/hugeicons_washing-machine.png";
 
 interface HeaderProps {
   lang: string;
@@ -45,9 +48,11 @@ interface HeaderProps {
       };
     };
   };
+  websiteServices?: WebsiteServices | null;
+  downloadLink?: SiteLink | null;
 }
 
-export default function Header({ lang, dict }: HeaderProps) {
+export default function Header({ lang, dict, websiteServices, downloadLink }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
@@ -58,61 +63,106 @@ export default function Header({ lang, dict }: HeaderProps) {
 
   const m = dict.megaMenu;
 
-  const valuePackages = [
-    {
-      name: m?.valuePackages.items.laundryFold || "Laundry & Fold",
-      icon: "/images/icons/hugeicons_washing-machine.png",
-      href: `/${lang}/services/wash-fold`,
-    },
-    {
-      name: m?.valuePackages.items.laundryIron || "Laundry & Iron",
-      icon: "/images/icons/mage_basket.png",
-      href: `/${lang}/services/wash-iron`,
-    },
-    {
-      name: m?.valuePackages.items.ironOnly || "Iron Only",
-      icon: "/images/icons/streamline-flex_iron.png",
-      href: `/${lang}/services/ironing`,
-    },
-    {
-      name: m?.valuePackages.items.homeLinens || "Home Linens",
-      icon: "/images/icons/bed-double.png",
-      href: `/${lang}/services/home-linens`,
-    },
-  ];
+  const fallbackValuePackages = useMemo(
+    () => [
+      {
+        name: m?.valuePackages.items.laundryFold || "Laundry & Fold",
+        icon: "/images/icons/hugeicons_washing-machine.png",
+        href: `/${lang}/services/wash-fold`,
+      },
+      {
+        name: m?.valuePackages.items.laundryIron || "Laundry & Iron",
+        icon: "/images/icons/mage_basket.png",
+        href: `/${lang}/services/wash-iron`,
+      },
+      {
+        name: m?.valuePackages.items.ironOnly || "Iron Only",
+        icon: "/images/icons/streamline-flex_iron.png",
+        href: `/${lang}/services/ironing`,
+      },
+      {
+        name: m?.valuePackages.items.homeLinens || "Home Linens",
+        icon: "/images/icons/bed-double.png",
+        href: `/${lang}/services/home-linens`,
+      },
+    ],
+    [lang, m]
+  );
 
-  const perItem = [
-    {
-      name: m?.perItem.items.dryCleaning || "Dry Cleaning",
-      icon: "/images/icons/hanger.png",
-      href: `/${lang}/services/dry-cleaning`,
-    },
-    {
-      name: m?.perItem.items.washIron || "Wash & Iron",
-      icon: "/images/icons/hugeicons_washing-machine.png",
-      href: `/${lang}/services/wash-iron`,
-    },
-    {
-      name: m?.perItem.items.ironOnly || "Iron Only",
-      icon: "/images/icons/streamline-flex_iron.png",
-      href: `/${lang}/services/ironing`,
-    },
-    {
-      name: m?.perItem.items.blankets || "Blankets",
-      icon: "/images/icons/boxicons_blanket.png",
-      href: `/${lang}/services/blankets`,
-    },
-    {
-      name: m?.perItem.items.carpets || "Carpets",
-      icon: "/images/icons/prayer-rug-01.png",
-      href: `/${lang}/services/carpets`,
-    },
-    {
-      name: m?.perItem.items.homeLinens || "Home Linens",
-      icon: "/images/icons/bed-double.png",
-      href: `/${lang}/services/home-linens`,
-    },
-  ];
+  const fallbackPerItem = useMemo(
+    () => [
+      {
+        name: m?.perItem.items.dryCleaning || "Dry Cleaning",
+        icon: "/images/icons/hanger.png",
+        href: `/${lang}/services/dry-cleaning`,
+      },
+      {
+        name: m?.perItem.items.washIron || "Wash & Iron",
+        icon: "/images/icons/hugeicons_washing-machine.png",
+        href: `/${lang}/services/wash-iron`,
+      },
+      {
+        name: m?.perItem.items.ironOnly || "Iron Only",
+        icon: "/images/icons/streamline-flex_iron.png",
+        href: `/${lang}/services/ironing`,
+      },
+      {
+        name: m?.perItem.items.blankets || "Blankets",
+        icon: "/images/icons/boxicons_blanket.png",
+        href: `/${lang}/services/blankets`,
+      },
+      {
+        name: m?.perItem.items.carpets || "Carpets",
+        icon: "/images/icons/prayer-rug-01.png",
+        href: `/${lang}/services/carpets`,
+      },
+      {
+        name: m?.perItem.items.homeLinens || "Home Linens",
+        icon: "/images/icons/bed-double.png",
+        href: `/${lang}/services/home-linens`,
+      },
+    ],
+    [lang, m]
+  );
+
+  const valuePackages = useMemo(() => {
+    if (!websiteServices) {
+      return fallbackValuePackages;
+    }
+
+    return (websiteServices.valuePackages?.services ?? []).map((service) => ({
+      name: service.title,
+      icon: service.iconUrl || DEFAULT_SERVICE_ICON,
+      href: `/${lang}/services/${service.pageSlug}`,
+    }));
+  }, [websiteServices, lang, fallbackValuePackages]);
+
+  const perItem = useMemo(() => {
+    if (!websiteServices) {
+      return fallbackPerItem;
+    }
+
+    return (websiteServices.perItem?.services ?? []).map((service) => ({
+      name: service.title,
+      icon: service.iconUrl || DEFAULT_SERVICE_ICON,
+      href: `/${lang}/services/${service.pageSlug}`,
+    }));
+  }, [websiteServices, lang, fallbackPerItem]);
+
+  const valuePackagesMeta = {
+    title: websiteServices?.valuePackages?.title ?? m?.valuePackages.title ?? "VALUE PACKAGES",
+    subtitle: websiteServices?.valuePackages?.title ?? m?.valuePackages.subtitle ?? "Save more with bundled services",
+    desc:
+      websiteServices?.valuePackages?.description ??
+      m?.valuePackages.desc ??
+      "Weekly & monthly subscriptions • Best value",
+  };
+
+  const perItemMeta = {
+    title: websiteServices?.perItem?.title ?? m?.perItem.title ?? "PER ITEM",
+    subtitle: websiteServices?.perItem?.title ?? m?.perItem.subtitle ?? "Pay exactly for what you need",
+    desc: websiteServices?.perItem?.description ?? m?.perItem.desc ?? "Flexible • No commitment",
+  };
 
   // Language toggler logic
   const toggleLanguage = () => {
@@ -210,13 +260,13 @@ export default function Header({ lang, dict }: HeaderProps) {
                         {/* Column Header */}
                         <div className="mb-6">
                           <span className="text-[11px] font-black text-[#FF5500] tracking-wider uppercase block">
-                            {m?.valuePackages.title || "VALUE PACKAGES"}
+                            {valuePackagesMeta.title}
                           </span>
                           <h4 className="text-2xl font-bold text-[#1E1E1E] mt-2">
-                            {m?.valuePackages.subtitle || "Save more with bundled services"}
+                            {valuePackagesMeta.subtitle}
                           </h4>
                           <p className="text-xs text-[#8C8C8C] font-normal mt-1">
-                            {m?.valuePackages.desc || "Weekly & monthly subscriptions • Best value"}
+                            {valuePackagesMeta.desc}
                           </p>
                         </div>
 
@@ -253,17 +303,17 @@ export default function Header({ lang, dict }: HeaderProps) {
                       </div>
 
                       {/* Right Column: Per Item */}
-                      <div className="bg-[#F5F7FA] rounded-[2rem]  p-8 flex flex-col justify-between text-left rtl:text-right">
+                      <div className="bg-[#F5F7FA] rounded-[2rem] p-8 flex flex-col text-left rtl:text-right">
                         {/* Column Header */}
                         <div className="mb-6">
                           <span className="text-[11px] font-black text-[#FF5500] tracking-wider uppercase block">
-                            {m?.perItem.title || "PER ITEM"}
+                            {perItemMeta.title}
                           </span>
                           <h4 className="text-2xl font-bold text-[#1E1E1E] mt-2">
-                            {m?.perItem.subtitle || "Pay exactly for what you need"}
+                            {perItemMeta.subtitle}
                           </h4>
                           <p className="text-xs text-[#8C8C8C] font-normal mt-1">
-                            {m?.perItem.desc || "Flexible • No commitment"}
+                            {perItemMeta.desc}
                           </p>
                         </div>
 
@@ -398,7 +448,7 @@ export default function Header({ lang, dict }: HeaderProps) {
 
           {/* Download App Outlined Button */}
           <Link
-            href="#download"
+            href={downloadLink?.url ?? "#download"}
             className="flex items-center gap-2 px-5 py-2.5 rounded-[0.75rem] border-1 border-[#E0E0E0] text-white font-semibold hover:bg-white hover:text-[#FF5500] active:scale-95 transition-all duration-300"
           >
             {/* Download Icon */}
@@ -411,7 +461,7 @@ export default function Header({ lang, dict }: HeaderProps) {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
-            <span>{dict.actions.downloadApp}</span>
+            <span>{downloadLink?.label ?? dict.actions.downloadApp}</span>
           </Link>
         </div>
 
@@ -486,7 +536,7 @@ export default function Header({ lang, dict }: HeaderProps) {
                   {/* Category: Value Packages */}
                   <div className="space-y-1.5">
                     <div className="px-3 text-[10px] font-black text-white/50 tracking-wider uppercase">
-                      {m?.valuePackages.title || "VALUE PACKAGES"}
+                      {valuePackagesMeta.title}
                     </div>
                     {valuePackages.map((item, idx) => (
                       <Link
@@ -509,7 +559,7 @@ export default function Header({ lang, dict }: HeaderProps) {
                   {/* Category: Per Item */}
                   <div className="space-y-1.5">
                     <div className="px-3 text-[10px] font-black text-white/50 tracking-wider uppercase">
-                      {m?.perItem.title || "PER ITEM"}
+                      {perItemMeta.title}
                     </div>
                     {perItem.map((item, idx) => (
                       <Link
@@ -548,7 +598,7 @@ export default function Header({ lang, dict }: HeaderProps) {
 
             <div className="pt-4 pb-2">
               <Link
-                href="#download"
+                href={downloadLink?.url ?? "#download"}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-[#FF5500] transition-colors"
               >
@@ -561,7 +611,7 @@ export default function Header({ lang, dict }: HeaderProps) {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                 </svg>
-                <span>{dict.actions.downloadApp}</span>
+                <span>{downloadLink?.label ?? dict.actions.downloadApp}</span>
               </Link>
             </div>
           </div>

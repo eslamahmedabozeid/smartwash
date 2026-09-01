@@ -1,7 +1,7 @@
 
 import React from "react";
 import Link from "next/link";
-import Header from "@/components/layout/Header";
+import HeaderContainer from "@/components/layout/HeaderContainer";
 import FooterContainer from "@/components/layout/FooterContainer";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import AboutHowItWorksSection from "@/components/about/AboutHowItWorksSection";
@@ -40,7 +40,7 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-800 selection:bg-[#FF5500] selection:text-white overflow-x-clip">
       {/* Navigation Header */}
-      <Header lang={lang} dict={dict} />
+      <HeaderContainer lang={lang} dict={dict} />
 
       {/* Main Content Area */}
       <main className="w-full flex-1 py-6 px-[10px] sm:px-6 lg:px-8 space-y-12 bg-white">

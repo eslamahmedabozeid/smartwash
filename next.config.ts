@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "backend-dev.smartwash.mtjrsahl-ksa.com",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.example.com",
+        pathname: "/**",
+      },
     ],
   },
 };

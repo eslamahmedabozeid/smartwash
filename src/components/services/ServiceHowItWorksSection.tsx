@@ -1,6 +1,8 @@
 import React from "react";
+import { sortByOrder, stripHtml } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
-interface ServiceHowItWorksSection {
+interface ServiceHowItWorksSectionProps {
   lang: string;
   dict: {
     howItWorksSection: {
@@ -16,13 +18,18 @@ interface ServiceHowItWorksSection {
       step4Desc: string;
     };
   };
+  section?: SiteSection;
 }
 
-export default function ServiceHowItWorksSection({ lang, dict }: ServiceHowItWorksSection) {
+export default function ServiceHowItWorksSection({
+  lang,
+  dict,
+  section,
+}: ServiceHowItWorksSectionProps) {
   const isAr = lang === "ar";
   const s = dict.howItWorksSection;
 
-  const steps = [
+  const fallbackSteps = [
     {
       title: s.step1Title,
       desc: s.step1Desc,
@@ -70,6 +77,25 @@ export default function ServiceHowItWorksSection({ lang, dict }: ServiceHowItWor
     },
   ];
 
+  const steps = section?.subsections?.length
+    ? sortByOrder(section.subsections).map((item, idx) => ({
+        title: item.title,
+        desc: stripHtml(item.content),
+        icon: item.images?.[0]?.url ? (
+          <img
+            src={item.images[0].url}
+            alt={item.images[0].alt ?? item.title}
+            className="w-6 h-6 object-contain"
+          />
+        ) : (
+          fallbackSteps[idx]?.icon ?? fallbackSteps[0]?.icon
+        ),
+      }))
+    : fallbackSteps;
+
+  const sectionLabel = section?.title ?? s.label;
+  const sectionTitle = section?.content ? stripHtml(section.content) : s.title;
+
   return (
     <section id="about-how-it-works" className="w-full py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col items-center relative bg-[#FFF3ED] rounded-[2.5rem] shadow-sm w-full">
@@ -77,10 +103,10 @@ export default function ServiceHowItWorksSection({ lang, dict }: ServiceHowItWor
         {/* Section Header (Centered & Sticky) */}
         <div className="sticky top-0 text-center space-y-3 w-full pt-10 pb-6 z-30 bg-[#FFF3ED] rounded-t-[2.5rem] px-4 sm:px-6 lg:px-8">
           <span className="text-xs sm:text-[1.125rem] font-medium text-[#FC4F00] tracking-wider uppercase block">
-            {s.label}
+            {sectionLabel}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FC4F00] leading-tight tracking-tight whitespace-pre-line">
-            {s.title}
+            {sectionTitle}
           </h2>
         </div>
 

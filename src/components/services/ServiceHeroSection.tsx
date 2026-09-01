@@ -1,12 +1,16 @@
 import React from "react";
+import { stripHtml } from "@/lib/api/utils";
+import type { SiteSection } from "@/types/api";
 
 interface ServiceHeroSectionProps {
   lang: string;
   dict: any;
+  section?: SiteSection;
 }
 
-export default function ServiceHeroSection({ lang, dict }: ServiceHeroSectionProps) {
+export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroSectionProps) {
   const s = dict.servicePage;
+  const downloadLink = section?.links?.[0];
 
   return (
     <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-[1.5rem] sm:p-12 md:p-[2.5rem] flex flex-col gap-10 shadow-sm relative overflow-hidden transition-all duration-300">
@@ -17,20 +21,20 @@ export default function ServiceHeroSection({ lang, dict }: ServiceHeroSectionPro
         {/* Left Column: Text Info (col-span-5) */}
         <div className="lg:col-span-5 flex flex-col items-start text-left rtl:text-right space-y-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#181818] leading-tight tracking-tight whitespace-pre-line">
-            {s.heroTitle}
+            {section?.title ?? s.heroTitle}
           </h1>
           <p className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed max-w-md mb-12">
-            {s.heroDesc}
+            {section?.content ? stripHtml(section.content) : s.heroDesc}
           </p>
           <a
-            href="#download-app"
+            href={downloadLink?.url ?? "#download-app"}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-[1.25rem] bg-[#FC4F00] text-white font-bold hover:bg-orange-600 active:scale-95 transition-all duration-300 shadow-sm w-fit text-sm"
           >
             {/* Download Icon */}
             <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
-            <span className="font-medium">{s.downloadApp}</span>
+            <span className="font-medium">{downloadLink?.label ?? s.downloadApp}</span>
           </a>
         </div>
 

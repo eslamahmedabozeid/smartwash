@@ -1,7 +1,14 @@
 import "server-only";
 
 import { apiFetch } from "./client";
-import type { ApiResponse, FaqCategory, SiteFooter, SitePage, SiteSection } from "@/types/api";
+import type {
+  ApiResponse,
+  FaqCategory,
+  SiteFooter,
+  SitePage,
+  SiteSection,
+  WebsiteServices,
+} from "@/types/api";
 
 export async function getHomePage(lang: string): Promise<SitePage> {
   const response = await apiFetch<ApiResponse<SitePage>>(
@@ -73,6 +80,32 @@ export async function getFaq(lang: string): Promise<FaqCategory[]> {
   );
 
   return response.data;
+}
+
+export async function getWebsiteServices(lang: string): Promise<WebsiteServices> {
+  const response = await apiFetch<ApiResponse<WebsiteServices>>(
+    "/dashboard/website-services",
+    { lang }
+  );
+
+  console.log("[API] GET /dashboard/website-services", { lang, res: response });
+
+  return response.data;
+}
+
+export async function getPageBySlug(lang: string, pageSlug: string): Promise<SitePage> {
+  const response = await apiFetch<ApiResponse<SitePage>>(
+    `/dashboard/pages/${pageSlug}`,
+    { lang }
+  );
+
+  console.log(`[API] GET /dashboard/pages/${pageSlug}`, { lang, res: response });
+
+  return response.data;
+}
+
+export async function getServicesPage(lang: string): Promise<SitePage> {
+  return getPageBySlug(lang, "services");
 }
 
 export function getSectionByType(
