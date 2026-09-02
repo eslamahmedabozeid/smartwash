@@ -78,12 +78,21 @@ export default function HeroSection({ lang, dict, section }: HeroSectionProps) {
     ? splitHeroDescription(section.content)
     : { desc1: dict.hero.desc1, desc2: dict.hero.desc2 };
 
-  const downloadLink = section?.links?.find((link) =>
-    link.label.toLowerCase().includes("download")
-  );
-  const howItWorksLink = section?.links?.find((link) =>
-    link.label.toLowerCase().includes("how")
-  );
+  const downloadLink =
+    section?.links?.find(
+      (link) =>
+        link.label.toLowerCase().includes("download") ||
+        link.label.includes("تحميل") ||
+        link.label.includes("تطبيق")
+    ) ?? section?.links?.[0];
+
+  const howItWorksLink =
+    section?.links?.find(
+      (link) =>
+        link.label.toLowerCase().includes("how") ||
+        link.label.includes("كيف") ||
+        link.label.includes("نعمل")
+    ) ?? (section?.links && section.links.length > 1 ? section.links[1] : undefined);
 
   const apiImages = section?.images ?? [];
   const images = fallbackImages.map((fallback, idx) => {

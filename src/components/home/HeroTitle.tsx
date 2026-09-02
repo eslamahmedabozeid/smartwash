@@ -15,6 +15,8 @@ export default function HeroTitle({ lang, title1, title2, title3 }: HeroTitlePro
   const [line1Done, setLine1Done] = useState(false);
   const [line2Done, setLine2Done] = useState(false);
 
+  const hasLine2 = Boolean(title2?.trim() || title3?.trim());
+
   return (
     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1E1E1E] leading-tight max-w-4xl tracking-tight min-h-[3.5rem] sm:min-h-[5rem] lg:min-h-[7.5rem]">
       <Typewriter
@@ -24,23 +26,31 @@ export default function HeroTitle({ lang, title1, title2, title3 }: HeroTitlePro
         onComplete={() => setLine1Done(true)}
         speed={isAr ? 300 : 75}
       />
-      <span className="block mt-2 sm:mt-3">
-        <Typewriter
-          text={title2}
-          isAr={isAr}
-          start={line1Done}
-          onComplete={() => setLine2Done(true)}
-          speed={isAr ? 300 : 75}
-        />
-        {" "}
-        <Typewriter
-          text={title3}
-          isAr={isAr}
-          start={line2Done}
-          className="text-[#FF5500] font-semibold"
-          speed={isAr ? 300 : 75}
-        />
-      </span>
+      {hasLine2 && (
+        <span className="block mt-2 sm:mt-3">
+          {title2 ? (
+            <>
+              <Typewriter
+                text={title2}
+                isAr={isAr}
+                start={line1Done}
+                onComplete={() => setLine2Done(true)}
+                speed={isAr ? 300 : 75}
+              />
+              {" "}
+            </>
+          ) : null}
+          {title3 ? (
+            <Typewriter
+              text={title3}
+              isAr={isAr}
+              start={title2 ? line2Done : line1Done}
+              className="text-[#FF5500] font-semibold"
+              speed={isAr ? 300 : 75}
+            />
+          ) : null}
+        </span>
+      )}
     </h1>
   );
 }

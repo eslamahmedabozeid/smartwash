@@ -1,16 +1,106 @@
 export function parseHeroTitle(title: string) {
-  const match = title.match(/^(.+?)\s+(Starting)\s+(From\s+.+)$/i);
+  if (!title) {
+    return { title1: "", title2: "", title3: "" };
+  }
 
-  if (match) {
+  const cleanTitle = title.trim();
+
+  // Handle explicit newlines if present
+  if (cleanTitle.includes("\n")) {
+    const lines = cleanTitle.split("\n").map((l) => l.trim()).filter(Boolean);
+    if (lines.length >= 2) {
+      const line1 = lines[0];
+      const line2 = lines.slice(1).join(" ");
+      const enMatch = line2.match(/^(Starting)\s+(From\s+.+)$/i);
+      if (enMatch) {
+        return {
+          title1: line1,
+          title2: enMatch[1].trim(),
+          title3: enMatch[2].trim(),
+        };
+      }
+      const arMatch = line2.match(/^(بداية|تبدأ|يبدأ|ابتداء|إبتداء|ابتداءً|إبتداءً|بدءاً|بدءا|بدء)\s+(من\s+.+)$/u);
+      if (arMatch) {
+        return {
+          title1: line1,
+          title2: arMatch[1].trim(),
+          title3: arMatch[2].trim(),
+        };
+      }
+      return {
+        title1: line1,
+        title2: "",
+        title3: line2,
+      };
+    }
+  }
+
+  // English: "Everything Your Clothes Need Starting From 3 • 6 • 9"
+  const enMatch = cleanTitle.match(/^(.+?)\s+(Starting)\s+(From\s+.+)$/i);
+  if (enMatch) {
     return {
-      title1: match[1].trim(),
-      title2: match[2].trim(),
-      title3: match[3].trim(),
+      title1: enMatch[1].trim(),
+      title2: enMatch[2].trim(),
+      title3: enMatch[3].trim(),
+    };
+  }
+
+  // English without "Starting": "Everything Your Clothes Need From 3 • 6 • 9"
+  const enFromMatch = cleanTitle.match(/^(.+?)\s+(From\s+.+)$/i);
+  if (enFromMatch) {
+    return {
+      title1: enFromMatch[1].trim(),
+      title2: "",
+      title3: enFromMatch[2].trim(),
+    };
+  }
+
+  // Arabic with start word: "كل ما تحتاجه لملابسك بداية من 3 • 6 • 9" / "كل ما تحتاجه ملابسك تبدأ من 3 • 6 • 9"
+  const arMatch = cleanTitle.match(
+    /^(.+?)\s+(بداية|تبدأ|يبدأ|ابتداء|إبتداء|ابتداءً|إبتداءً|بدءاً|بدءا|بدء)\s+(من\s+.+)$/u
+  );
+  if (arMatch) {
+    return {
+      title1: arMatch[1].trim(),
+      title2: arMatch[2].trim(),
+      title3: arMatch[3].trim(),
+    };
+  }
+
+  // Arabic with only "من" before numbers or items: "كل ما تحتاجه لملابسك من 3 • 6 • 9"
+  const arFromMatch = cleanTitle.match(/^(.+?)\s+(من\s+[0-9٠-٩].+)$/u);
+  if (arFromMatch) {
+    return {
+      title1: arFromMatch[1].trim(),
+      title2: "",
+      title3: arFromMatch[2].trim(),
+    };
+  }
+
+  // Arabic with only starting word: "كل ما تحتاجه لملابسك بداية 3 • 6 • 9"
+  const arStartMatch = cleanTitle.match(
+    /^(.+?)\s+(بداية|تبدأ|يبدأ|ابتداء|إبتداء|ابتداءً|إبتداءً|بدءاً|بدءا|بدء)\s+(.+)$/u
+  );
+  if (arStartMatch) {
+    return {
+      title1: arStartMatch[1].trim(),
+      title2: arStartMatch[2].trim(),
+      title3: arStartMatch[3].trim(),
+    };
+  }
+
+  // General Arabic "من" match
+  const arGeneralFromMatch = cleanTitle.match(/^(.+?)\s+(من\s+.+)$/u);
+  if (arGeneralFromMatch) {
+    return {
+      title1: arGeneralFromMatch[1].trim(),
+      title2: "",
+      title3: arGeneralFromMatch[2].trim(),
     };
   }
 
   return {
-    title1: title,
+    title1: cleanTitle,
     title2: "",
     title3: "",
   };

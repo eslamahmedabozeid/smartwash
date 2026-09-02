@@ -39,6 +39,14 @@ export default function Typewriter({
   useEffect(() => {
     if (!start) return;
 
+    if (!text || !text.trim()) {
+      setDisplayText("");
+      setIsFinished(true);
+      setIsTyping(false);
+      if (onCompleteRef.current) onCompleteRef.current();
+      return;
+    }
+
     let timeoutId: NodeJS.Timeout;
     let intervalId: NodeJS.Timeout;
 
@@ -46,7 +54,7 @@ export default function Typewriter({
     const steps: string[] = [];
     if (isAr) {
       // Word-by-word for Arabic to prevent disjointed isolated letters
-      const words = text.split(/\s+/);
+      const words = text.trim().split(/\s+/);
       for (let i = 1; i <= words.length; i++) {
         steps.push(words.slice(0, i).join(" "));
       }
