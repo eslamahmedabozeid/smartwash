@@ -59,28 +59,28 @@ export default function Footer({ lang, dict, footerData }: FooterProps) {
   const quickLinkItems = quickLinksGroup?.links?.length
     ? quickLinksGroup.links
     : [
-        { label: f.servicesLabel, url: "#services" },
-        { label: f.howItWorks, url: "#how-it-works" },
-        { label: f.reviews, url: "#testimonials" },
-        { label: f.downloadApp, url: "#app-download" },
-      ];
+      { label: f.servicesLabel, url: "#services" },
+      { label: f.howItWorks, url: "#how-it-works" },
+      { label: f.reviews, url: "#testimonials" },
+      { label: f.downloadApp, url: "#app-download" },
+    ];
 
   const serviceItems = servicesGroup?.links?.length
     ? servicesGroup.links
     : [
-        { label: f.washFold, url: "#services" },
-        { label: f.dryClean, url: "#services" },
-        { label: f.ironing, url: "#services" },
-        { label: f.expressService, url: "#services" },
-      ];
+      { label: f.washFold, url: "#services" },
+      { label: f.dryClean, url: "#services" },
+      { label: f.ironing, url: "#services" },
+      { label: f.expressService, url: "#services" },
+    ];
 
   const contactItems = footerData?.contact?.length
     ? footerData.contact
     : [
-        { icon: "location", text: f.address },
-        { icon: "phone", text: "+971 4 123 4567" },
-        { icon: "email", text: "hello@smartwash.com" },
-      ];
+      { icon: "location", text: f.address },
+      { icon: "phone", text: "+971 4 123 4567" },
+      { icon: "email", text: "hello@smartwash.com" },
+    ];
 
   const socialItems = footerData?.social?.length ? footerData.social : fallbackSocial;
 
@@ -126,7 +126,7 @@ export default function Footer({ lang, dict, footerData }: FooterProps) {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch gap-6 w-full">
 
         {/* Left Side: Brand Card (Solid Orange) */}
-        <div className="w-full lg:w-[35%] bg-[#FF5500] text-white rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between gap-54 text-left rtl:text-right shadow-sm">
+        <div className="w-full lg:w-[35%] bg-[#FF5500] text-white rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between lg:gap-54 text-left rtl:text-right shadow-sm">
 
           {/* Logo & Description */}
           <div className="space-y-6">
