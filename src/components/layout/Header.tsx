@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import type { SiteLink, WebsiteServices } from "@/types/api";
@@ -58,6 +58,17 @@ export default function Header({ lang, dict, websiteServices, downloadLink }: He
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const isAr = lang === "ar";
 
@@ -182,7 +193,11 @@ export default function Header({ lang, dict, websiteServices, downloadLink }: He
   };
 
   return (
-    <header className="relative w-full bg-[#FF5500] text-white shadow-md z-50 select-none transition-all duration-300 py-3">
+    <header
+      className={`sticky top-0 w-full bg-[#FF5500] text-white z-50 select-none py-3 transition-shadow duration-300 ${
+        isScrolled ? "shadow-xl border-b border-white/10" : "shadow-md"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
 
         {/* Left Section: Logo & Navigation links close together */}
@@ -191,8 +206,8 @@ export default function Header({ lang, dict, websiteServices, downloadLink }: He
           <div className="flex items-center gap-3">
             <Link href={`/${lang}`} className="flex items-center gap-2 group">
               {/* Custom SVG logo based on user screenshot */}
-              <div className="w-[69px] h-[84px] ">
-                <img src={"/images/Group.svg"} alt="SmartWash Logo" />
+              <div className="w-[69px] h-[84px]">
+                <img src={"/images/Group.svg"} alt="SmartWash Logo" className="w-full h-full object-contain" />
               </div>
             </Link>
           </div>
