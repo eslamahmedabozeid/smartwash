@@ -27,19 +27,11 @@ interface HeroSectionProps {
 }
 
 const imageHeightClasses = [
-  "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
-  "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
-  "h-[120px] sm:h-[160px] md:h-[200px] lg:h-[164px]",
-  "h-[160px] sm:h-[220px] md:h-[280px] lg:h-[275px]",
-  "h-[220px] sm:h-[300px] md:h-[380px] lg:h-[408px]",
-];
-
-const imageWidthClasses = [
-  "w-[45%] sm:w-[30%] md:w-[18%]",
-  "w-[45%] sm:w-[30%] md:w-[18%]",
-  "hidden sm:block sm:w-[30%] md:w-[18%]",
-  "w-[45%] sm:w-[30%] md:w-[18%]",
-  "w-[45%] sm:w-[30%] md:w-[18%]",
+  "h-[135px] min-[400px]:h-[165px] sm:h-[260px] md:h-[340px] lg:h-[408px]",
+  "h-[92px] min-[400px]:h-[112px] sm:h-[175px] md:h-[230px] lg:h-[275px]",
+  "h-[58px] min-[400px]:h-[70px] sm:h-[110px] md:h-[140px] lg:h-[164px]",
+  "h-[92px] min-[400px]:h-[112px] sm:h-[175px] md:h-[230px] lg:h-[275px]",
+  "h-[135px] min-[400px]:h-[165px] sm:h-[260px] md:h-[340px] lg:h-[408px]",
 ];
 
 const fallbackImages = [
@@ -102,14 +94,13 @@ export default function HeroSection({ lang, dict, section }: HeroSectionProps) {
       src: apiImage?.url ?? fallback.src,
       alt: apiImage?.alt ?? fallback.alt,
       heightClass: imageHeightClasses[idx],
-      widthClass: imageWidthClasses[idx],
     };
   });
 
   return (
-    <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+    <section className="w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
       {/* Peach/Cream rounded container matching user design */}
-      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6  sm:p-10 md:px-10 md:pt-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
+      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 md:px-10 md:pt-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300">
 
         {/* Title */}
         <HeroTitle
@@ -120,7 +111,7 @@ export default function HeroSection({ lang, dict, section }: HeroSectionProps) {
         />
 
         {/* Subtitle / Description */}
-        <p className="mt-6 text-sm sm:text-base md:text-[1.5rem] text-slate-500 max-w-5xl  leading-relaxed">
+        <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-[1.5rem] text-slate-500 max-w-5xl leading-relaxed">
           {heroDescription.desc1}
           {heroDescription.desc2 ? (
             <span className="block mt-1">{heroDescription.desc2}</span>
@@ -128,14 +119,14 @@ export default function HeroSection({ lang, dict, section }: HeroSectionProps) {
         </p>
 
         {/* Buttons */}
-        <div className="mt-8 flex flex-row items-center justify-center gap-4 w-full sm:w-auto">
+        <div className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
           {/* Download App Solid Orange Button */}
           <Link
             href={downloadLink?.url ?? "#download"}
-            className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 bg-[#FF5500] hover:bg-[#E64D00] text-white font-bold rounded-2xl shadow-lg shadow-orange-500/10 active:scale-95 transition-all text-sm sm:text-base"
+            className="flex items-center justify-center gap-2 px-5 sm:px-8 py-3 sm:py-3.5 bg-[#FF5500] hover:bg-[#E64D00] text-white font-bold rounded-2xl shadow-lg shadow-orange-500/10 active:scale-95 transition-all text-xs sm:text-base"
           >
             <svg
-              className="w-5 h-5 stroke-current"
+              className="w-4 h-4 sm:w-5 sm:h-5 stroke-current"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="2.5"
@@ -149,24 +140,24 @@ export default function HeroSection({ lang, dict, section }: HeroSectionProps) {
           {/* How It Works Button */}
           <Link
             href={howItWorksLink?.url ?? "#how-it-works"}
-            className="px-6 sm:px-8 py-3.5 bg-transparent border-2 border-[#FF5500]/30 hover:border-[#FF5500] text-[#FF5500] font-bold rounded-2xl hover:bg-orange-50/50 transition-all text-sm sm:text-base"
+            className="px-5 sm:px-8 py-3 sm:py-3.5 bg-transparent border-2 border-[#FF5500]/30 hover:border-[#FF5500] text-[#FF5500] font-bold rounded-2xl hover:bg-orange-50/50 transition-all text-xs sm:text-base"
           >
             {howItWorksLink?.label ?? dict.hero.howItWorks}
           </Link>
         </div>
 
-        {/* Wave-aligned Gallery Images */}
-        <div className="mt-12 md:mt-20 w-full flex flex-wrap md:flex-nowrap justify-center items-end gap-3 sm:gap-4 md:gap-5">
+        {/* Wave-aligned Gallery Images (Side-by-side single row wave on all screens) */}
+        <div className="mt-8 sm:mt-12 md:mt-20 w-full flex flex-row flex-nowrap justify-center items-end gap-1.5 min-[400px]:gap-2 sm:gap-3 md:gap-4 lg:gap-5">
           {images.map((img, idx) => (
             <div
               key={idx}
-              className={`relative ${img.widthClass} ${img.heightClass} overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[2rem] shadow-md   hover:scale-103 transition-all duration-500 ease-out`}
+              className={`relative flex-1 min-w-0 max-w-[19%] md:max-w-[18%] ${img.heightClass} overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl lg:rounded-[2rem] shadow-md hover:scale-105 transition-all duration-500 ease-out`}
             >
               <Image
                 src={img.src}
                 alt={img.alt}
                 fill
-                sizes="(max-width: 768px) 45vw, 18vw"
+                sizes="(max-width: 640px) 19vw, (max-width: 1024px) 18vw, 210px"
                 className="object-cover"
                 priority={idx < 2}
               />

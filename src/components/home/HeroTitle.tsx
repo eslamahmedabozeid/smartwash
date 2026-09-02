@@ -18,7 +18,7 @@ export default function HeroTitle({ lang, title1, title2, title3 }: HeroTitlePro
   const hasLine2 = Boolean(title2?.trim() || title3?.trim());
 
   return (
-    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1E1E1E] leading-tight max-w-4xl tracking-tight min-h-[3.5rem] sm:min-h-[5rem] lg:min-h-[7.5rem]">
+    <h1 className="text-2xl min-[420px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1E1E1E] leading-tight max-w-4xl tracking-tight min-h-[3.5rem] sm:min-h-[5rem] lg:min-h-[7.5rem]">
       <Typewriter
         text={title1}
         isAr={isAr}
