@@ -86,7 +86,7 @@ export default function AboutFeaturesSection({ lang, dict, section }: AboutFeatu
           <div className="flex flex-col gap-4 sm:gap-6 justify-between">
 
             {/* Top Right Card: Air Dry Technology */}
-            <div className="bg-[#FFF0EA] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 lg:p-10 flex flex-row items-center justify-between gap-4 sm:gap-6 min-h-[140px] sm:min-h-[200px] flex-1 transition-all duration-300 hover:shadow-md border border-[#FFF0EA] text-left rtl:text-right overflow-hidden">
+            <div className="bg-[#FFF0EA] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 lg:p-10 flex flex-row items-center justify-between gap-4 sm:gap-6 min-h-[140px] sm:min-h-[200px] flex-1 transition-all duration-300 hover:shadow-md border border-[#FFF0EA] text-left rtl:text-right overflow-hidden  rtl:flex-row-reverse">
               {/* Text Info */}
               <div className="flex-1 space-y-1 sm:space-y-2">
                 <h3 className="text-base min-[400px]:text-lg sm:text-2xl lg:text-[1.75rem] font-semibold text-[#FC4F00] leading-tight mb-1 sm:mb-2 whitespace-pre-line">
@@ -107,7 +107,7 @@ export default function AboutFeaturesSection({ lang, dict, section }: AboutFeatu
             </div>
 
             {/* Bottom Right Card: Steam Press Finish */}
-            <div className="bg-[#FFF0EA] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 lg:p-10 flex flex-row items-center justify-between gap-4 sm:gap-6 min-h-[140px] sm:min-h-[200px] flex-1 transition-all duration-300 hover:shadow-md border border-[#FFF0EA] text-left rtl:text-right overflow-hidden">
+            <div className="bg-[#FFF0EA] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 lg:p-10 flex flex-row items-center justify-between gap-4 sm:gap-6 min-h-[140px] sm:min-h-[200px] flex-1 transition-all duration-300 hover:shadow-md border border-[#FFF0EA] text-left rtl:text-right overflow-hidden flex-row-reverse rtl:flex-row">
               {/* Text Info */}
               <div className="flex-1 space-y-1 sm:space-y-2">
                 <h3 className="text-base min-[400px]:text-lg sm:text-2xl lg:text-[1.75rem] font-semibold text-[#FC4F00] leading-tight mb-1 sm:mb-2 whitespace-pre-line">

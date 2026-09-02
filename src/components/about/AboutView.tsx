@@ -37,7 +37,7 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
   );
   const heroImageTop =
     getImageByRole(heroSection?.images, "main")?.url ??
-    heroSection?.images?.[0]?.url ??
+    heroSection?.images?.[1]?.url ??
     "/images/about/Rectangle1.png";
   const heroImageTopAlt =
     getImageByRole(heroSection?.images, "main")?.alt ??
