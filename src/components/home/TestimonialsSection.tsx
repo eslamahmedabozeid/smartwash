@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { sortByOrder, stripHtml } from "@/lib/api/utils";
+import { normalizeHtmlContent, sortByOrder } from "@/lib/api/utils";
 import type { SiteSection } from "@/types/api";
 
 interface TestimonialsSectionProps {
@@ -69,7 +69,8 @@ export default function TestimonialsSection({ lang, dict, section }: Testimonial
 
   const testimonials = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item) => ({
-        quote: stripHtml(item.content),
+        quote: normalizeHtmlContent(item.content),
+        isHtml: true,
         name: item.title,
         role: item.subtitle ?? "",
         avatar:
@@ -78,7 +79,7 @@ export default function TestimonialsSection({ lang, dict, section }: Testimonial
           "/images/Avatar.svg",
         rating: item.rating ?? 5,
       }))
-    : fallbackTestimonials;
+    : fallbackTestimonials.map((item) => ({ ...item, isHtml: false }));
 
   // Auto-play the slider every 5 seconds, paused when hovered or dragging
   useEffect(() => {
@@ -192,9 +193,16 @@ export default function TestimonialsSection({ lang, dict, section }: Testimonial
                 }`}
             >
               {/* Testimonial Quote */}
-              <blockquote className="text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight max-w-4xl tracking-tight mb-8">
-                "{item.quote}"
-              </blockquote>
+              {item.isHtml ? (
+                <blockquote
+                  className="text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight max-w-4xl tracking-tight mb-8 break-words whitespace-normal [&_p]:mb-0 [&_p]:break-words [&_strong]:font-black"
+                  dangerouslySetInnerHTML={{ __html: item.quote }}
+                />
+              ) : (
+                <blockquote className="text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight max-w-4xl tracking-tight mb-8">
+                  "{item.quote}"
+                </blockquote>
+              )}
 
               {/* User profile image */}
               <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-white shadow-sm shrink-0">

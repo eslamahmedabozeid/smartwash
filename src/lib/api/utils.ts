@@ -126,6 +126,10 @@ export function stripHtml(html: string) {
     .trim();
 }
 
+export function normalizeHtmlContent(html: string) {
+  return html.replace(/&nbsp;/g, " ");
+}
+
 export function getImageByRole(
   images: { role: string; url: string; alt: string }[] | undefined,
   role: string
