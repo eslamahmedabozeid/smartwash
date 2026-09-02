@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { getImageByRole } from "@/lib/api/utils";
 import type { SiteSection } from "@/types/api";
 
 interface AboutPromoSectionProps {
@@ -36,6 +37,18 @@ export default function AboutPromoSection({ lang, dict, section }: AboutPromoSec
         link.label.includes("جوجل") ||
         link.label.includes("بلاي")
     ) ?? (section?.links && section.links.length > 1 ? section.links[1] : undefined);
+
+  const promoImage =
+    getImageByRole(section?.images, "content")?.url ??
+    getImageByRole(section?.images, "main")?.url ??
+    section?.images?.[0]?.url ??
+    "/images/about/Handiphone.png";
+
+  const promoImageAlt =
+    getImageByRole(section?.images, "content")?.alt ??
+    getImageByRole(section?.images, "main")?.alt ??
+    section?.images?.[0]?.alt ??
+    "Hand holding iPhone";
 
   return (
     <section className="w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
@@ -102,8 +115,8 @@ export default function AboutPromoSection({ lang, dict, section }: AboutPromoSec
         <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-end h-full self-end relative mt-3 sm:mt-6 lg:mt-0 px-4 sm:px-8 lg:px-0">
           <div className="relative self-end overflow-hidden flex items-end justify-center w-full max-w-[280px] min-[400px]:max-w-[340px] sm:max-w-[420px] lg:max-w-[480px] -mb-1">
             <img
-              src="/images/about/Handiphone.png"
-              alt="Hand holding iPhone"
+              src={promoImage}
+              alt={promoImageAlt}
               className="w-full h-auto object-contain object-bottom select-none pointer-events-none drop-shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 ease-out"
             />
           </div>

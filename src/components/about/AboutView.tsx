@@ -12,6 +12,7 @@ import ServicesSection from "@/components/home/ServicesSection";
 import FaqSection from "@/components/shared/FaqSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { getSectionByType } from "@/lib/api/home";
+import { getImageByRole } from "@/lib/api/utils";
 import type { SitePage } from "@/types/api";
 
 interface AboutViewProps {
@@ -34,8 +35,25 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
   const downloadLink = heroSection?.links?.find((link) =>
     link.label.toLowerCase().includes("download")
   );
-  const heroImageTop = heroSection?.images?.[0]?.url ?? "/images/about/Rectangle1.png";
-  const heroImageBottom = heroSection?.images?.[1]?.url ?? "/images/about/Rectangle21.png";
+  const heroImageTop =
+    getImageByRole(heroSection?.images, "main")?.url ??
+    heroSection?.images?.[0]?.url ??
+    "/images/about/Rectangle1.png";
+  const heroImageTopAlt =
+    getImageByRole(heroSection?.images, "main")?.alt ??
+    heroSection?.images?.[0]?.alt ??
+    "Hanging Clothes on Rack";
+
+  const heroImageBottom =
+    getImageByRole(heroSection?.images, "banner")?.url ??
+    getImageByRole(heroSection?.images, "content")?.url ??
+    heroSection?.images?.[1]?.url ??
+    "/images/about/Rectangle21.png";
+  const heroImageBottomAlt =
+    getImageByRole(heroSection?.images, "banner")?.alt ??
+    getImageByRole(heroSection?.images, "content")?.alt ??
+    heroSection?.images?.[1]?.alt ??
+    "SmartWash About Banner";
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-800 selection:bg-[#FF5500] selection:text-white overflow-x-clip">
@@ -87,7 +105,7 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
               <div className="relative w-full">
                 <img
                   src={heroImageTop}
-                  alt={heroSection?.images?.[0]?.alt ?? "Hanging Clothes on Rack"}
+                  alt={heroImageTopAlt}
                   className="w-full h-auto"
                 />
               </div>
@@ -98,7 +116,7 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
             <div className="relative w-full  ">
               <img
                 src={heroImageBottom}
-                alt={heroSection?.images?.[1]?.alt ?? "Hanging Clothes on Rack"}
+                alt={heroImageBottomAlt}
                 className="w-full h-auto"
               />
             </div>

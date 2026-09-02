@@ -41,18 +41,18 @@ export default function ServicesSection({ lang, dict, section, bgClass = "bg-[#E
 
   const features = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item, idx) => {
-        const iconUrl = item.images?.[0]?.url;
+      const iconUrl = item.images?.[0]?.url;
 
-        return {
-          title: item.title,
-          desc: item.content,
-          icon: iconUrl ? (
-            <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} />
-          ) : (
-            fallbackIcons[idx] ?? fallbackIcons[0]
-          ),
-        };
-      })
+      return {
+        title: item.title,
+        desc: item.content,
+        icon: iconUrl ? (
+          <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="max-w-[28px] object-contain" />
+        ) : (
+          fallbackIcons[idx] ?? fallbackIcons[0]
+        ),
+      };
+    })
     : fallbackFeatures;
 
   return (

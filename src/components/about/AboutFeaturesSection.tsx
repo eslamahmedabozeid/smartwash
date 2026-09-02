@@ -64,7 +64,7 @@ export default function AboutFeaturesSection({ lang, dict, section }: AboutFeatu
           {/* Left Card: Four Simple Steps To Fresh & Clean (Tall Card) */}
           <div className="bg-[#FFF0EA] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 lg:p-12 flex flex-col justify-between min-h-[320px] sm:min-h-[440px] lg:min-h-full transition-all duration-300 hover:shadow-md border border-[#FFF0EA]">
             {/* Shirt Image */}
-            <div className="flex-1 flex items-center justify-center py-4 sm:py-8 w-full">
+            <div className="flex-1 flex items-center max-sm:justify-center py-4 sm:py-8 w-full">
               <img
                 src={mainFeature.image}
                 alt={mainFeature.alt}

@@ -22,7 +22,10 @@ export async function apiFetch<T>(
     ...fetchOptions.headers,
   };
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const method = fetchOptions.method ?? "GET";
+  const url = `${API_BASE_URL}${endpoint}`;
+
+  const response = await fetch(url, {
     ...fetchOptions,
     headers,
     cache: "no-store",
@@ -30,8 +33,16 @@ export async function apiFetch<T>(
 
   if (!response.ok) {
     const errorBody = await response.text();
+    console.error(`[API ERROR] ${method} ${endpoint} [${response.status}]`, {
+      url,
+      lang: lang ?? "en",
+      error: errorBody,
+    });
     throw new Error(`API error ${response.status}: ${errorBody}`);
   }
 
-  return response.json() as Promise<T>;
+  const data = (await response.json()) as T;
+  console.log(`[API RESPONSE] ${method} ${endpoint}:`, data);
+
+  return data;
 }

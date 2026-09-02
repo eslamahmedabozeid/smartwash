@@ -12,6 +12,21 @@ export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroS
   const s = dict.servicePage;
   const downloadLink = section?.links?.[0];
 
+  const sub0 = section?.subsections?.[0];
+  const sub1 = section?.subsections?.[1];
+  const sub2 = section?.subsections?.[2];
+
+  const starsIcon = sub0?.images?.[0]?.url ?? "/images/service/stars.svg";
+  const invoiceIcon = sub1?.images?.[0]?.url ?? "/images/service/invoice-04.svg";
+  const vanImage = sub2?.images?.[0]?.url ?? section?.images?.[0]?.url ?? "/images/service/Rectangle33.png";
+  const vanImageAlt = sub2?.images?.[0]?.alt ?? section?.images?.[0]?.alt ?? "Delivery Van";
+
+  const galleryImg1 = section?.images?.[1]?.url ?? section?.images?.[0]?.url ?? "/images/service/Rectangle3.png";
+  const galleryImg1Alt = section?.images?.[1]?.alt ?? section?.images?.[0]?.alt ?? "Folded Laundry Stack & Basket";
+
+  const galleryImg2 = section?.images?.[2]?.url ?? section?.images?.[1]?.url ?? "/images/service/Rectangle1.png";
+  const galleryImg2Alt = section?.images?.[2]?.alt ?? section?.images?.[1]?.alt ?? "Hanging Clothes Rack & Dressing Room";
+
   return (
     <div className="max-sm:px-3">
       <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-[1.5rem] sm:p-12 md:p-[2.5rem] flex flex-col gap-10 shadow-sm relative overflow-hidden transition-all duration-300">
@@ -44,14 +59,14 @@ export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroS
             {/* Card 1: Instant Pickup */}
             <div className="bg-[#3748c81a] rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between items-start text-left rtl:text-right min-h-[160px] lg:h-[72%] select-none">
               <div className="w-full h-full ">
-                <img src="/images/service/stars.svg" alt="Stars Icon" className="w-6 h-6" />
+                <img src={starsIcon} alt="Stars Icon" className="w-6 h-6 object-contain" />
               </div>
               <div className="space-y-1 mt-20">
                 <h3 className="text-lg font-bold text-[#000] text-[1.25rem] leading-tight">
-                  {s.instantPickup}
+                  {sub0?.title ?? s.instantPickup}
                 </h3>
                 <p className="text-xs text-[#8C8C8C] font-normal leading-relaxed">
-                  {s.instantPickupDesc}
+                  {sub0?.content ? stripHtml(sub0.content) : s.instantPickupDesc}
                 </p>
               </div>
             </div>
@@ -60,14 +75,14 @@ export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroS
             <div className="bg-[#3748c81a] rounded-[2rem] p-6 sm:p-8 flex items-center justify-between gap-4 min-h-[90px] lg:h-[36%] select-none text-left rtl:text-right">
               <div className="space-y-0.5">
                 <p className="text-xs text-[#000] font-normal leading-tight">
-                  {s.honestPricing}
+                  {sub1?.title ?? s.honestPricing}
                 </p>
                 <h3 className="text-lg font-bold text-[#000] leading-tight">
-                  {s.honestPricingDesc}
+                  {sub1?.content ? stripHtml(sub1.content) : s.honestPricingDesc}
                 </h3>
               </div>
               <div className="w-12 h-12 flex items-center justify-center  shrink-0">
-                <img src="/images/service/invoice-04.svg" alt="Invoice Icon" className="w-6 h-6" />
+                <img src={invoiceIcon} alt="Invoice Icon" className="w-6 h-6 object-contain" />
               </div>
             </div>
           </div>
@@ -76,16 +91,16 @@ export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroS
           <div className="lg:col-span-4 bg-[#3748c81a] rounded-[2rem] p-4 sm:p-4 flex flex-col justify-between items-start text-left rtl:text-right select-none min-h-[300px]">
             <div>
               <span className="inline-block px-3 py-1 rounded-full bg-[#FC4F00] font-normal text-white text-[16px] sm:text-xs font-black uppercase tracking-wider mb-3">
-                {s.fastTrack}
+                {sub2?.title ?? s.fastTrack}
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-[#181818] leading-tight">
-                {s.fastTrackDesc}
+                {sub2?.content ? stripHtml(sub2.content) : s.fastTrackDesc}
               </h3>
             </div>
             <div className="relative w-full mt-[66px] rounded-[1.5rem] overflow-hidden shadow-sm">
               <img
-                src="/images/service/Rectangle33.png"
-                alt="Delivery Van"
+                src={vanImage}
+                alt={vanImageAlt}
                 className="w-full object-cover h-40 sm:h-48 lg:h-44"
               />
             </div>
@@ -98,8 +113,8 @@ export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroS
           {/* Left Image (Col Span 4) */}
           <div className="lg:col-span-4 rounded-[2rem] overflow-hidden shadow-sm relative min-h-[220px]">
             <img
-              src="/images/service/Rectangle3.png"
-              alt="Folded Laundry Stack & Basket"
+              src={galleryImg1}
+              alt={galleryImg1Alt}
               className="w-full h-full object-cover"
             />
           </div>
@@ -107,8 +122,8 @@ export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroS
           {/* Right Image (Col Span 8) */}
           <div className="lg:col-span-8 rounded-[2rem] overflow-hidden shadow-sm relative min-h-[220px]">
             <img
-              src="/images/service/Rectangle1.png"
-              alt="Hanging Clothes Rack & Dressing Room"
+              src={galleryImg2}
+              alt={galleryImg2Alt}
               className="w-full h-full object-cover"
             />
           </div>

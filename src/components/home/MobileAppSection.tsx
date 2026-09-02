@@ -30,6 +30,16 @@ export default function MobileAppSection({ lang, dict, section }: MobileAppSecti
     link.label.toLowerCase().includes("play store")
   );
   const qrImage = getImageByRole(section?.images, "qr")?.url ?? "/images/imageqr.png";
+  const phoneImage =
+    getImageByRole(section?.images, "content")?.url ??
+    getImageByRole(section?.images, "main")?.url ??
+    section?.images?.find((img) => img.role !== "qr")?.url ??
+    "/images/iPhone15.svg";
+  const phoneImageAlt =
+    getImageByRole(section?.images, "content")?.alt ??
+    getImageByRole(section?.images, "main")?.alt ??
+    section?.images?.find((img) => img.role !== "qr")?.alt ??
+    "SmartWash iPhone App Screen";
 
   return (
     <section id="download-app" className="w-full lg:px-3 max-sm:px-3 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
@@ -138,14 +148,14 @@ export default function MobileAppSection({ lang, dict, section }: MobileAppSecti
             }`}
         >
 
-          <div className="relative w-full h-full">
-            <img src="/images/iPhone15.svg" alt="SmartWash iPhone App Screen" />
+          <div className="relative w-full h-full max-w-[420px] xl:max-w-[480px]">
+            <img src={phoneImage} alt={phoneImageAlt} className="w-full h-auto object-contain" />
           </div>
         </div>
 
         {/* Mobile/Tablet Centered-bottom placement */}
-        <div className="block lg:hidden  relative mt-8 -mb-6 sm:-mb-10 md:-mb-16 pointer-events-none shrink-0">
-          <img src="/images/iPhone15.svg" alt="SmartWash iPhone App Screen" />
+        <div className="block lg:hidden relative mt-8 -mb-6 sm:-mb-10 md:-mb-16 pointer-events-none shrink-0 max-w-[320px] sm:max-w-[380px]">
+          <img src={phoneImage} alt={phoneImageAlt} className="w-full h-auto object-contain" />
         </div>
 
       </div>
