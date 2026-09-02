@@ -66,18 +66,18 @@ export default function HowItWorksSection({ lang, dict, section }: HowItWorksSec
 
   const steps = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item, idx) => {
-        const iconUrl = item.images?.[0]?.url;
+      const iconUrl = item.images?.[0]?.url;
 
-        return {
-          title: item.title,
-          desc: item.content,
-          icon: iconUrl ? (
-            <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
-          ) : (
-            fallbackIcons[idx] ?? fallbackIcons[0]
-          ),
-        };
-      })
+      return {
+        title: item.title,
+        desc: item.content,
+        icon: iconUrl ? (
+          <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
+        ) : (
+          fallbackIcons[idx] ?? fallbackIcons[0]
+        ),
+      };
+    })
     : fallbackSteps;
 
   const mainImage = section?.images?.[0]?.url ?? "/images/Rectangle 11.png";
@@ -122,9 +122,8 @@ export default function HowItWorksSection({ lang, dict, section }: HowItWorksSec
             {steps.map((step, idx) => (
               <div
                 key={idx}
-                className={`sticky top-[440px] sm:top-[640px] lg:top-[284px] w-full transition-all duration-300 ${
-                  idx < steps.length - 1 ? "mb-[25vh] lg:mb-[20vh]" : "mb-[15vh] lg:mb-[20vh]"
-                }`}
+                className={`sticky top-[440px] sm:top-[640px] lg:top-[284px] w-full transition-all duration-300 ${idx < steps.length - 1 ? "mb-[25vh] lg:mb-[20vh]" : "mb-[15vh] lg:mb-[20vh]"
+                  }`}
                 style={{ zIndex: 10 + idx }}
               >
 

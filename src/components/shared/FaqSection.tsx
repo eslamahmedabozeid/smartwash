@@ -45,9 +45,9 @@ export default function FaqSection({ lang, dict, section }: FaqSectionProps) {
 
   const faqs = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item) => ({
-        q: item.title,
-        a: item.content,
-      }))
+      q: item.title,
+      a: item.content,
+    }))
     : fallbackFaqs;
 
   const toggleAccordion = (idx: number) => {
@@ -55,9 +55,9 @@ export default function FaqSection({ lang, dict, section }: FaqSectionProps) {
   };
 
   return (
-    <section id="faq" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+    <section id="faq" className="w-full lg:px-3 max-sm:px-3 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
       {/* Warm peach rounded container matching Mockup */}
-      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-[2.5rem] flex flex-col lg:flex-row items-start justify-between gap-12 shadow-sm transition-all duration-300">
+      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 md:p-[2.5rem] flex flex-col lg:flex-row items-start justify-between gap-8 sm:gap-12 shadow-sm transition-all duration-300">
 
         {/* Left Column: FAQ title & Call to action */}
         <div className="w-full lg:w-[32%] lg:sticky lg:top-24 lg:self-start flex flex-col items-start text-left rtl:text-right space-y-6">

@@ -121,12 +121,12 @@ export default function Footer({ lang, dict, footerData }: FooterProps) {
   };
 
   return (
-    <footer className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white border-t border-slate-100">
+    <footer className="w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 bg-white border-t border-slate-100">
       {/* Footer Wrapper Container */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch gap-6 w-full">
 
         {/* Left Side: Brand Card (Solid Orange) */}
-        <div className="w-full lg:w-[35%] bg-[#FF5500] text-white rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between lg:gap-54 text-left rtl:text-right shadow-sm">
+        <div className="w-full lg:w-[35%] bg-[#FF5500] text-white rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12 flex flex-col justify-between gap-8 lg:gap-54 text-left rtl:text-right shadow-sm">
 
           {/* Logo & Description */}
           <div className="space-y-6">
@@ -137,7 +137,7 @@ export default function Footer({ lang, dict, footerData }: FooterProps) {
             </Link>
           </div>
           <div className="">
-            <p className="text-white/95 text-sm sm:text-base font-semibold leading-relaxed max-w-sm mb-8">
+            <p className="text-white/95 text-sm sm:text-base font-semibold leading-relaxed max-w-sm mb-6 sm:mb-8">
               {f.desc}
             </p>
             <div className="flex items-center gap-1">
@@ -163,7 +163,7 @@ export default function Footer({ lang, dict, footerData }: FooterProps) {
         </div>
 
         {/* Right Side: Links & Contact Card (Light Peach) */}
-        <div className="w-full lg:w-[63%] bg-[#FFF3ED] rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between gap-12 text-left rtl:text-right shadow-sm">
+        <div className="w-full lg:w-[63%] bg-[#FFF3ED] rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12 flex flex-col justify-between gap-8 sm:gap-12 text-left rtl:text-right shadow-sm">
 
           {/* Columns Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">

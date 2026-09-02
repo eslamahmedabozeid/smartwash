@@ -56,23 +56,23 @@ export default function HelpHeaderSection({
 
   const contacts = contactSection?.subsections?.length
     ? sortByOrder(contactSection.subsections).map((item, idx) => {
-        const parsed = parseContactContent(item.content);
-        const fallback = fallbackContacts[idx] ?? fallbackContacts[0];
+      const parsed = parseContactContent(item.content);
+      const fallback = fallbackContacts[idx] ?? fallbackContacts[0];
 
-        return {
-          label: item.title,
-          value: parsed.value || fallback.value,
-          subtitle: parsed.subtitle || fallback.subtitle,
-          icon: item.images?.[0]?.url ?? fallback.icon,
-          valueClass: fallback.valueClass,
-          valueWeight: fallback.valueWeight,
-          subtitleClass: fallback.subtitleClass,
-        };
-      })
+      return {
+        label: item.title,
+        value: parsed.value || fallback.value,
+        subtitle: parsed.subtitle || fallback.subtitle,
+        icon: item.images?.[0]?.url ?? fallback.icon,
+        valueClass: fallback.valueClass,
+        valueWeight: fallback.valueWeight,
+        subtitleClass: fallback.subtitleClass,
+      };
+    })
     : fallbackContacts;
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col gap-8 transition-all duration-300">
+    <div className="max-w-7xl mx-auto flex flex-col gap-8 transition-all duration-300 max-sm:px-3">
 
       {/* Top Banner (Question Box) */}
       <div className="w-full bg-[#FF5500] rounded-[2.5rem] py-16 px-6 sm:px-12 md:px-16 text-center flex flex-col items-center justify-center gap-3 shadow-md relative overflow-hidden">

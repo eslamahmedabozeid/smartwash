@@ -79,25 +79,25 @@ export default function ServiceHowItWorksSection({
 
   const steps = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item, idx) => ({
-        title: item.title,
-        desc: stripHtml(item.content),
-        icon: item.images?.[0]?.url ? (
-          <img
-            src={item.images[0].url}
-            alt={item.images[0].alt ?? item.title}
-            className="w-6 h-6 object-contain"
-          />
-        ) : (
-          fallbackSteps[idx]?.icon ?? fallbackSteps[0]?.icon
-        ),
-      }))
+      title: item.title,
+      desc: stripHtml(item.content),
+      icon: item.images?.[0]?.url ? (
+        <img
+          src={item.images[0].url}
+          alt={item.images[0].alt ?? item.title}
+          className="w-6 h-6 object-contain"
+        />
+      ) : (
+        fallbackSteps[idx]?.icon ?? fallbackSteps[0]?.icon
+      ),
+    }))
     : fallbackSteps;
 
   const sectionLabel = section?.title ?? s.label;
   const sectionTitle = section?.content ? stripHtml(section.content) : s.title;
 
   return (
-    <section id="about-how-it-works" className="w-full py-16 md:py-24 bg-white">
+    <section id="about-how-it-works" className="w-full lg:py-16 max-sm:px-4 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col items-center relative bg-[#FFF3ED] rounded-[2.5rem] shadow-sm w-full">
 
         {/* Section Header (Centered & Sticky) */}

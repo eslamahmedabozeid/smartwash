@@ -71,18 +71,18 @@ export default function ServiceFeaturesSection({ lang, dict, section }: ServiceF
 
   const steps = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item, idx) => {
-        const iconUrl = item.images?.[0]?.url;
+      const iconUrl = item.images?.[0]?.url;
 
-        return {
-          title: item.title,
-          desc: stripHtml(item.content),
-          icon: iconUrl ? (
-            <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
-          ) : (
-            fallbackIcons[idx] ?? fallbackIcons[0]
-          ),
-        };
-      })
+      return {
+        title: item.title,
+        desc: stripHtml(item.content),
+        icon: iconUrl ? (
+          <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
+        ) : (
+          fallbackIcons[idx] ?? fallbackIcons[0]
+        ),
+      };
+    })
     : fallbackSteps;
 
   const sectionLabel = section?.subtitle ?? s.label;
@@ -93,9 +93,9 @@ export default function ServiceFeaturesSection({ lang, dict, section }: ServiceF
     "/images/hero_laundry_bag.png";
 
   return (
-    <section id="why-choose-smartwash" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+    <section id="why-choose-smartwash" className="w-full lg:px-3 max-sm:px-3 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
       {/* Orange Container */}
-      <div className="max-w-7xl mx-auto bg-[#FF5500] rounded-[2.5rem] p-8 sm:p-12 md:p-16 flex flex-col lg:flex-row items-start gap-20 lg:gap-20 shadow-lg relative transition-all duration-300 w-full text-white">
+      <div className="max-w-7xl mx-auto bg-[#FF5500] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-12 md:p-16 flex flex-col lg:flex-row items-start gap-8 sm:gap-16 lg:gap-20 shadow-lg relative transition-all duration-300 w-full text-white">
 
         {/* Left Column: Sticky Title & Image */}
         <div className="w-full lg:w-[45%] sticky top-[15px] sm:top-20 lg:top-28 lg:self-start space-y-8 text-left rtl:text-right z-[99999] bg-[#FF5500]">
@@ -132,11 +132,10 @@ export default function ServiceFeaturesSection({ lang, dict, section }: ServiceF
           {/* Cards container with scroll spacing */}
           <div className="w-full flex flex-col items-center z-10 relative space-y-0">
             {steps.map((step, idx) => (
-              <div 
+              <div
                 key={idx}
-                className={`sticky top-[440px] sm:top-[640px] lg:top-[284px] w-full transition-all duration-300 ${
-                  idx < steps.length - 1 ? "mb-[25vh] lg:mb-[20vh]" : "mb-[15vh] lg:mb-[20vh]"
-                }`}
+                className={`sticky top-[440px] sm:top-[640px] lg:top-[284px] w-full transition-all duration-300 ${idx < steps.length - 1 ? "mb-[25vh] lg:mb-[20vh]" : "mb-[15vh] lg:mb-[20vh]"
+                  }`}
                 style={{ zIndex: 10 + idx }}
               >
 

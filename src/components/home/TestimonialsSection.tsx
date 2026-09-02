@@ -163,7 +163,7 @@ export default function TestimonialsSection({ lang, dict, section }: Testimonial
   };
 
   return (
-    <section id="testimonials" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+    <section id="testimonials" className="w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
       {/* Warm peach rounded container matching the user design mockup */}
       <div
         onMouseEnter={() => setIsHovered(true)}
@@ -173,7 +173,7 @@ export default function TestimonialsSection({ lang, dict, section }: Testimonial
         onMouseUp={handleMouseUp}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300 select-none cursor-grab active:cursor-grabbing"
+        className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 md:p-16 flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300 select-none cursor-grab active:cursor-grabbing"
       >
 
         {/* Subtitle / Label */}

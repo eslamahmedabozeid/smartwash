@@ -65,26 +65,26 @@ export default function AboutHowItWorksSection({ lang, dict, section }: AboutHow
 
   const steps = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item, idx) => {
-        const iconUrl = item.images?.[0]?.url;
+      const iconUrl = item.images?.[0]?.url;
 
-        return {
-          title: item.title,
-          desc: item.content,
-          icon: iconUrl ? (
-            <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
-          ) : (
-            fallbackIcons[idx] ?? fallbackIcons[0]
-          ),
-        };
-      })
+      return {
+        title: item.title,
+        desc: item.content,
+        icon: iconUrl ? (
+          <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
+        ) : (
+          fallbackIcons[idx] ?? fallbackIcons[0]
+        ),
+      };
+    })
     : fallbackSteps;
 
   return (
-    <section id="about-how-it-works" className="w-full py-16 md:py-24 bg-white">
+    <section id="about-how-it-works" className="w-full max-sm:px-4 py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col items-center relative bg-[#FFF3ED] rounded-[2.5rem] shadow-sm w-full">
 
         {/* Section Header (Centered & Sticky) */}
-        <div className="sticky top-0 text-center space-y-3 w-full pt-10 pb-6 z-30 bg-[#FFF3ED] rounded-t-[2.5rem] px-4 sm:px-6 lg:px-8">
+        <div className="sticky top-0 text-center space-y-3 w-full pt-8 sm:pt-10 pb-6 z-30 bg-[#FFF3ED] rounded-t-[2rem] sm:rounded-t-[2.5rem] px-4 sm:px-6 lg:px-8">
           <span className="text-xs sm:text-[1.125rem] font-medium text-[#FC4F00] tracking-wider uppercase block">
             {section?.title ?? s.label}
           </span>

@@ -235,131 +235,133 @@ export default function HelpFaqSection({ lang, faqCategories }: HelpFaqSectionPr
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-12 flex flex-col gap-8 shadow-sm">
+    <div className="max-sm:px-3">
+      <div className="max-w-7xl mx-auto bg-[#FFF3ED] rounded-[2.5rem] p-6 sm:p-10 md:p-12 flex flex-col gap-8 shadow-sm">
 
-      {/* Categories Tab Bar with navigation slider buttons */}
-      <div className="relative w-full flex items-center">
+        {/* Categories Tab Bar with navigation slider buttons */}
+        <div className="relative w-full flex items-center">
 
-        {/* Left Arrow Slider Button */}
-        {showLeftBtn && (
-          <button
-            onClick={() => handleScrollClick("left")}
-            className="absolute left-2 z-10 w-10 h-10 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-[#FF5500] hover:bg-slate-50 transition-colors active:scale-95 cursor-pointer"
-            aria-label="Scroll Left"
-          >
-            <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-        )}
-
-        {/* Categories Tab Container */}
-        <div
-          ref={scrollRef}
-          onScroll={updateScrollButtons}
-          className="flex gap-3 overflow-x-auto pb-2 w-full text-left rtl:text-right scroll-smooth"
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none"
-          }}
-        >
-          {categories.map((cat) => {
-            const isActive = activeTab === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleTabChange(cat.id)}
-                className={`px-6 py-3 rounded-[16px] text-sm font-medium whitespace-nowrap transition-all duration-300 select-none cursor-pointer ${isActive
-                  ? "bg-[#FC4F00] text-white shadow-sm border border-[#FC4F00]"
-                  : "bg-[#FFEDE6] text-[#181818] border border-[#FD7233] hover:border-[#FF5500]/50"
-                  }`}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Right Arrow Slider Button */}
-        {showRightBtn && (
-          <button
-            onClick={() => handleScrollClick("right")}
-            className="absolute right-2 z-10 w-10 h-10 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-[#FF5500] hover:bg-slate-50 transition-colors active:scale-95 cursor-pointer"
-            aria-label="Scroll Right"
-          >
-            <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        )}
-
-      </div>
-
-      {/* Accordion list */}
-      <div className="space-y-4 w-full">
-        {categories
-          .find((category) => category.id === activeTab)
-          ?.faqs.map((faq, idx) => {
-          const isOpen = openIndex === idx;
-
-          return (
-            <div
-              key={faq.id}
-              className="bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col shadow-sm border border-slate-100/40 w-full transition-all duration-300 text-left rtl:text-right"
+          {/* Left Arrow Slider Button */}
+          {showLeftBtn && (
+            <button
+              onClick={() => handleScrollClick("left")}
+              className="absolute left-2 z-10 w-10 h-10 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-[#FF5500] hover:bg-slate-50 transition-colors active:scale-95 cursor-pointer"
+              aria-label="Scroll Left"
             >
-              {/* Accordion Trigger Header */}
-              <button
-                onClick={() => setOpenIndex(isOpen ? null : idx)}
-                className="flex justify-between items-center w-full cursor-pointer gap-4 text-left rtl:text-right focus:outline-none"
-              >
-                <h3 className="text-base sm:text-lg font-normal text-[#181818] leading-tight">
-                  {faq.question}
-                </h3>
+              <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+          )}
 
-                {/* Toggle Button */}
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
-                    ? "bg-[#FFF3ED] text-[#FF5500] rotate-90"
-                    : "bg-[#FF5500] text-white"
+          {/* Categories Tab Container */}
+          <div
+            ref={scrollRef}
+            onScroll={updateScrollButtons}
+            className="flex gap-3 overflow-x-auto pb-2 w-full text-left rtl:text-right scroll-smooth"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none"
+            }}
+          >
+            {categories.map((cat) => {
+              const isActive = activeTab === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleTabChange(cat.id)}
+                  className={`px-6 py-3 rounded-[16px] text-sm font-medium whitespace-nowrap transition-all duration-300 select-none cursor-pointer ${isActive
+                    ? "bg-[#FC4F00] text-white shadow-sm border border-[#FC4F00]"
+                    : "bg-[#FFEDE6] text-[#181818] border border-[#FD7233] hover:border-[#FF5500]/50"
                     }`}
                 >
-                  {isOpen ? (
-                    <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18" />
-                      <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                  ) : (
-                    <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                  )}
-                </div>
-              </button>
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
 
-              {/* Accordion Content Panel */}
-              <div
-                className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100 mt-4 pt-4 border-t border-slate-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
-              >
-                <div className="overflow-hidden">
-                  {faq.isHtml ? (
+          {/* Right Arrow Slider Button */}
+          {showRightBtn && (
+            <button
+              onClick={() => handleScrollClick("right")}
+              className="absolute right-2 z-10 w-10 h-10 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-[#FF5500] hover:bg-slate-50 transition-colors active:scale-95 cursor-pointer"
+              aria-label="Scroll Right"
+            >
+              <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          )}
+
+        </div>
+
+        {/* Accordion list */}
+        <div className="space-y-4 w-full">
+          {categories
+            .find((category) => category.id === activeTab)
+            ?.faqs.map((faq, idx) => {
+              const isOpen = openIndex === idx;
+
+              return (
+                <div
+                  key={faq.id}
+                  className="bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col shadow-sm border border-slate-100/40 w-full transition-all duration-300 text-left rtl:text-right"
+                >
+                  {/* Accordion Trigger Header */}
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                    className="flex justify-between items-center w-full cursor-pointer gap-4 text-left rtl:text-right focus:outline-none"
+                  >
+                    <h3 className="text-base sm:text-lg font-normal text-[#181818] leading-tight">
+                      {faq.question}
+                    </h3>
+
+                    {/* Toggle Button */}
                     <div
-                      className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed [&_p]:mb-0 [&_strong]:font-semibold [&_strong]:text-[#181818]"
-                      dangerouslySetInnerHTML={{ __html: faq.answer }}
-                    />
-                  ) : (
-                    <p className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
+                        ? "bg-[#FFF3ED] text-[#FF5500] rotate-90"
+                        : "bg-[#FF5500] text-white"
+                        }`}
+                    >
+                      {isOpen ? (
+                        <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                      ) : (
+                        <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="12" y1="5" x2="12" y2="19" />
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                      )}
+                    </div>
+                  </button>
 
+                  {/* Accordion Content Panel */}
+                  <div
+                    className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100 mt-4 pt-4 border-t border-slate-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                  >
+                    <div className="overflow-hidden">
+                      {faq.isHtml ? (
+                        <div
+                          className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed [&_p]:mb-0 [&_strong]:font-semibold [&_strong]:text-[#181818]"
+                          dangerouslySetInnerHTML={{ __html: faq.answer }}
+                        />
+                      ) : (
+                        <p className="text-sm sm:text-base text-[#8C8C8C] font-normal leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+
+      </div>
     </div>
   );
 }

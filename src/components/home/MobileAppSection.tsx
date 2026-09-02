@@ -32,9 +32,9 @@ export default function MobileAppSection({ lang, dict, section }: MobileAppSecti
   const qrImage = getImageByRole(section?.images, "qr")?.url ?? "/images/imageqr.png";
 
   return (
-    <section id="download-app" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+    <section id="download-app" className="w-full lg:px-3 max-sm:px-3 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
       {/* Brand Royal Blue Rounded Container */}
-      <div className="max-w-7xl mx-auto bg-[#3748C8] rounded-[2.5rem] p-6 sm:p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 shadow-sm relative overflow-hidden transition-all duration-300 min-h-[480px]">
+      <div className="max-w-7xl mx-auto bg-[#3748C8] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12 lg:gap-8 shadow-sm relative overflow-hidden transition-all duration-300 min-h-[440px] sm:min-h-[480px]">
 
         {/* Left Column: Title, Subtitle, Download Badges & QR Code */}
         <div className="w-full lg:w-[60%] flex flex-col items-start text-left rtl:text-right z-10 space-y-8">
@@ -133,8 +133,8 @@ export default function MobileAppSection({ lang, dict, section }: MobileAppSecti
         {/* Desktop Absolute/Aligned-bottom placement */}
         <div
           className={`hidden lg:block absolute bottom-0 z-10 pointer-events-none ${lang === "ar"
-              ? "left-10 xl:left-0"
-              : "right-10 xl:right-0"
+            ? "left-10 xl:left-0"
+            : "right-10 xl:right-0"
             }`}
         >
 

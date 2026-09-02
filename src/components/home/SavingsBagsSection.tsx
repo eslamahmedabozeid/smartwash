@@ -120,7 +120,7 @@ export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsS
   // Scroll function for slider
   const scroll = (direction: "left" | "right") => {
     if (sliderRef.current) {
-      const cardWidth = 440; // Card width + gap
+      const cardWidth = sliderRef.current.firstElementChild?.clientWidth ?? 340;
       const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
       // Reverse scroll direction in RTL
       const finalScrollAmount = isAr ? -scrollAmount : scrollAmount;
@@ -142,7 +142,7 @@ export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsS
       if (isDown.current || isHovered.current || !sliderRef.current) return;
       
       const slider = sliderRef.current;
-      const cardWidth = 440; // Card width + gap
+      const cardWidth = slider.firstElementChild?.clientWidth ?? 340;
       const maxScroll = slider.scrollWidth - slider.clientWidth;
       
       // Reset to beginning if at the end, otherwise scroll forward
@@ -188,7 +188,6 @@ export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsS
     }
 
     isDown.current = true;
-    // Disable snapping and smooth behavior during manual drag for pixel-perfect tracking
     sliderRef.current.style.scrollSnapType = "none";
     sliderRef.current.style.scrollBehavior = "auto";
     
@@ -206,10 +205,9 @@ export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsS
     
     const slider = sliderRef.current;
     const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // Drag speed multiplier
+    const walk = (x - startX.current) * 1.5;
     slider.scrollLeft = scrollLeftStart.current - walk;
 
-    // Track cursor velocity
     const now = Date.now();
     const elapsed = now - lastEventTime.current;
     if (elapsed > 0) {
@@ -238,8 +236,8 @@ export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsS
     if (!sliderRef.current) return;
 
     const slider = sliderRef.current;
-    let v = velocity.current * 16; // velocity per frame (~16ms)
-    const decay = 0.95; // friction factor
+    let v = velocity.current * 16;
+    const decay = 0.95;
 
     const step = () => {
       if (Math.abs(v) < 0.2 || isDown.current) {
@@ -260,45 +258,24 @@ export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsS
   };
 
   return (
-    <section className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+    <section className="w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
       {/* Light Lavender Rounded Card Panel */}
-      <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2.5rem] p-10 sm:p-10 md:p-10 flex flex-col shadow-sm relative overflow-hidden transition-all duration-300">
+      <div className="max-w-7xl mx-auto bg-[#ECEFFB] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-10 flex flex-col shadow-sm relative overflow-hidden transition-all duration-300">
 
         {/* Top Header Block: Title & Description side-by-side with slider buttons */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8 pb-12 sm:pb-16 border-b border-[#3B52DF]/10">
-          <div className="flex-1 space-y-3">
-            <span className="text-xs sm:text-sm font-medium text-[#3B52DF] tracking-wider uppercase block">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 md:gap-8 pb-6 sm:pb-12 lg:pb-16 border-b border-[#3B52DF]/10">
+          <div className="flex-1 space-y-2 sm:space-y-3">
+            <span className="text-xs sm:text-sm font-semibold text-[#3B52DF] tracking-wider uppercase block">
               {section?.title ?? s.label}
             </span>
-            <h2 className="text-3xl sm:text-5xl md:text-5xl font-semibold text-[#2E41CD] leading-tight tracking-tight whitespace-pre-line">
+            <h2 className="text-2xl min-[400px]:text-3xl sm:text-4xl md:text-5xl font-semibold text-[#2E41CD] leading-tight tracking-tight whitespace-pre-line">
               {section?.content ?? s.title}
             </h2>
           </div>
-          <div className="flex-1 flex flex-col sm:flex-row sm:items-end justify-between gap-6 lg:pb-2">
-            <p className="text-sm sm:text-base text-[#4F5FB0] font-medium leading-relaxed max-w-md">
+          <div className="flex-1 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 lg:pb-2">
+            <p className="text-xs min-[400px]:text-sm sm:text-base text-[#4F5FB0] font-medium leading-relaxed max-w-md">
               {section?.subtitle ?? s.subtitle}
             </p>
-            {/* Slider navigation controls */}
-            {/* <div className="flex items-center gap-3 self-end sm:self-auto shrink-0">
-              <button
-                onClick={() => scroll("left")}
-                aria-label="Previous card"
-                className="w-11 h-11 rounded-full border-2 border-[#3B52DF]/20 hover:border-[#3B52DF] text-[#3B52DF] hover:bg-[#3B52DF]/5 flex items-center justify-center transition-all active:scale-95 cursor-pointer"
-              >
-                <svg className="w-5 h-5 rtl:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-              </button>
-              <button
-                onClick={() => scroll("right")}
-                aria-label="Next card"
-                className="w-11 h-11 rounded-full bg-[#3B52DF] hover:bg-[#2E41CD] text-white flex items-center justify-center transition-all active:scale-95 shadow-md shadow-[#3B52DF]/20 cursor-pointer"
-              >
-                <svg className="w-5 h-5 rtl:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </button>
-            </div> */}
           </div>
         </div>
 
@@ -317,62 +294,61 @@ export default function SavingsBagsSection({ lang, dict, section }: SavingsBagsS
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
           onDragStart={(e) => e.preventDefault()}
-          className="mt-12 flex overflow-x-auto pb-6 gap-6 scrollbar-none snap-x snap-mandatory w-full cursor-grab active:cursor-grabbing select-none"
+          className="mt-6 sm:mt-12 flex overflow-x-auto pb-4 sm:pb-6 gap-3 sm:gap-6 scrollbar-none snap-x snap-mandatory w-full cursor-grab active:cursor-grabbing select-none"
         >
           {cards.map((card, idx) => (
             <div
               key={idx}
-              className="w-[32.5625rem] h-[20.9375rem] sm:w-[380px] lg:w-[32.5625rem] shrink-0 snap-start bg-white rounded-3xl overflow-hidden flex flex-row border border-[#3B52DF]/5 shadow-md hover:shadow-xl hover:scale-102 transition-all duration-300 group"
+              className="w-[82vw] min-[420px]:w-[78vw] sm:w-[380px] lg:w-[32.5625rem] max-w-[520px] h-auto min-h-[13.5rem] sm:h-[18rem] lg:h-[20.9375rem] shrink-0 snap-start bg-white rounded-2xl sm:rounded-3xl overflow-hidden flex flex-row border border-[#3B52DF]/5 shadow-md hover:shadow-xl hover:scale-102 transition-all duration-300 group"
             >
               {/* Left Column (Image) */}
-              <div className="relative w-[40%] sm:w-[45%] h-full min-h-[170px] sm:min-h-[210px] overflow-hidden">
+              <div className="relative w-[38%] min-[400px]:w-[42%] sm:w-[45%] h-full min-h-[140px] sm:min-h-[210px] overflow-hidden">
                 <Image
                   src={card.image}
                   alt={card.title}
                   fill
-                  sizes="(max-width: 768px) 40vw, 15vw"
+                  sizes="(max-width: 640px) 38vw, (max-width: 1024px) 30vw, 240px"
                   className="object-cover group-hover:scale-108 transition-transform duration-500"
                   draggable={false}
                 />
               </div>
 
               {/* Right Column (Contents) */}
-              <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center text-left rtl:text-right">
-                <div className="space-y-1 sm:space-y-2">
+              <div className="flex-1 p-3 min-[400px]:p-4 sm:p-5 flex flex-col justify-between text-left rtl:text-right">
+                <div className="space-y-1">
                   {/* Badge */}
-                  <span className="inline-block mb-[0.5rem] px-[0.75rem] py-[0.25rem] text-[9px] sm:text-[0.75rem] font-normal rounded-full bg-[#FFEDE6] text-[#000] tracking-wide uppercase">
+                  <span className="inline-block mb-1 px-2 py-0.5 text-[9px] sm:text-xs font-semibold rounded-full bg-[#FFEDE6] text-[#FF5500] tracking-wide uppercase">
                     {card.tag}
                   </span>
                   {/* Title */}
-                  <h3 className="mb-[0.5rem] sm:text-base font-bold text-[1.25rem] text-slate-800 leading-tight">
+                  <h3 className="mb-1 font-bold text-sm min-[400px]:text-base sm:text-lg lg:text-[1.25rem] text-slate-800 leading-tight line-clamp-2">
                     {card.title}
                   </h3>
                   {/* Description */}
-                  <p className="text-[0.875rem] mb-[0.5rem] sm:text-xs text-[#181818] font-medium leading-relaxed line-clamp-3">
+                  <p className="text-[11px] min-[400px]:text-xs sm:text-sm text-[#181818] font-normal leading-relaxed line-clamp-2 sm:line-clamp-3 mb-1">
                     {card.desc}
                   </p>
-                  <span className="text-xs sm:text-[1rem] font-semibold text-[#181818]">
-                    {card.price}
-                  </span>
-                  <Link
-                    href={card.href}
-                    className="flex mt-[2rem] items-center gap-1 text-[1.125rem] sm:text-[1.125rem] font-medium text-[#FC4F00] hover:text-[#E64D00] transition-colors"
-                  >
-                    <span>{card.knowMore}</span>
-                    <svg
-                      className="w-3.5 h-3.5 rtl:rotate-180 stroke-current transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="3"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </Link>
+                  {card.price && (
+                    <span className="text-xs min-[400px]:text-sm sm:text-base font-bold text-[#181818] block">
+                      {card.price}
+                    </span>
+                  )}
                 </div>
 
-                {/* <div className="pt-2 sm:pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                
-                </div> */}
+                <Link
+                  href={card.href}
+                  className="flex mt-2 sm:mt-4 items-center gap-1 text-xs min-[400px]:text-sm sm:text-base font-semibold text-[#FC4F00] hover:text-[#E64D00] transition-colors"
+                >
+                  <span>{card.knowMore}</span>
+                  <svg
+                    className="w-3.5 h-3.5 rtl:rotate-180 stroke-current transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="3"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
               </div>
             </div>
           ))}

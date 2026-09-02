@@ -29,7 +29,7 @@ export default function HelpView({ lang, dict, helpPage, faqCategories }: HelpVi
       <HeaderContainer lang={lang} dict={dict} />
 
       {/* Main Content Area */}
-      <main className="w-full flex-1 py-12 px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
+      <main className="w-full flex-1 py-12  lg:px-8 space-y-12 bg-white">
         {/* Help Banner & Contact Section */}
         <ScrollReveal variant="fade-in" delay={100} duration={800}>
           <HelpHeaderSection

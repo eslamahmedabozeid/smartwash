@@ -56,9 +56,9 @@ export default function ServicesSection({ lang, dict, section, bgClass = "bg-[#E
     : fallbackFeatures;
 
   return (
-    <section id="why-smartwash" className="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-white">
+    <section id="why-smartwash" className="w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
       {/* Light Lavender/Peach Rounded Card Panel matching user screenshot */}
-      <div className={`max-w-7xl mx-auto ${bgClass} rounded-[2.5rem] p-6 sm:p-10 md:p-[2.5rem] flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300`}>
+      <div className={`max-w-7xl mx-auto ${bgClass} rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 md:p-[2.5rem] flex flex-col items-center text-center shadow-sm relative overflow-hidden transition-all duration-300`}>
 
         {/* Section Header Block */}
         <div className="space-y-3 mb-12 sm:mb-16">
