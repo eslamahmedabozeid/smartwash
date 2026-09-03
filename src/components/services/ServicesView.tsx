@@ -33,7 +33,7 @@ function renderSection(section: SiteSection, lang: string, dict: any) {
           lang={lang}
           dict={dict}
           section={section}
-          bgClass="bg-white"
+          bgClass="bg-[#F5F5F5]"
         />
       );
     case "testimonials":
@@ -88,7 +88,7 @@ export default function ServicesView({ lang, dict, servicesPage }: ServicesViewP
                 lang={lang}
                 dict={dict}
                 section={audienceSection}
-                bgClass="bg-white"
+                bgClass="bg-[#F5F5F5]"
               />
             </ScrollReveal>
             <ScrollReveal variant="fade-up">

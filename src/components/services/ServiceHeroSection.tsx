@@ -21,11 +21,11 @@ export default function ServiceHeroSection({ lang, dict, section }: ServiceHeroS
   const vanImage = sub2?.images?.[0]?.url ?? section?.images?.[0]?.url ?? "/images/service/Rectangle33.png";
   const vanImageAlt = sub2?.images?.[0]?.alt ?? section?.images?.[0]?.alt ?? "Delivery Van";
 
-  const galleryImg1 = section?.images?.[1]?.url ?? section?.images?.[0]?.url ?? "/images/service/Rectangle3.png";
-  const galleryImg1Alt = section?.images?.[1]?.alt ?? section?.images?.[0]?.alt ?? "Folded Laundry Stack & Basket";
+  const galleryImg1 = section?.images?.[0]?.url ?? section?.images?.[0]?.url ?? "/images/service/Rectangle3.png";
+  const galleryImg1Alt = section?.images?.[0]?.alt ?? section?.images?.[0]?.alt ?? "Folded Laundry Stack & Basket";
 
-  const galleryImg2 = section?.images?.[2]?.url ?? section?.images?.[1]?.url ?? "/images/service/Rectangle1.png";
-  const galleryImg2Alt = section?.images?.[2]?.alt ?? section?.images?.[1]?.alt ?? "Hanging Clothes Rack & Dressing Room";
+  const galleryImg2 = section?.images?.[1]?.url ?? section?.images?.[1]?.url ?? "/images/service/Rectangle1.png";
+  const galleryImg2Alt = section?.images?.[1]?.alt ?? section?.images?.[1]?.alt ?? "Hanging Clothes Rack & Dressing Room";
 
   return (
     <div className="max-sm:px-3">

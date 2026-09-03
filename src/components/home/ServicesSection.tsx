@@ -1,5 +1,5 @@
 import React from "react";
-import { sortByOrder } from "@/lib/api/utils";
+import { normalizeHtmlContent, sortByOrder, stripHtml } from "@/lib/api/utils";
 import type { SiteSection } from "@/types/api";
 
 interface ServicesSectionProps {
@@ -41,19 +41,30 @@ export default function ServicesSection({ lang, dict, section, bgClass = "bg-[#E
 
   const features = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item, idx) => {
-      const iconUrl = item.images?.[0]?.url;
+      const iconUrl =
+        item.images?.find((image) => image.role === "icon")?.url ??
+        item.images?.[0]?.url;
 
       return {
         title: item.title,
-        desc: item.content,
+        desc: stripHtml(normalizeHtmlContent(item.content)),
         icon: iconUrl ? (
-          <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="max-w-[28px] object-contain" />
+          <img
+            src={iconUrl}
+            alt={item.images?.[0]?.alt ?? item.title}
+            className="w-7 h-7 object-contain"
+          />
         ) : (
           fallbackIcons[idx] ?? fallbackIcons[0]
         ),
       };
     })
     : fallbackFeatures;
+
+  const sectionLabel = section?.title ?? s.label;
+  const sectionTitle = section?.content
+    ? stripHtml(normalizeHtmlContent(section.content))
+    : s.title;
 
   return (
     <section id="why-smartwash" className="w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 bg-white">
@@ -63,10 +74,10 @@ export default function ServicesSection({ lang, dict, section, bgClass = "bg-[#E
         {/* Section Header Block */}
         <div className="space-y-3 mb-12 sm:mb-16">
           <span className="text-xs sm:text-[1.125rem] font-medium text-[#181818] tracking-wider uppercase block">
-            {section?.title ?? s.label}
+            {sectionLabel}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-[3.5rem] font-semibold text-[#1E1E1E] leading-tight tracking-tight max-w-3xl whitespace-pre-line">
-            {section?.content ?? s.title}
+            {sectionTitle}
           </h2>
         </div>
 
