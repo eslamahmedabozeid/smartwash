@@ -127,7 +127,15 @@ export function stripHtml(html: string) {
 }
 
 export function normalizeHtmlContent(html: string) {
-  return html.replace(/&nbsp;/g, " ");
+  return html
+    .replace(/&nbsp;|&#160;|&#xa0;/gi, " ")
+    .replace(/\u00a0/g, " ")
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, "&")
+    .replace(/<pre\b[^>]*>/gi, "<p>")
+    .replace(/<\/pre>/gi, "</p>");
 }
 
 export function getImageByRole(

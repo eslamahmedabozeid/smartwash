@@ -187,7 +187,7 @@ export default function TestimonialsSection({ lang, dict, section }: Testimonial
           {testimonials.map((item, idx) => (
             <div
               key={idx}
-              className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${idx === currentIndex
+              className={`absolute inset-0 flex flex-col items-center justify-center px-2 sm:px-4 transition-all duration-700 ease-in-out ${idx === currentIndex
                 ? "opacity-100 scale-100 z-10"
                 : "opacity-0 scale-95 z-0"
                 }`}
@@ -195,11 +195,11 @@ export default function TestimonialsSection({ lang, dict, section }: Testimonial
               {/* Testimonial Quote */}
               {item.isHtml ? (
                 <blockquote
-                  className="text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight max-w-4xl tracking-tight mb-8 break-words whitespace-normal [&_p]:mb-0 [&_p]:break-words [&_strong]:font-black"
+                  className="w-full max-w-4xl text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight tracking-tight mb-8 break-words whitespace-normal [overflow-wrap:anywhere] [&_p]:mb-2 [&_p]:last:mb-0 [&_p]:break-words [&_p]:whitespace-normal [&_pre]:whitespace-pre-wrap [&_pre]:font-inherit [&_pre]:break-words [&_em]:block [&_em]:mt-2 [&_em]:text-base [&_em]:font-semibold [&_em]:text-slate-400 [&_strong]:font-black"
                   dangerouslySetInnerHTML={{ __html: item.quote }}
                 />
               ) : (
-                <blockquote className="text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight max-w-4xl tracking-tight mb-8">
+                <blockquote className="w-full max-w-4xl text-xl sm:text-2xl md:text-[2.25rem] font-black text-[#181818] leading-tight tracking-tight mb-8 break-words whitespace-normal">
                   "{item.quote}"
                 </blockquote>
               )}
