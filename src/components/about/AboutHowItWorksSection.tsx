@@ -1,5 +1,5 @@
 import React from "react";
-import { sortByOrder } from "@/lib/api/utils";
+import { normalizeHtmlContent, sortByOrder, stripHtml } from "@/lib/api/utils";
 import type { SiteSection } from "@/types/api";
 
 interface AboutHowItWorksSectionProps {
@@ -65,19 +65,29 @@ export default function AboutHowItWorksSection({ lang, dict, section }: AboutHow
 
   const steps = section?.subsections?.length
     ? sortByOrder(section.subsections).map((item, idx) => {
-      const iconUrl = item.images?.[0]?.url;
+      const iconImage =
+        item.images?.find((image) => image.role === "icon") ?? item.images?.[0];
 
       return {
         title: item.title,
-        desc: item.content,
-        icon: iconUrl ? (
-          <img src={iconUrl} alt={item.images?.[0]?.alt ?? item.title} className="w-6 h-6 object-contain" />
+        desc: stripHtml(normalizeHtmlContent(item.content)),
+        icon: iconImage?.url ? (
+          <img
+            src={iconImage.url}
+            alt={iconImage.alt ?? item.title}
+            className="w-6 h-6 object-contain"
+          />
         ) : (
           fallbackIcons[idx] ?? fallbackIcons[0]
         ),
       };
     })
     : fallbackSteps;
+
+  const sectionLabel = section?.title ?? s.label;
+  const sectionTitle = section?.content
+    ? stripHtml(normalizeHtmlContent(section.content))
+    : s.title;
 
   return (
     <section id="about-how-it-works" className="w-full max-sm:px-4 py-16 md:py-24 bg-white">
@@ -86,10 +96,10 @@ export default function AboutHowItWorksSection({ lang, dict, section }: AboutHow
         {/* Section Header (Centered & Sticky) */}
         <div className="sticky top-0 text-center space-y-3 w-full pt-8 sm:pt-10 pb-6 z-30 bg-[#FFF3ED] rounded-t-[2rem] sm:rounded-t-[2.5rem] px-4 sm:px-6 lg:px-8">
           <span className="text-xs sm:text-[1.125rem] font-medium text-[#FC4F00] tracking-wider uppercase block">
-            {section?.title ?? s.label}
+            {sectionLabel}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FC4F00] leading-tight tracking-tight whitespace-pre-line">
-            {section?.content ?? s.title}
+            {sectionTitle}
           </h2>
         </div>
 

@@ -11,7 +11,7 @@ import HowItWorksSection from "@/components/home/HowItWorksSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import FaqSection from "@/components/shared/FaqSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
-import { getSectionByType } from "@/lib/api/home";
+import { getSectionByType, getSectionsByType } from "@/lib/api/home";
 import { getImageByRole } from "@/lib/api/utils";
 import type { SitePage } from "@/types/api";
 
@@ -27,7 +27,11 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
   const heroSection = getSectionByType(sections, "hero");
   const featuresSection = getSectionByType(sections, "features");
   const appPromoSection = getSectionByType(sections, "app_promo");
-  const howItWorksSection = getSectionByType(sections, "how_it_works");
+  const howItWorksSections = getSectionsByType(sections, "how_it_works");
+  // order 3 — sticky image layout
+  const howItWorksSection = howItWorksSections[0];
+  // order 4 — numbered cards (Schedule Pickup / We Collect / We Clean / We Deliver)
+  const aboutHowItWorksSection = howItWorksSections[1] ?? howItWorksSections[0];
   const whyChooseUsSection = getSectionByType(sections, "why_choose_us");
   const appDownloadSection = getSectionByType(sections, "app_download");
   const faqSection = getSectionByType(sections, "faq");
@@ -137,15 +141,14 @@ export default function AboutView({ lang, dict, aboutPage }: AboutViewProps) {
         <AboutPromoSection lang={lang} dict={dict} section={appPromoSection} />
       </ScrollReveal>
 
-      {/* How It Works Section */}
+      {/* How It Works Section (order 3) */}
       <ScrollReveal variant="fade-up">
         <HowItWorksSection lang={lang} dict={dict} section={howItWorksSection} />
       </ScrollReveal>
 
-
-      {/* How It Works Section with Stacking Scroll Animation */}
+      {/* How It Works numbered cards (order 4) */}
       <ScrollReveal variant="fade-up">
-        <AboutHowItWorksSection lang={lang} dict={dict} section={howItWorksSection} />
+        <AboutHowItWorksSection lang={lang} dict={dict} section={aboutHowItWorksSection} />
       </ScrollReveal>
 
       {/* Services Section */}

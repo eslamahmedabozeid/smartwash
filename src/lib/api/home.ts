@@ -115,3 +115,12 @@ export function getSectionByType(
   return sections.find((section) => section.type === type);
 }
 
+export function getSectionsByType(
+  sections: SiteSection[],
+  type: string
+): SiteSection[] {
+  return sections
+    .filter((section) => section.type === type)
+    .sort((a, b) => a.order - b.order);
+}
+
